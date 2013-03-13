@@ -1,0 +1,65 @@
+#fullBegin ({
+	"title" : "Support Flip.TV",
+	"pageType" : "basic",
+	"search" : false,
+	"titleBarLeft" : "Donation"
+})
+
+#memoTop()
+	<p>
+		Flip.TV is provided to you as a free service in the hope that you find
+		our TV search and alert service useful and convenient.  Although we 
+		receive some income from the associated advertisements, ad revenues currently
+		don't cover our daily costs to maintain our servers on the web. We are
+		also trying to enhance the service with new features for our users.
+	</p>
+	<p>
+		If you like Flip.TV and would like to keep this service online, we ask
+		that you make a small donation periodically, through the PayPal service
+		by clicking on the following button.  How much is up to you.
+	</p>
+	<p>
+		Thank you for supporting Flip.TV.
+	</p>
+	<div align="center">
+		<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+		<input type="hidden" name="cmd" value="_xclick">
+		<input type="hidden" name="business" value="rich.kadel@appeligo.com">
+		<input type="hidden" name="item_name" value="Appeligo Flip.TV Donation">
+		<input type="hidden" name="no_shipping" value="1">
+		<input type="hidden" name="return" value="http://flip.tv/donation/thankyou.action">
+		<input type="hidden" name="cancel_return" value="http://flip.tv/">
+		<input type="hidden" name="no_note" value="1">
+		<input type="hidden" name="currency_code" value="USD">
+		<input type="hidden" name="tax" value="0">
+		<input type="hidden" name="lc" value="US">
+		<input type="hidden" name="bn" value="PP-DonationsBF">
+		<div>Amount: $<input type="text" name="amount" value="40.00" size="7" style="text-align: right;"/> USD</div>
+		<br/>
+		<input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but04.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+		<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+		</form>
+	<!--
+	<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+		<input type="hidden" name="cmd" value="_s-xclick">
+		<input type="hidden" name="currency_code" value="USD"/>
+		<div>Amount: $<input type="text" name="amount" value="20.00" size="7"/> USD</div>
+		<br/>
+		<input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but04.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+		<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+		<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+	">
+	https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=davidc%40bimmerboard%2ecom&item_name=BimmerBoard%20Donation&amount=10%2e00&no_shipping=1&return=http%3a%2f%2fwww%2ebimmerboard%2ecom%2fforums%2fpaypalreturn&cancel_return=http%3a%2f%2fwww%2ebimmerboard%2ecom&cn=Optional%20Message&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8
+	-->
+	</form>
+	</div>
+	<p>
+		<b>Please be advised: Appeligo, Inc. is <i>not</i> a non-profit or charitable organization, and your donations are
+		not tax-deductible. Thank you.</b>
+	</p>
+#memoBottom()
+
+#fullEnd ({
+	"pageType" : "basic",
+	"search" : false
+})

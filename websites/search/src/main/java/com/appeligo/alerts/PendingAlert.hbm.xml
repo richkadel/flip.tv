@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.appeligo.alerts" default-access="field">
+	
+	<class name="com.appeligo.alerts.PendingAlert" 
+		proxy="com.appeligo.alerts.PendingAlert" table="pending_alerts">
+		<cache usage="read-write"/>
+		<id name="id" type="long" column="pending_alert_id">
+			<generator class="native"/>
+		</id>
+		
+		<property name="userId" type="long" column="user_id" not-null="true"/>
+		<property name="programId" type="string" column="program_id" not-null="false" length="64"/>
+		<property name="callSign" type="string" column="call_sign" not-null="true" length="64"/>
+		<property name="programStartTime" type="java.util.Date" column="program_start_time" not-null="true"/>
+		<property name="alertTime" type="java.util.Date" column="alert_time" not-null="true"/>
+		<property name="fired" type="boolean" column="fired" not-null="true"/>
+		<property name="deleted" type="boolean" column="deleted" not-null="true"/>
+		<property name="manual" type="boolean" column="manual" not-null="true"/>
+		
+	    <many-to-one name="programAlert" class="com.appeligo.alerts.ProgramAlert" 
+			column="program_alert_id" />
+			
+	</class>
+	
+	<query name="PendingAlert.deleteAllMarkedDeleted" cacheable="false"><![CDATA[
+		delete from PendingAlert where deleted = true
+	]]></query>
+	<!--
+		delete from PendingAlert where deleted = true or programAlert = null
+	  -->
+
+	<query name="PendingAlert.deleteOldFired" cacheable="false"><![CDATA[
+		delete from PendingAlert where fired = true and programStartTime < :currentTime
+	]]></query>
+
+	<query name="PendingAlert.getExpiredAlerts" cacheable="false"><![CDATA[
+		from PendingAlert where deleted = false and fired = false and alertTime <= :currentTime order by alertTime, userId, id
+	]]></query>
+
+	<query name="PendingAlert.getNextAlerts" cacheable="false"><![CDATA[
+		from PendingAlert where deleted = false and fired = false order by alertTime
+	]]></query>
+	
+	<query name="PendingAlert.getManualAlertsForUser" cacheable="false"><![CDATA[
+		from PendingAlert where userId = :userId and manual = true and deleted = false and fired = false
+	]]></query>
+	
+	
+	<!--  Apparently joins on updates don't work in HQL
+	<query name="PendingAlert.markDeletedWhereProgramAlertMarked" cacheable="false"><![CDATA[
+		update PendingAlert pendalert,ProgramAlert progalert
+			set pendalert.deleted = true 
+			where pendalert.programAlert = progalert.id && progalert.deleted = true
+	]]></query>
+	  -->
+		<query name="PendingAlert.markDeletedForProgramAlert" cacheable="false"><![CDATA[
+		update PendingAlert set deleted = true where programAlert = :programAlert
+	]]></query>
+	
+	<!--
+	<query name="PendingAlert.getPendingAlertsByProgramAlert" cacheable="false"><![CDATA[
+		from PendingAlert where programAlert = :programAlertId order by alertTime
+	]]></query>
+	  -->
+
+</hibernate-mapping>

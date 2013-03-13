@@ -1,0 +1,19 @@
+#!/bin/sh
+
+BACKUP=$2
+
+cksum $1 | sed -e 's/\/var.*$//' > tmpsum
+
+cksum ${BACKUP}$1 2> /dev/null | sed -e 's/\/mnt.*$//' | diff -q - tmpsum > /dev/null
+
+STATUS=$?
+
+if [ $STATUS == 1 ]; then
+	DIRNAME=`dirname ${BACKUP}$1`
+	mkdir -p $DIRNAME
+	CMD="cp $1 ${BACKUP}$1"
+	echo $CMD
+	$CMD
+# else
+# 	echo skipped $1
+fi

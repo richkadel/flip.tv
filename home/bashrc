@@ -1,0 +1,21 @@
+# .bashrc
+
+# User specific aliases and functions
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+export JAVA_HOME=/usr/java/jdk
+export MAVEN_HOME=/usr/local/maven
+export ANT_HOME=/usr/local/ant
+export EDITOR=vi
+export CATALINA_HOME=/usr/local/dev/tomcat
+export CDPATH=.:~/svn.knowbout.tv/knowbout.tv/trunk:~/svn.knowbout.tv/knowbout.tv/trunk/websites
+
+PATH=~/svn.knowbout.tv/knowbout.tv/trunk/bin:$JAVA_HOME/bin:$ANT_HOME/bin:$MAVEN_HOME/bin:$PATH
+
+alias cc4j='cd ~/svn.knowbout.tv/knowbout.tv/trunk/cc4j'
+
+umask 0002

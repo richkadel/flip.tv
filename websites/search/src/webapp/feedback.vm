@@ -1,0 +1,49 @@
+#fullBegin ({
+	"title" : "Feedback",
+	"pageType" : "basic",
+	"search" : false,
+	"titleBarLeft" : "Feedback",
+	"pageType" : "basic",
+	"firstFocus"	: 'document.feedback.subject'
+})
+
+<div style="width: 100%; margin-right: auto; margin-left: auto;">
+
+    #noteTop("750px")
+    We value any feedback you provide us at Flip.TV.  If you choose to provide your 
+    email address, we may respond to you, but only about the feedback you have provided.
+    We will read every message we get and we will try to respond to all of them personally.
+    
+    Thank you for your interest in Flip.TV.
+    <br/>
+    <br/>
+    <br/>	
+    <div style="width: 100%; margin-right: auto; margin-left: auto;">
+    	<center>
+    		<form name="feedback" action="/feedback/save.action">
+				<input type="hidden" name="url" value="$url"/>
+            	<table CELLSPACING="10px">
+            		
+            		<tr><td class="label" align="right" valign="top" >Subject:</td><td><input class="field" name="subject" type="text"/></td></tr>
+            		<tr><td class="label" align="right" valign="top" >Message:</td><td><textarea class="area" name="message"></textarea></td></tr>
+            		<tr><td class="label" align="right" valign="top" >Email:</td><td><input class="field"  name="email" type="text"/></td></tr>
+					<tr><td>&nbsp;</td></tr>
+            		<tr><td></td><td><input type="submit" name="send" value="Send Feedback"/> <input type="button" name="Cancel" value="Cancel" onclick="window.location='/home/home.action'"></td></tr>
+            	</table>
+            </form>
+    	</center>
+    </div>
+	
+	    #noteBottom()
+
+</div>
+<br/>
+<br/>
+<br/>
+#fullEnd({
+	"pageType" : "basic",
+	"search" : false
+})
+
+
+

@@ -1,0 +1,28 @@
+#fullBegin({
+	"subtitle" : "Admin",
+	"search" : false,
+	"titleBarLeft" : "Admin",
+	"pageType" : "basic"
+})
+
+<h1>User List ($users.size())</h1>
+<table width="80%" border="1"><tr><th>Validate</th><th>Enabled</th><th>User Name</th><th>Email</th><th>Registration Complete</th><th>SMS Validation</th><th>Last Login</th><th>Account Created</th></tr>
+#foreach($user in $users) 
+	<tr>
+		<td><a href="/admin/validateUser.action?u=$user.userId">User</a> <a href="/admin/validateSMS.action?u=$user.userId">SMS</a></td>
+		<td><a href="/admin/enableUser.action?u=$user.userId">$user.enabled</a></td>
+		<td>$user.username</td>
+		<td>$user.primaryEmail</td>
+		<td>$user.registrationComplete</td>
+		<td>$user.smsVerified</td>
+		<td>#if ($user.lastLogin && $user.lastLogin.time < $math.sub($date.date.time, 604800000))<font color="#FF0000">#elseif ($user.lastLogin && $user.lastLogin.time > $math.sub($date.date.time, 86400000))<font color="#00CCCC">#else<font color="#000000">#end$user.lastLogin</font></td>
+		<td>$user.creationTime</td>
+	</tr>
+#end
+</table>
+
+#fullEnd({
+		"pageType" : "basic",
+		"ads" : false,
+		"search" : false
+})

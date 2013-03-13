@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping package="com.knowbout.epg.entities">
+
+<class name="com.knowbout.epg.entities.Program" 
+	proxy="com.knowbout.epg.entities.Program" 
+	table="programs" >
+    <cache usage="nonstrict-read-write"/>
+    <id name="programId" type="java.lang.String" column="program_id" >
+        <generator class="assigned" />
+    </id>
+
+    <property name="programTitle" type="java.lang.String" column="title" length="120" />
+    <property name="reducedTitle70" type="java.lang.String" column="reduced_title_70" length="70" />
+    <property name="reducedTitle40" type="java.lang.String" column="reduced_title_40" length="40" />
+    <property name="reducedTitle20" type="java.lang.String" column="reduced_title_20" length="20" />
+    <property name="reducedTitle10" type="java.lang.String" column="reduced_title_10" length="10" />
+    <property name="altTitle" type="java.lang.String" column="alt_title" length="120" />
+    <property name="reducedDescription120" type="java.lang.String" column="reduced_description_120" length="120" />
+    <property name="reducedDescription60" type="java.lang.String" column="reduced_description_60" length="60" />
+    <property name="reducedDescription40" type="java.lang.String" column="reduced_description_40" length="40" />
+    <property name="adultSituationsAdvisory" type="java.lang.String" column="adult_situations" length="30" />
+    <property name="graphicLanguageAdvisory" type="java.lang.String" column="graphic_language" length="30" />
+    <property name="briefNudityAdvisory" type="java.lang.String" column="brief_nudity" length="30" />
+    <property name="graphicViolenceAdvisory" type="java.lang.String" column="graphic_violence" length="30" />
+    <property name="sscAdvisory" type="java.lang.String" column="ssc" length="30" />
+    <property name="rapeAdvisory" type="java.lang.String" column="rape" length="30" />
+    <property name="genreDescription" type="java.lang.String" column="genre_description" length="100" />
+    <property name="description" type="java.lang.String" column="description" length="255" />
+    <property name="year" type="java.sql.Date" column="year" length="10" />
+    <property name="mpaaRating" type="java.lang.String" column="mpaa_rating" length="5" />
+    <property name="starRating" type="java.lang.Float" column="star_rating" length="12" />
+    <property name="runTime" type="java.lang.Integer" column="run_time" length="11" />
+    <property name="colorCode" type="java.lang.String" column="color_code" length="20" />
+    <property name="programLanguage" type="java.lang.String" column="program_language" length="20" />
+    <property name="orgCountry" type="java.lang.String" column="org_country" length="15" />
+    <property name="madeForTv" type="java.lang.Boolean" column="made_for_tv" length="1" />
+    <property name="sourceType" type="java.lang.String" column="source_type" length="10" />
+    <property name="showType" type="java.lang.String" column="show_type" length="30" />
+    <property name="holiday" type="java.lang.String" column="holiday" length="30" />
+    <property name="synEpiNum" type="java.lang.String" column="syn_epi_num" length="11" />
+    <property name="altSynEpiNum" type="java.lang.String" column="alt_syn_epi_num" length="11" />
+    <property name="episodeTitle" type="java.lang.String" column="epi_title" length="150" />
+    <property name="netSynSource" type="java.lang.String" column="net_syn_source" length="10" />
+    <property name="netSynType" type="java.lang.String" column="net_syn_type" length="21" />
+    <property name="descriptionActors" type="java.lang.String" column="description_actors" length="255" />
+    <property name="reducedDescriptionActors" type="java.lang.String" column="reduced_description_actors" length="100" />
+    <property name="orgStudio" type="java.lang.String" column="org_studio" length="25" />
+    <property name="gameDate" type="java.sql.Date" column="game_date" length="10" />
+    <property name="gameTime" type="java.sql.Timestamp" column="game_time" length="19" />
+    <property name="gameTimeZone" type="java.lang.String" column="game_time_zone" length="30" />
+    <property name="orginalAirDate" type="java.sql.Date" column="orginal_air_date" length="10" />
+    <property name="uniqueId" type="java.lang.String" column="unique_id" length="8" />
+    <property name="lastModified" type="timestamp" column="last_modified"/>
+    <!--
+    <property name="programType" type="integer" column="program_type"/>
+      -->
+<!-- Associations -->
+
+	 <set name="credits" table="program_credits" >
+	  <cache usage="nonstrict-read-write"/>
+		<key column="program_id"/>
+		<many-to-many column="credit_id" class="com.knowbout.epg.entities.Credit"/>
+	</set>
+
+</class>
+	
+	<query name="Program.selectAfterModifiedDate" cacheable="false"><![CDATA[
+		from Program where lastModified > :date
+	]]></query>
+	
+	<!-- 
+	<query name="Program.selectByProgramTitle" cacheable="false"><![CDATA[
+		from Program where programTitle = :programTitle
+	]]></query>
+	 -->
+	 
+	<query name="Program.selectByTeam" cacheable="false"><![CDATA[
+		from Program where programId like 'TE%' and programTitle = :programTitle and episodeTitle = :episodeTitle
+	]]></query>
+
+	<query name="Program.selectProgramsWithTeam" cacheable="false"><![CDATA[
+		from Program where programId like 'SP%' and programTitle = :programTitle and episodeTitle like :episodeTitleLike
+	]]></query>
+
+	<query name="Program.selectLikeId" cacheable="false"><![CDATA[
+		from Program where programId like :programIdLike
+	]]></query>
+
+	<query name="Program.selectAllShowsMoviesSports" cacheable="false"><![CDATA[
+		from Program where programId like 'SH%' or programId like 'MV%' or programId like 'SP%'
+	]]></query>
+
+	<query name="Program.selectAllTeams" cacheable="false"><![CDATA[
+		from Program where programId like 'TE%'
+	]]></query>
+
+</hibernate-mapping>

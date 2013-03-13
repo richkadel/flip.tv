@@ -1,0 +1,62 @@
+#fullBegin ({
+	"title" : "Invitations",
+	"pageType" : "basic",
+	"search" : false,
+	"titleBarLeft" : "Flip.TV Invitations",
+	"pageType" : "basic",
+	"firstFocus"	: 'document.invites.addresses'
+})
+
+<div style="width: 700px; margin-right: auto; margin-left: auto;">
+	<p>
+	    Here's a great way to tell your friends about Flip.TV <i>and</i> invite them to join your Friend Network.
+		With a Friend Network, you and your friends can share opionions about your favorite (or least favorite!)
+		TV shows and topics.
+	</p>
+		<br/>
+    <div style="width: 100%; text-align: center;">
+    		<form name="invites" action="/network/sendInvite.action">
+            	<table CELLSPACING="10px" width="100%">            		
+            		<tr><td>To invite people, type their email addresses here, seperated by commas: </td></tr>					
+					#if($actionErrors.size() > 0)
+						<tr><td><span style="color:#ff0000">
+						#foreach( $error in $actionErrors )
+							$esc.html($error)<br/>
+						#end
+						</span></td></tr>
+					#end
+					<tr><td><textarea rows="5" cols="80" name="addresses">#if($addresses)$addresses#end</textarea></td></tr>
+					<tr><td>&nbsp;</td></tr>
+            		<tr><td><input type="submit" name="send" value="Send Invite"/> <input type="button" name="Cancel" value="Cancel" onclick="window.location='/home/home.action'"></td></tr>
+            	</table>
+            </form>
+    </div>	
+		<br/>
+	<p align="center">
+		This is the email we will send on your behalf<sup style="color:#ff0000">*</sup>:
+	<p>
+		<br/>
+</div>
+		
+    #noteTop("750px")
+	<p>
+	<span class="searchLabel">Subject:</span> $message.subject<br/>
+	$message.body
+	</p>
+    #noteBottom()
+	<br/>
+<div style="width: 700px; margin-right: auto; margin-left: auto;">
+	<span style="color:#ff0000">*</span> If you have not filled in your first or last name on your account, we have used your username instead.
+	  If they will not recognize this, you may want update your account information before sending this invitation.
+
+</div>
+<br/>
+<br/>
+<br/>
+#fullEnd({
+	"pageType" : "basic",
+	"search" : false
+})
+
+
+

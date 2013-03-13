@@ -1,0 +1,26 @@
+<project>
+	<extend>${basedir}/../project.xml</extend>
+	<name>Know'bout Ticker Feed API</name>
+	<groupId>knowbout</groupId>
+	<artifactId>tickerfeed-api</artifactId>
+	<url>http://www.knowbout.tv/</url>
+	<currentVersion>${tickerfeed-api.current}</currentVersion>
+	<developers>
+		<developer>
+			<id>almilli</id>
+			<name>David Almilli</name>
+			<email>david.almilli@knowbout.com</email>
+		</developer>
+	</developers>
+	<dependencies>
+	</dependencies>
+	<build>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<unitTestSourceDirectory>src/main/test</unitTestSourceDirectory>
+		<unitTest>
+			<includes>
+				<include>**/*Test.java</include>
+			</includes>
+		</unitTest>
+	</build>
+</project>

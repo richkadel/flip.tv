@@ -1,0 +1,28 @@
+#fullBegin ({
+	"title" : "Tell a friend",
+	"pageType" : "basic",
+	"search" : false,
+	"titleBarLeft" : "Tell a friend",
+	"pageType" : "basic"
+})
+
+#noteTop("600px")
+	<p class="memoheader">Your recommendation has been sent.</p>
+	<p>
+		We hope that your friends like Flip.TV as much as you do.  
+		Be on the lookout for the new friend network capabilities being added to Flip.TV. 
+		This will allow you to collaborate with your friends about your favorite shows, 
+		rate shows, recommend shows and more.  
+	</p>
+	<p style="text-align: center;"><b><a href="$program.webPath">Return to $program.label</a></b></p>
+
+#noteBottom()
+<br/>
+<br/>
+
+#fullEnd ({
+	"pageType" : "basic",
+	"search" : false
+})
+
+ 

@@ -1,0 +1,28 @@
+CC    Coordinating conjunction  RP    Particle
+CD    Cardinal number           SYM   Symbol
+DT    Determiner                TO    to
+EX    Existential there         UH    Interjection
+FW    Foreign word              VB    Verb, base form
+IN    Preposition/subordinate   VBD   Verb, past tense
+      conjunction
+JJ    Adjective                 VBG   Verb, gerund/present participle
+JJR   Adjective, comparative    VBN   Verb, past participle
+JJS   Adjective, superlative    VBP   Verb, non-3rd ps. sing. present
+LS    List item marker          VBZ   Verb, 3rd ps. sing. present
+MD    Modal                     WDT   wh-determiner
+NN    Noun, singular or mass    WP    wh-pronoun
+NNP   Proper noun, singular     WP$   Possessive wh-pronoun
+NNPS  Proper noun, plural       WRB   wh-adverb
+NNS   Noun, plural            	``    Left open double quote
+PDT   Predeterminer             ,     Comma
+POS   Possessive ending         ''    Right close double quote
+PRP   Personal pronoun          .     Sentence-final punctuation
+PRP$  Possessive pronoun        :     Colon, semi-colon
+RB    Adverb                    $     Dollar sign
+RBR   Adverb, comparative       #     Pound sign
+RBS   Adverb, superlative       -LRB- Left parenthesis *
+                                -RRB- Right parenthesis *
+                        
+* The Penn Treebank uses the ( and ) symbols, 
+  but these are used elsewhere by the OpenNLP parser
+

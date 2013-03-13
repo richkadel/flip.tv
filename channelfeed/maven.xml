@@ -1,0 +1,69 @@
+<project xmlns:j="jelly:core" xmlns:ant="jelly:ant"
+	xmlns:u="jelly:util" xmlns:maven="jelly:maven">
+	<!-- ignore this comment -->
+	
+	<goal name="upload" prereqs="jar:jar"
+			description="Uploads the jar file to the company repository server">
+		<echo> ${maven.build.dir}/upload.sh ${server.username} jar ${pom.groupId} ${maven.final.name}.jar
+		</echo>
+		<exec dir="${maven.build.dir}" executable="upload.sh">
+			<arg line="${server.username} jar ${pom.groupId} ${maven.final.name}.jar"/>
+		</exec>
+	</goal>
+
+	<goal name="deploy" prereqs="jar:jar"
+		description="Deploys the war file into your system directories">
+		<j:set var="deploy.program.dir" value="/usr/local/flip.tv"/>
+		<delete failonerror="false"
+			dir="${maven.build.dir}/deploy" />
+			<!--
+		<copy todir="${maven.build.dir}/deploy">
+			<ant:fileset dir="${maven.src.dir}/deploy" />
+		</copy>
+		-->
+		<exec executable="cp">
+			<arg line="-r ${maven.src.dir}/deploy ${maven.build.dir}/deploy"/>
+		</exec>
+		<exec executable="find">
+			<arg value="${maven.build.dir}/deploy/"/>
+			<arg value="-name" />
+			<arg value=".svn" />
+			<arg value="-exec" />
+			<arg value="rm" />
+			<arg value="-rf" />
+			<arg value="{}" />
+			<arg value=";"/>
+		</exec>
+	    <copy todir="${maven.build.dir}/deploy/${deploy.program.dir}/jars" file="${maven.build.dir}/${maven.final.name}.jar"/>  
+
+		<j:forEach var="lib" items="${pom.artifacts}">
+		  <j:set var="dep" value="${lib.dependency}"/>     
+		  <!--
+		  <j:if test="${dep.getProperty('war.bundle')=='true'}">
+		  -->
+			  
+			 <j:if test="${dep.type =='jar'}"> 
+			   <ant:copy todir="${maven.build.dir}/deploy/${deploy.program.dir}/jars" file="${lib.path}"/>  
+			 </j:if> 
+			 
+			 <j:if test="${dep.type =='so'}"> 
+			   <ant:copy todir="${maven.build.dir}/deploy/${deploy.program.dir}/lib" file="${lib.path}"/>  
+			 </j:if> 
+			  
+		  <!--
+		  </j:if>  
+		  -->
+		</j:forEach>            
+	    <echo></echo>
+	    <echo></echo>
+	    <echo>========= IMPORTANT!! ==============</echo>
+	    <echo></echo>
+	    <echo>NOW, as superuser, run installchannelfeed</echo>
+	    <echo>and optionally run installcaptionsfiles demo</echo>
+	    <echo>and installcaptionsfiles stage</echo>
+	    <echo></echo>
+	    <echo>====================================</echo>
+	    <echo></echo>
+	    <echo></echo>
+	</goal>
+</project>

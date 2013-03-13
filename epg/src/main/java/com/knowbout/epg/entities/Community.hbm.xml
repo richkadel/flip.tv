@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping package="com.knowbout.epg.entities">
+<class name="com.knowbout.epg.entities.Community" 
+	proxy="com.knowbout.epg.entities.Community" table="communities" >
+
+   <cache usage="nonstrict-read-write"/>
+
+   <id name="id" type="java.lang.String" column="community_id" >
+        <generator class="assigned" />
+    </id>
+    <property name="name" type="java.lang.String" column="communityName"  length="28" />
+    <property name="countyName" type="java.lang.String" column="county_name"  length="25" />
+    <property name="countySize" type="java.lang.String" column="county_size"  length="1" />
+    <property name="countyCode" type="java.lang.Integer" column="county_code"/>
+    <property name="state" type="java.lang.String" column="state" length="2"/>
+    <property name="zipCode" type="java.lang.String" column="zip_code" length="12"/>
+	
+    <!-- Associations -->
+	
+	<set name="headends" table="headend_communities" inverse="true">
+	  <cache usage="nonstrict-read-write"/>
+		<key column="community_id"/>
+		<many-to-many column="headend_id" class="com.knowbout.epg.entities.Headend"/>
+	</set>
+</class>
+		
+</hibernate-mapping>

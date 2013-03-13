@@ -1,0 +1,204 @@
+<project default="jar:jar" xmlns:j="jelly:core" xmlns:maven="jelly:maven" xmlns:ant="jelly:ant">
+
+	<goal name="laptop">
+		<j:set var="config.name" value="laptop"/>
+		<j:if test="${pom.artifactId == 'search'}">
+			<j:set var="contextPath" value=""/>
+			<j:set var="contextFile" value="ROOT.xml"/>
+		</j:if>
+	</goal>
+
+	<goal name="stage">
+		<echo>Changing tomcat.home from ${tomcat.home}...</echo>
+		<j:set var="tomcat.home" value="/usr/local/stage/tomcat"/>
+		<echo>...to ${tomcat.home}</echo>
+		<echo>Changing jdbc.url from ${jdbc.url}...</echo>
+		<j:set var="jdbc.url" value="jdbc:mysql://localhost:3306/stage_${pom.artifactId}"/>
+		<echo>...to ${jdbc.url}</echo>
+		<echo>Changing config.name from ${config.name}...</echo>
+		<j:set var="config.name" value="stage"/>
+		<echo>...to ${config.name}</echo>
+		<j:set var="expanded" value="true"/>
+		<j:set var="docBase" value="${tomcat.home}/../webapps/${pom.artifactId}"/>
+		<j:if test="${pom.artifactId == 'search'}">
+			<j:set var="contextPath" value=""/>
+			<j:set var="contextFile" value="ROOT.xml"/>
+		</j:if>
+	</goal>
+
+	<goal name="dev">
+		<echo>Changing tomcat.home from ${tomcat.home}...</echo>
+		<j:set var="tomcat.home" value="/usr/local/dev/tomcat"/>
+		<echo>...to ${tomcat.home}</echo>
+		<echo>Changing jdbc.url from ${jdbc.url}...</echo>
+		<j:set var="jdbc.url" value="jdbc:mysql://localhost:3306/${pom.artifactId}"/>
+		<echo>...to ${jdbc.url}</echo>
+		<echo>Changing config.name from ${config.name}...</echo>
+		<j:set var="config.name" value="dev"/>
+		<echo>...to ${config.name}</echo>
+		<j:set var="expanded" value="true"/>
+		<j:set var="docBase" value="${tomcat.home}/../webapps/${pom.artifactId}"/>
+		<j:if test="${pom.artifactId == 'search'}">
+			<j:set var="contextPath" value=""/>
+			<j:set var="contextFile" value="ROOT.xml"/>
+		</j:if>
+	</goal>
+
+	<goal name="demo">
+		<echo>Changing tomcat.home from ${tomcat.home}...</echo>
+		<j:set var="tomcat.home" value="/usr/local/demo/tomcat"/>
+		<echo>...to ${tomcat.home}</echo>
+		<echo>Changing jdbc.url from ${jdbc.url}...</echo>
+		<j:set var="jdbc.url" value="jdbc:mysql://localhost:3306/demo_${pom.artifactId}"/>
+		<echo>...to ${jdbc.url}</echo>
+		<echo>Changing config.name from ${config.name}...</echo>
+		<j:set var="config.name" value="demo"/>
+		<echo>...to ${config.name}</echo>
+		<j:set var="expanded" value="true"/>
+		<j:set var="docBase" value="${tomcat.home}/../webapps/${pom.artifactId}"/>
+		<j:if test="${pom.artifactId == 'search'}">
+			<j:set var="contextPath" value=""/>
+			<j:set var="contextFile" value="ROOT.xml"/>
+		</j:if>
+	</goal>
+
+	<goal name="live">
+		<echo>Changing tomcat.home from ${tomcat.home}...</echo>
+		<j:set var="tomcat.home" value="/usr/local/tomcat"/>
+		<echo>...to ${tomcat.home}</echo>
+		<echo>Changing jdbc.url from ${jdbc.url}...</echo>
+		<j:set var="jdbc.url" value="jdbc:mysql://localhost:3306/${pom.artifactId}"/>
+		<echo>...to ${jdbc.url}</echo>
+		<echo>Changing config.name from ${config.name}...</echo>
+		<j:set var="config.name" value="live"/>
+		<echo>...to ${config.name}</echo>
+		<j:set var="expanded" value="true"/>
+		<j:set var="docBase" value="${tomcat.home}/../webapps/${pom.artifactId}"/>
+		<j:if test="${pom.artifactId == 'search'}">
+			<j:set var="contextPath" value=""/>
+			<j:set var="contextFile" value="ROOT.xml"/>
+		</j:if>
+	</goal>
+
+	<goal name="base">
+		<echo>Changing tomcat.home from ${tomcat.home}...</echo>
+		<j:set var="tomcat.home" value="/usr/local/tomcat"/>
+		<echo>...to ${tomcat.home}</echo>
+		<echo>Changing jdbc.url from ${jdbc.url}...</echo>
+		<j:set var="jdbc.url" value="jdbc:mysql://localhost:3306/${pom.artifactId}"/>
+		<echo>...to ${jdbc.url}</echo>
+		<echo>Changing config.name from ${config.name}...</echo>
+		<j:set var="config.name" value="base"/>
+		<echo>...to ${config.name}</echo>
+		<j:set var="expanded" value="true"/>
+		<j:set var="docBase" value="${tomcat.home}/../webapps/${pom.artifactId}"/>
+		<j:if test="${pom.artifactId == 'search'}">
+			<j:set var="contextPath" value=""/>
+			<j:set var="contextFile" value="ROOT.xml"/>
+		</j:if>
+	</goal>
+
+	<goal name="deploy" prereqs="war:war"
+			description="Deploys the war file into your tomcat home">
+		<j:if test="${empty(trunk)}">
+			<j:set var="trunk" value=".."/>
+		</j:if>
+		<j:if test="${pom.artifactId != 'search'}">
+			<j:if test="${empty(contextPath)}">
+				<j:set var="contextPath" value="/${pom.artifactId}"/>
+			</j:if>
+		</j:if>
+		<echo>copied</echo>
+		<j:if test="${empty(docBase)}">
+			<j:set var="docBase" value="${tomcat.home}/../webapps/${pom.artifactId}"/>
+			<j:set var="expanded" value="true"/>
+		</j:if>
+		<j:if test="${expanded == 'true'}">
+			<copy 
+				file="${docBase}/sitemap.xml.gz"
+				tofile="${docBase}/../sitemap.xml.gz"
+				overwrite="true"
+				failonerror="false"
+			/>
+		</j:if>
+		<delete failonerror="true" dir="${docBase}" />
+		<j:if test="${empty(contextFile)}">
+			<j:set var="contextFile" value="${pom.artifactId}.xml"/>
+		</j:if>
+		<j:set var="contextSource" value="${pom.artifactId}.xml"/>
+		<ant:available file="${contextSource}" property="contextSource.present"/>
+		<j:choose>
+			<j:when test="${contextSource.present}">
+				<echo>Using given context source ${contextSource}</echo>
+			</j:when>
+			<j:otherwise>
+				<j:set var="contextSource" value="${trunk}/defaultContext.xml"/>
+				<echo>Using default context source ${contextSource}</echo>
+			</j:otherwise>
+		</j:choose>
+		<echo>copying ${contextSource} to ${tomcat.home}/conf/Catalina/localhost/${contextFile}</echo>
+		<copy file="${contextSource}"
+			tofile="${tomcat.home}/conf/Catalina/localhost/${contextFile}" filtering="true" overwrite="true">
+			<filterset>
+				<filter token="docBase" value="${docBase}"/>
+				<filter token="contextPath" value="${contextPath}"/>
+				<filter token="config.name" value="${config.name}"/>
+				<filter token="jdbc.driver" value="${jdbc.driver}"/>
+				<filter token="jdbc.url" value="${jdbc.url}"/>
+				<filter token="jdbc.username" value="${jdbc.username}"/>
+				<filter token="jdbc.password" value="${jdbc.password}"/>
+			</filterset>
+		</copy>
+		
+		<j:if test="${expanded == 'true'}">
+			<copy todir="${docBase}">
+				<mkdir dir="${docBase}"/>
+				<ant:fileset dir="${maven.build.dir}/${pom.artifactId}" />
+			</copy>
+			<copy 
+				file="${docBase}/../sitemap.xml.gz"
+				tofile="${docBase}/sitemap.xml.gz"
+				overwrite="true"
+				failonerror="false"
+			/>
+		</j:if>
+		
+		<j:if test="${expanded != 'true'}">
+			<copy todir="${docBase}/..">
+				<ant:fileset file="${maven.build.dir}/${pom.artifactId}.war" />
+			</copy>
+		</j:if>
+	</goal>
+
+	<goal name="devdeploy">
+		<j:if test="${pom.artifactId != 'search'}">
+			<j:if test="${empty(contextPath)}">
+				<j:set var="contextPath" value="/${pom.artifactId}"/>
+			</j:if>
+		</j:if>
+		<j:if test="${empty(contextFile)}">
+			<j:set var="contextFile" value="${pom.artifactId}.xml"/>
+		</j:if>
+		<j:set var="maven.test.skip" value="true" />
+		<attainGoal name="war:init" />
+		<j:set var="maven.war.webapp.dir" value="${maven.war.src}" />
+		<echo>Deploying to local src webapp: ${maven.war.webapp.dir}</echo>
+
+		<filter filtersfile="build.properties" />
+		<filter filtersfile="project.properties" />
+		<filter token="docBase" value="${maven.war.webapp.dir}" />
+		<filter token="contextPath" value="${contextPath}"/>
+		<filter token="config.name" value="${config.name}"/>
+		<filter token="jdbc.driver" value="${jdbc.driver}"/>
+		<filter token="jdbc.url" value="${jdbc.url}"/>
+		<filter token="jdbc.username" value="${jdbc.username}"/>
+		<filter token="jdbc.password" value="${jdbc.password}"/>
+		<echo>copying ${pom.artifactId}.xml to ${tomcat.home}/conf/Catalina/localhost/${contextFile}</echo>
+		<copy file="${pom.artifactId}.xml"
+			tofile="${tomcat.home}/conf/Catalina/localhost/${contextFile}" filtering="true" overwrite="true"/>
+		<echo>copied</echo>
+
+		<attainGoal name="war:webapp" />
+	</goal>
+
+</project>

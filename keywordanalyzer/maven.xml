@@ -1,0 +1,42 @@
+<project default="jar:jar" xmlns:m="jelly:maven" xmlns:ant="jelly:ant">
+
+	<!--preGoal name="java:compile">
+		<echo>Generating web service client files for project.</echo>
+		<java classname="org.apache.axis2.wsdl.WSDL2Java" fork="true" failonerror="true">
+		    <classpath refid="maven.dependency.classpath" />
+			<arg line="-uri src/main/wsdl/CCEventService.wsdl" />
+			<arg line="-o client" />
+			<arg line="-p com.knowbout.nlp.keywords.client" />
+		</java>
+		<java classname="org.apache.axis2.wsdl.WSDL2Java" fork="true" failonerror="true">
+		    <classpath refid="maven.dependency.classpath" />
+			<arg line="-uri src/main/wsdl/CCEventService.wsdl" />
+			<arg line="-o server" />
+			<arg line="-p com.knowbout.nlp.keywords.service" />
+			<arg value="-ss"/>
+			<arg value="-ssi"/>
+			<arg value="-sd"/>
+		</java>
+	</preGoal-->
+
+	<goal name="upload" prereqs="jar:jar"
+			description="Uploads the jar file to the company repository server">
+		<echo> ${maven.build.dir}/upload.sh ${server.username} jar ${pom.groupId} ${maven.final.name}.jar
+		</echo>
+		<exec dir="${maven.build.dir}" executable="upload.sh">
+			<arg line="${server.username} jar ${pom.groupId} ${maven.final.name}.jar"/>
+		</exec>
+	</goal>
+
+	<!-- goal name="deploy" prereqs="war:war"
+		description="Deploys the war file into your tomcat home">
+		<delete failonerror="false"
+			dir="${tomcat.home}/webapps/${pom.artifactId}" />
+		<delete failonerror="false"
+			dir="${tomcat.home}/work/Catalina/localhost/${pom.artifactId}" />
+		<copy todir="${tomcat.home}/webapps">
+			<ant:fileset file="${maven.build.dir}/${pom.artifactId}.war" />
+		</copy>
+	</goal -->
+
+</project>

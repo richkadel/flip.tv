@@ -1,0 +1,22 @@
+#foreach ($programId in $productMap.keySet())
+	#if ($productMap.get($programId))
+		#set ($item = $productMap.get($programId))
+		<li programId="$programId">
+			<div>
+            	#if ($item.smallImageUrl)
+        			<a href="${item.detailsUrl}">
+            		<img style="vertical-align:middle" src="${item.smallImageUrl}" border="0" 
+            			width="${item.smallImageWidth}" height="${item.smallImageHeight}"/></a>
+					<span>
+						<a href="${item.detailsUrl}"><i>$esc.html($item.title)</i></a> |
+                    	<a href="${item.detailsUrl}">Buy Now from Amazon</a>
+					</span>
+				#else
+                	<a href="${item.detailsUrl}">
+                	Buy <i>$esc.html($item.title)</i> Now from Amazon
+            		</a>
+				#end
+			</div>
+    	</li>
+	#end
+#end

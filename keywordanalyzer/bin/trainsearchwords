@@ -1,0 +1,25 @@
+#!/bin/sh
+ 
+USAGE="trainsearchwords <grammarfile>"
+
+PROJECT_HOME=/home/fear/source/keywordanalyzer
+#PROJECT_HOME=$GROK_HOME
+JAVA=java
+MAINFILE=SimplePipe
+
+while getopts h:d c
+do
+     case $c in
+     \?) echo $USAGE
+         exit 2;;
+     esac
+done
+shift `expr $OPTIND - 1`
+ 
+JARS=`echo ${PROJECT_HOME}/lib/*.jar | tr ' ' ':'`
+CP=.:${PROJECT_HOME}/target/keywords-0.3.jar:${PROJECT_HOME}/src/java:$JARS
+
+echo 'Running trainsearchwords...'
+echo
+$JAVA -mx512m -cp $CP com.knowbout.nlp.keywords.KeywordFinderME -t -d ./ -c 3 -s NewSearchWords.txt  $@
+#$JAVA -mx512m -cp $CP com.knowbout.nlp.keywords.KeywordFinderME -t -d ./ -c 5 -s NewSearchWords.bin.gz  $@

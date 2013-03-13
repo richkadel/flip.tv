@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<configuration>
+<!--
+	<publicLaunch>true</publicLaunch>
+  -->
+<!--
+	<luceneIndex>C:/Work/knowbout/src/knowbout.tv/trunk/programIndex</luceneIndex>
+	<spellIndex>C:/Work/knowbout/src/knowbout.tv/trunk/spellIndex</spellIndex>
+	<spellIndex>C:/Work/knowbout/src/knowbout.tv/trunk/compositeIndex</spellIndex>
+	<luceneLiveIndex>C:/Work/knowbout/src/knowbout.tv/trunk/liveIndex</luceneLiveIndex>
+	<luceneProductIndex>C:/Work/knowbout/src/knowbout.tv/trunk/productIndex</luceneProductIndex>
+-->
+
+<!-- THIS WILL WORK EQUALLY WELL ON LINUX AND WINDOWS AS LONG AS YOU
+     PUT THE WINDOWS FILES AT C:\var\lucene
+-->
+	<luceneIndex>/var/lucene/programIndex</luceneIndex>
+	<spellIndex>/var/lucene/spellIndex</spellIndex>
+	<compositeIndex>/var/lucene/compositeIndex</compositeIndex>
+	<luceneLiveIndex>/var/lucene/liveIndex</luceneLiveIndex>
+	<luceneProductIndex>/var/lucene/productIndex</luceneProductIndex>
+	<url>http://localhost/</url>
+	<surl>https://localhost/</surl>
+	<captionsEndpoint>http://dev.flip.tv/ccdataweb/captionstore</captionsEndpoint>
+	<epgEndpoint>http://dev.flip.tv/epg/channel.epg</epgEndpoint>
+	<smtpServer></smtpServer>
+</configuration>

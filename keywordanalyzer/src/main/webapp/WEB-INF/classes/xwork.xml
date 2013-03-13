@@ -1,0 +1,15 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" "http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+
+<xwork>
+	<!-- Include webwork defaults (from WebWork JAR, so it is always found). -->
+	<include file="webwork-default.xml" />
+	
+	<!-- Configuration for the default package. -->
+	<package name="default" extends="webwork-default">
+		<default-interceptor-ref name="completeStack"/>
+	
+	    <action name="settings" class="com.knowbout.web.control.SettingsAction">
+	         <result name="success" type="velocity">settings.vm</result>
+	    </action>
+	</package>
+</xwork>

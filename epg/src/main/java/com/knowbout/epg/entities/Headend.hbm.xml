@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping package="com.knowbout.epg.entities">
+
+<class name="com.knowbout.epg.entities.Headend"
+	proxy="com.knowbout.epg.entities.Headend"  
+    table="headends" >
+
+    <cache usage="nonstrict-read-write"/>
+    
+    <id name="id"
+        type="java.lang.String"
+        column="headend_id" >
+        <generator class="assigned" />
+    </id>
+
+    <property name="dmaCode" type="java.lang.Integer" column="dma_code" length="11" />
+    <property name="dmaName" type="java.lang.String" column="dma_name" length="70" />
+    <property name="msoCode" type="java.lang.Integer" column="mso_code" length="11" />
+    <property name="dmaRank" type="java.lang.Integer" column="dma_rank" length="11" />
+    <property name="headendName" type="java.lang.String" column="headend_name" length="42" />
+    <property name="headendLocation" type="java.lang.String" column="headend_location" length="28" />
+    <property name="msoName" type="java.lang.String" column="mso_name" length="42" />
+    <property name="timeZoneCode" type="java.lang.Integer" column="time_zone_code" length="11" />
+
+    <!-- Associations -->
+
+  <set name="lineups" inverse="true" cascade="all-delete-orphan">
+    <cache usage="nonstrict-read-write"/>
+		<key column="headend_id"/>
+		<one-to-many class="com.knowbout.epg.entities.Lineup"/>
+  </set>
+	<set name="communities" table="headend_communities">
+	  <cache usage="nonstrict-read-write"/>
+		<key column="headend_id"/>
+		<many-to-many column="community_id" class="com.knowbout.epg.entities.Community"/>
+	</set>
+	
+</class>
+</hibernate-mapping>

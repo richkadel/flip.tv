@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<configuration>
+        <luceneIndex>/var/flip.tv/dev/luceneIndex</luceneIndex>
+	<searchEndpoint>http://dev.flip.tv/internal/keywordListener</searchEndpoint>
+	<epgEndpoint>http://dev.flip.tv/epg/channel.epg</epgEndpoint>
+</configuration>

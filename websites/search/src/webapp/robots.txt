@@ -1,0 +1,4 @@
+Sitemap: http://flip.tv/sitemap.xml.gz
+
+User-agent: *
+Disallow: /search

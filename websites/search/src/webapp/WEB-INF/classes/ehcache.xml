@@ -1,0 +1,135 @@
+<ehcache>
+
+    <!--
+    Sets the path to the directory where cache files are created.
+
+    If the path is a Java System Property it is replaced by its value in the
+    running VM.
+
+    The following properties are translated:
+    * user.home - User's home directory
+    * user.dir - User's current working directory
+    * java.io.tmpdir - Default temp file path
+
+    Subdirectories can be specified below the property e.g. java.io.tmpdir/one
+    -->
+    <diskStore path="java.io.tmpdir"/>
+
+
+    <!--
+    Mandatory Default Cache configuration. These settings will be applied to caches
+    created programmtically using CacheManager.add(String cacheName)
+    -->
+    <defaultCache
+            maxElementsInMemory="10000"
+            eternal="false"
+            timeToIdleSeconds="120"
+            timeToLiveSeconds="300"
+            overflowToDisk="false"
+            diskPersistent="false"
+            diskExpiryThreadIntervalSeconds="120"
+            memoryStoreEvictionPolicy="LRU"
+            />
+
+		<!-- 
+		This cache region is used by Acegi to cache user-to-group mapping in the
+		authentication DAO object.
+		-->
+    <cache name="userCache"
+           maxElementsInMemory="1000"
+           eternal="false"
+           overflowToDisk="false"
+           timeToIdleSeconds="900"
+           timeToLiveSeconds="3600"
+            />
+
+    <cache name="searchResults"
+           maxElementsInMemory="100"
+           eternal="false"
+           overflowToDisk="false"
+           timeToIdleSeconds="3600"
+           timeToLiveSeconds="3600"
+            />
+            
+    <cache name="com.appeligo.alerts.PendingAlert"
+           maxElementsInMemory="1000"
+           eternal="false"
+           overflowToDisk="false"
+           timeToIdleSeconds="600"
+           timeToLiveSeconds="3600"
+            />
+            
+    <cache name="com.appeligo.alerts.ProgramAlert"
+           maxElementsInMemory="1000"
+           eternal="false"
+           overflowToDisk="false"
+           timeToIdleSeconds="600"
+           timeToLiveSeconds="3600"
+            />
+            
+    <cache name="com.appeligo.alerts.KeywordMatch"
+           maxElementsInMemory="500"
+           eternal="false"
+           overflowToDisk="false"
+           timeToIdleSeconds="300"
+           timeToLiveSeconds="600"
+            />
+            
+    <cache name="com.appeligo.alerts.KeywordAlert"
+           maxElementsInMemory="500"
+           eternal="false"
+           overflowToDisk="false"
+           timeToIdleSeconds="300"
+           timeToLiveSeconds="600"
+            />
+            
+    <cache name="com.appeligo.search.entity.Group"
+           maxElementsInMemory="25"
+           eternal="false"
+           overflowToDisk="false"
+           timeToIdleSeconds="3600"
+           timeToLiveSeconds="14400"
+            />
+            
+    <cache name="com.appeligo.search.entity.User"
+           maxElementsInMemory="2500"
+           eternal="false"
+           overflowToDisk="false"
+           timeToIdleSeconds="300"
+           timeToLiveSeconds="1800"
+            />
+            
+    <cache name="com.appeligo.search.entity.User.groups"
+           maxElementsInMemory="2500"
+           eternal="false"
+           overflowToDisk="false"
+           timeToIdleSeconds="300"
+           timeToLiveSeconds="1800"
+            />
+            
+    <cache name="com.appeligo.search.entity.User.programAlerts"
+           maxElementsInMemory="2500"
+           eternal="false"
+           overflowToDisk="false"
+           timeToIdleSeconds="300"
+           timeToLiveSeconds="1800"
+            />
+            
+    <cache name="com.appeligo.search.entity.User.keywordAlerts"
+           maxElementsInMemory="2500"
+           eternal="false"
+           overflowToDisk="false"
+           timeToIdleSeconds="300"
+           timeToLiveSeconds="1800"
+            />
+            
+    <!--cache name="com.appeligo.search.entity.Message"
+           maxElementsInMemory="100"
+           eternal="false"
+           overflowToDisk="false"
+           timeToIdleSeconds="10"
+           timeToLiveSeconds="60"
+            /-->
+            
+            
+</ehcache>

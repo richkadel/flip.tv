@@ -1,0 +1,33 @@
+#!/bin/sh
+
+DIR=/var/flip.tv/backups/mysql/
+DATESTAMP=$(date +%Y%m%d)
+DB_USER=backup
+DB_PASS='re4d0nly'
+
+# remove backups older than $DAYS_KEEP
+DAYS_KEEP=30
+find ${DIR}* -mtime +$DAYS_KEEP -exec rm -f {} \; 2> /dev/null
+
+# create backups securely
+umask 006
+
+# list MySQL databases and dump each
+DB_LIST=`mysql -u $DB_USER -p"$DB_PASS" -e'show databases;'`
+DB_LIST=${DB_LIST##Database}
+for DB in $DB_LIST;
+do
+  FILENAME=${DIR}${DB}-${DATESTAMP}.sql
+  mysqldump -u $DB_USER -p"$DB_PASS" --opt --flush-logs $DB > $FILENAME
+done
+# Now loop again to compress these files.
+for DB in $DB_LIST;
+do
+  FILENAME=${DIR}${DB}-${DATESTAMP}.sql
+  ZIPPED_FILENAME=${FILENAME}.gz
+  cat $FILENAME | gzip > $ZIPPED_FILENAME
+  rm -f $FILENAME
+done
+
+# Let everyone know it completed.
+ls -lth ${DIR} |  mail -s "database backup complete: ${DIR}" root

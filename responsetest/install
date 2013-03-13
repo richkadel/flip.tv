@@ -1,0 +1,6 @@
+cp src/deploy/etc/flip.tv/responsetest.xml.sample /etc/flip.tv
+rm -rf /usr/local/flip.tv/responsetest
+mkdir -p /usr/local/flip.tv/responsetest
+cp -r target /usr/local/flip.tv/responsetest
+cp runtest.sh runtestdev.sh /usr/local/flip.tv/responsetest
+chmod 744 /usr/local/flip.tv/responsetest/*.sh /usr/local/flip.tv/responsetest/target/deploy/usr/local/flip.tv/runresponsetest

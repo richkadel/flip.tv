@@ -1,0 +1,61 @@
+#!/bin/sh
+
+if [[ ! ( $PWD =~ [^/]*$ ) ]]; then
+	echo Error in script $0
+	exit 1
+fi
+
+project=$BASH_REMATCH
+
+dos2unix ../build.properties >/dev/null 2>&1
+
+if [ $? != 0 ]; then
+	echo Could not run dos2unix on ../build.properties
+	exit 1
+fi
+
+verline=`grep "^$project.current=" ../build.properties`
+
+if [ $? != 0 ]; then
+	echo "Can't find property \"$project.current\" in trunk/build.properties."
+	exit 1
+fi
+
+if [[ ! ( $verline =~ [^=]*$ ) || "$BASH_REMATCH" == "" ]]; then
+	echo "Project \"$project\" version is not set."
+	exit 1
+fi
+
+version=$BASH_REMATCH
+
+suggest=`dc -e "$version 0.1 + p"`
+if [[ ${suggest:0:1} == "." ]]; then
+	suggest="0"$suggest
+fi
+
+echo Current version for "$project" is "$version".
+echo -n "New version? [$suggest] "
+read newver
+
+if [[ "$newver" == "" ]]; then
+	newver=$suggest
+fi
+
+sed -e "s/^$project\.current=.*$/$project.current=$newver/" ../build.properties > /tmp/build.properties.update
+mv /tmp/build.properties.update ../build.properties
+
+echo Done... ../build.properties has been updated
+echo -n "Commit ../build.properties now? [n] "
+read confirm
+
+if [[ "$confirm" == "y" || "$confirm" == "Y" ]]; then
+	(cd ..; svn commit -m 'new version' build.properties)
+fi
+
+echo -n "Upload a new jar? [n] "
+read confirm
+
+if [[ "$confirm" == "y" || "$confirm" == "Y" ]]; then
+	echo maven $* jar:deploy
+	maven $* jar:deploy
+fi

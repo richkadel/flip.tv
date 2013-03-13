@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<configuration>
+	<searchEndpoint>http://dev.flip.tv/internal/keywordListener</searchEndpoint>
+	<epgEndpoint>http://dev.flip.tv/epgDemo/channel.epg</epgEndpoint>
+	<luceneIndex>/tmp/fliptv-index</luceneIndex>
+	<maximumNLPTokens>150</maximumNLPTokens>
+	<maximumSearchTerms>3</maximumSearchTerms>
+	<maximumContextTokens>2000</maximumContextTokens>
+	<maximumKeywordLength>20</maximumKeywordLength>
+	<stopWords>
+	  <word>and</word>
+	  <word>am</word>
+	  <word>as</word>
+	  <word>be</word>
+	  <word>hah</word>
+	  <word>huh</word>
+	  <word>i</word>
+	  <word>i'll</word>
+	  <word>is</word>
+	  <word>it</word>
+	  <word>me</word>
+	  <word>oh</word>
+	  <word>okay</word>
+	  <word>or</word>
+	  <word>so</word>
+	  <word>uh</word>
+	  <word>uh-huh</word>
+	  <word>um</word>
+	  <word>was</word>
+	  <word>we</word>
+	  <word>with</word>
+	  <word>wow</word>
+	  <word>you</word>
+	  <word>guy</word>
+	  <word>we</word>
+	</stopWords>
+	<cleaners>
+		<regex><![CDATA[[^\p{Print}]]]></regex>
+		<regex><![CDATA[[\p{Cntrl}]]]></regex>
+		<regex><![CDATA[[<>]]]></regex>
+		<regex><![CDATA[\[[a-z].*\]]]></regex>
+		<regex><![CDATA[\[]]></regex>
+		<regex><![CDATA[\]]]></regex>
+		<regex><![CDATA[\.\.]]></regex>
+	</cleaners>
+</configuration>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<channelfeed>
+	<documentRoot path="/var/flip.tv/demo"/>
+	<epgServer url="http://demo.flip.tv/epgDemo/channel.epg"/>
+	<logEmail address="root@localhost"/>
+	<loggers>
+		<logger name="com.appeligo.channelfeed.SendSentence"
+			level="WARN"/>
+	</loggers>
+	<destinations>
+		<destination url="http://demo.flip.tv/keywords/cceventservice"/>
+	</destinations>
+	<!--insert database config here-->
+	<providers>
+		<provider>
+			<headend>SDTW</headend>
+			<lineupDevice>C</lineupDevice>
+			<frequencyStandard>US_CABLE</frequencyStandard>
+			<files>
+				<file name="1169901000000.html"
+					channel="41" callsign="VERSUS" autoAdvance="true" loop="true"/>
+				<file name="1172226600000.html"
+					channel="51" callsign="FOOD" autoAdvance="true" loop="true"/>
+
+<!--
+				<file name="1169901000000.html"
+					channel="41" callsign="VERSUS" advanceSeconds="80" loop="true"/>
+				<file name="somefile.html"
+					channel="51" callsign="FOOD" autoAdvance="true" loop="true"/>
+-->
+			</files>
+		</provider>
+	</providers>
+</channelfeed>

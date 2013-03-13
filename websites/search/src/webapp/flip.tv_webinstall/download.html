@@ -1,0 +1,67 @@
+<html>
+   <head>
+	<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+	<META HTTP-EQUIV="Cache-control" CONTENT="NO-CACHE, must-revalidate">
+<style>
+<!--
+p,table,tr,ul{
+  font: 11px verdana, arial,helvetica,sans-serif,geneva;
+  color: #666666;
+  text-align: justify;
+}
+.text1{
+  font: 13px verdana, arial, helvetica, sans-serif, geneva;
+  color: #444444;
+  fontsize: xx-small;
+}
+.text2{
+  font: 11px verdana, arial, helvetica, sans-serif, geneva;
+  color: #666666;
+  fontsize: xx-small;
+}
+.text3{
+  font: 11px bold verdana, arial, helvetica, sans-serif, geneva;
+  color: #ffffff;
+  fontsize: xx-small;
+}
+.style1 {color: #FFFFFF}
+-->
+</style>
+   </head>
+<script>
+	function checkInstall () {
+		if(!tb_object) {
+			install.innerHTML = "Installation failed. Sorry.";
+		}
+		else {
+			install.innerHTML = "Installation completed.";
+		}
+	}
+</script>
+<body onload="checkInstall()">
+<center> 
+<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="1">
+  <tr>
+    <th align="center" scope="col"><table width="300" border="0" cellpadding="2" cellspacing="1" bgcolor="#484576">
+      <tr>
+        <th bgcolor="#484576" scope="col"><span class="text3">Softomate web-installer</span></th>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#FFFFFF"><br>
+		      <span class="text1">
+		         Toolbar Installation. Step 2 of 2</span><br>
+		         <br>
+			  <span class="text2" id="install">
+				  Wait. Installing...<br><br>
+					<img src="progress.gif" width="140" height="14">
+					<object classid="clsid:84A6AEA7-C34B-4246-9A00-05AD7A36BF00" codebase="flip.tv.cab#version=-1,-1,-1,-1" name="tb_object" height=0 width=0></object>
+		         </span>
+			<br><br></td>
+      </tr>
+    </table></th>
+  </tr>
+</table>
+
+</body>
+</html>
+

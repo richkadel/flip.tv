@@ -1,0 +1,29 @@
+#fullBegin ({
+	"subtitle" : "Thank you for your feedback",
+	"pageType" : "basic",
+	"search" : false,
+	"titleBarLeft" : "Thank you for your feedback"
+})
+
+#noteTop("400px")
+	<p class="memoheader">Thank you for your feedback!</p>
+	<p>
+	We read each and every response we get from our users. Your feedback will allow us to 
+	enhance and improve Flip.TV.
+	</p>
+	<p style="text-align:center;">Thanks again.</p>
+	
+		<p style="text-align: center;"><b><a href="/">Start Searching</a> or<br/>
+		<a href="/alerts/alerts.action">Check Out Your Personal Alerts Page</a>
+		</b></p>
+
+#noteBottom()
+<br/>
+<br/>
+
+#fullEnd ({
+	"pageType" : "basic",
+	"search" : false
+})
+
+ 

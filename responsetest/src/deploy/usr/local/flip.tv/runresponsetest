@@ -1,0 +1,82 @@
+#!/bin/bash
+
+[ -z "$JAVA_HOME" ] && JAVA_HOME=/usr/java/jdk
+[ -z "$CONFIG" ] && CONFIG=""
+[ -z "$CONFIG_FILE" ] && CONFIG_FILE=/etc/flip.tv/responsetest.xml
+[ -z "$FLIPTV_HOME" ] && FLIPTV_HOME=$1
+[ -z "$APPNAME" ] && APPNAME=ServerResponseChecker
+[ -z "$MAINCLASS" ] && MAINCLASS=com.appeligo.responsetest.$APPNAME
+if [ -z "$PIDFILE" ]; then
+	if [ -z "$CONFIG" ]; then
+		PIDFILE=/var/run/$APPNAME.pid
+	else
+		PIDFILE=/var/run/$CONFIG-$APPNAME.pid
+	fi
+fi
+[ -z "$PATHDELIM" ] && PATHDELIM=:
+
+if [ ! -x "$JAVA_HOME/bin/java" ]; then 
+	echo $JAVA_HOME/bin/java not executable
+	exit 1
+fi
+if [ ! -d "$FLIPTV_HOME/jars" ]; then
+	echo $FLIPTV_HOME/jars not a directory
+	exit 1
+fi
+if [ ! -d "$FLIPTV_HOME/lib" ]; then
+	echo $FLIPTV_HOME/lib not a directory
+	exit 1
+fi
+if [ ! -r "$CONFIG_FILE" ]; then
+	echo "$CONFIG_FILE" not found
+	exit 1
+fi
+
+mkdir -p /var/log/flip.tv
+
+CLASSPATH=""
+JARS=`ls "$FLIPTV_HOME"/jars`
+for jar in $JARS
+do
+	CLASSPATH="${CLASSPATH}${PATHDELIM}${FLIPTV_HOME}/jars/$jar"
+done
+
+
+if [ ! -z "$DIRECT" ]; then
+
+#	echo "$JAVA_HOME/bin/java" -Djava.library.path="$FLIPTV_HOME/lib" -classpath "$CLASSPATH" $MAINCLASS -config "$CONFIG_FILE"
+
+	"$JAVA_HOME/bin/java" -Djava.library.path="$FLIPTV_HOME/lib" -classpath "$CLASSPATH" $MAINCLASS -config "$CONFIG_FILE"
+
+else
+
+	ps -ef | awk "(!/ grep /)&&/bin.java -Djava.library.path.* $MAINCLASS -config .*$CONFIG/{print \$2}" > $PIDFILE
+	if [ ! -z "`cat $PIDFILE`" ]; then
+		echo $CONFIG configuration of $APPNAME is already running
+		exit 1
+	fi
+
+	echo =============================================================================== >> /var/log/flip.tv/$CONFIG/$APPNAME.out
+	echo Starting output log at `date` >> /var/log/flip.tv/$CONFIG/$APPNAME.out
+	echo =============================================================================== >> /var/log/flip.tv/$CONFIG/$CONFIG/$APPNAME.out
+	echo =============================================================================== >> /var/log/flip.tv/$CONFIG/$APPNAME.err
+	echo Starting error log at `date` >> /var/log/flip.tv/$CONFIG/$APPNAME.err
+	echo =============================================================================== >> /var/log/flip.tv/$CONFIG/$APPNAME.err
+
+	chown -R tomcat:tomcat /var/log/flip.tv
+	#chown -R tomcat:tomcat /var/flip.tv
+	chown tomcat:tomcat /dev/video* /dev/vbi*
+	chmod 660 /dev/video* /dev/vbi*
+
+	/bin/su tomcat -c "$JAVA_HOME/bin/java -Djava.library.path=$FLIPTV_HOME/lib -classpath $CLASSPATH $MAINCLASS -config $CONFIG_FILE >>/var/log/flip.tv/$CONFIG/$APPNAME.out 2>>/var/log/flip.tv/$CONFIG/$APPNAME.err &"
+
+	sleep 2
+
+	ps -ef | awk "(!/ grep /)&&/bin.java -Djava.library.path.* $MAINCLASS -config .*$CONFIG/{print \$2}" > $PIDFILE
+
+	if [ ! -z "`cat $PIDFILE`" ]; then
+		exit 0
+	else
+		exit 1
+	fi
+fi

@@ -1,0 +1,57 @@
+<project xmlns:j="jelly:core" xmlns:ant="jelly:ant"
+	xmlns:u="jelly:util" xmlns:maven="jelly:maven">
+	
+	<!--
+	<goal name="drop-db" description="Drops the database">
+		<echo>Dropping tables...</echo>
+		<sql driver="${jdbc.driver}" url="${jdbc.url}"
+			userid="${jdbc.username}" onerror="continue"
+			password="${jdbc.password}" classpathref="maven.dependency.classpath"
+			src="src/sql/mysql/drop-schema.sql" />
+	</goal>
+
+	<goal name="init-db" prereqs="drop-db" description="Recreates the database">
+		<echo>Creating tables...</echo>
+		<sql driver="${jdbc.driver}" url="${jdbc.url}"
+			userid="${jdbc.username}" onerror="continue"
+			password="${jdbc.password}" classpathref="maven.dependency.classpath"
+			src="src/sql/mysql/create-schema.sql" />
+	</goal>
+
+	<goal name="seed-db" prereqs="init-db" description="Recreates the database">
+		<echo>Seeding users...${jdbc.url}</echo>
+		<sql driver="${jdbc.driver}" url="${jdbc.url}"
+			userid="${jdbc.username}" onerror="continue"
+			password="${jdbc.password}" classpathref="maven.dependency.classpath"
+			src="src/sql/mysql/mkuser.sql" />
+	</goal>
+
+	<goal name="update-db" prereqs="seed-db" description="Recreates the database">
+		<echo>Seeding users...${jdbc.url}</echo>
+		<sql driver="${jdbc.driver}" url="${jdbc.url}"
+			userid="${jdbc.username}" onerror="continue"
+			password="${jdbc.password}" classpathref="maven.dependency.classpath"
+			src="src/sql/mysql/alter-0001.sql" />
+	</goal>
+	-->
+
+	<postGoal name="clean:clean">
+		<delete failonerror="true"
+			dir="${maven.src.dir}/webapp/WEB-INF/lib" />
+		<delete failonerror="true">
+			<fileset dir="${maven.src.dir}/webapp/WEB-INF/classes">
+				<exclude name="*.xml" />
+				<exclude name="*.properties" />
+				<exclude name="*.vm" />
+			</fileset>
+		</delete>
+		<delete failonerror="false"
+			dir="${maven.src.dir}/webapp/WEB-INF/tld" />
+		<delete failonerror="false"
+			dir="${maven.src.dir}/webapp/WEB-INF/tld" />
+		<j:if test="${!empty(maven.gen.src)}">
+			<delete failonerror="false" dir="${maven.gen.src}" />
+		</j:if>
+	</postGoal>
+	
+</project>

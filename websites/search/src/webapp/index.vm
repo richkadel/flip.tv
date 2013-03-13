@@ -1,0 +1,125 @@
+#set ($params = ({
+	"subtitle" : "- E-Guide for TV - Search and Alerts for Television",
+	"pageType" : "basic",
+	"noLogo" : true,
+	"search" : false,
+	"firstFocus" : "document.searchForm.query",
+	"titleBarLeft" : "Search for TV Programs"
+}))
+
+#fullBegin($params)
+
+	<table width="100%">
+		<tr>
+			<td width="30%">
+				#if($indexUpperLeft)
+					#indexUpperLeft()
+				#else
+					## nothing by default
+				#end			</td>
+			<td width="40%" align="center" valign="middle">
+				#if($indexUpperTitle)
+					#indexUpperTitle()
+				#else
+					<h2 class="slogan" style="font-size: 150%; text-align: center">
+						<a style="text-decoration: none;" href="/about.vm">
+							It's <i>your</i> television.</a><font color="gray">&trade;</font>
+					</h2>
+				#end			</td>
+			<td width="30%" align="right">
+				#if($indexUpperRight)
+					#indexUpperRight()
+				#else
+					#if(!$request.remoteUser)
+						<div style="text-align: center; float: right; border-style: double; border: 3; padding: 3px;">
+							<b>Join the Beta</b>
+							while you still can!
+							<br/>
+							<a href="/registration/registration.action">Register</a>
+							to participate.
+							<br/>
+							(Only a limited number of users
+							<br/>
+							will be accepted at this time.)
+						</div>
+						<br/>
+						<br/>
+					#end
+				#end
+			</td>
+		</tr>
+	</table>
+
+	<br/>
+	<table align="center">
+		<tr>
+			<td align="right">
+				<a href="/">
+					<img id="logo" width="134" height="62" alt="Flip.TV Search" src="/themes/default/images/logo.gif"/>
+				</a>
+			</td>
+			<td width="5">
+			</td>
+			<td>## valign="bottom">
+		    	<div class="header">
+					<form action="/search/search.action" name="searchForm">
+    					<ul>
+    			    		<li class="first">
+    							<b>Search TV</b>
+    							<select name="searchType">
+    								<option value="FUTURE" #if($searchType=="FUTURE")selected="true"#end>Next 2 Weeks</option>
+    								<option value="TODAY" #if($searchType=="TODAY")selected="true"#end>Today</option>
+    								<option value="ALL" #if($searchType=="ALL")selected="true"#end>Past and Future</option>
+    							</select>
+    						</li>
+    			    		<li class="inline">
+    							<a href="javascript:AlertsPage()">Alerts</a>
+    						</li>
+    			    		<li class="last">
+    							<a href="javascript:GooglePage()">Web</a>
+    						</li>
+    					</ul>
+    					<div id="flipSearch">
+    							<input id="searchField" name="query" value="#if($query)$query#end">
+    							<input type="submit" value="Search">
+    					</div>
+					</form>
+					<div id="googleInput" style="display:none">
+						<div class="inputLinks">
+						</div>
+						<div style="margin-top: 3px; *margin-top: 2px; margin-bottom:-10px;padding-top:0px;padding-bottom:0px;">
+							#googleForm($params.google)
+						</div>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<h1 style="text-align: center; font-size: 110%;">
+		#if($indexH1Element)
+			#indexH1Element()
+		#else
+			<span style="font-size: 10%; color: white;">Flip.TV E-Guide</span>
+			<br/>
+			Search TV and Get Alerts About Your Favorite Programs and Topics
+		#end
+	</h1>
+	<br/>
+	<div style="max-width: 40em; margin-left: auto; margin-right: auto; text-align: center;">
+		#if($indexHelp)
+			#indexHelp()
+		#else
+			Enter a word or phrase and click "Search" to find TV programs that mention it.  
+			<br/><b>For example, try searching for "<a href="/search/search.action?query=bermuda+triangle">bermuda triangle</a>",
+				your <a href="/search/search.action?query=%22san+diego+chargers%22">favorite team</a>,
+				<a href="/search/search.action?query=wedding+crasher">a hobby</a>,
+				or <a href="/search/search.action?query=civil+war">interest</a>.</b>
+		#end
+	</div>
+	<br/>
+	<br/>
+
+#fullEnd({
+	"pageType" : "basic",
+	"search" : false
+})

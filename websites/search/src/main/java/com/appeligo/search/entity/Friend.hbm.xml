@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.appeligo.search.entity" default-access="field">
+	
+	<class name="com.appeligo.search.entity.Friend" 
+		proxy="com.appeligo.search.entity.Friend" table="friends">
+
+		<id name="id" type="long" column="friend_id">
+			<generator class="native"/>
+		</id>
+		<property name="email" type="string" column="email" not-null="false" length="255"/>
+		<property name="firstName" type="string" column="first_name" not-null="false" length="255" />
+		<property name="lastName" type="string" column="last_name" not-null="false" length="255" />
+		<property name="status" not-null="true"  >
+			<column name="status" sql-type="integer"/>
+			<type name="com.knowbout.hibernate.EnumType">
+				<param name="class">com.appeligo.search.entity.FriendStatus</param>
+			</type>	
+		</property>		
+		<property name="deleted" type="boolean" column="deleted" not-null="false" />
+		<property name="created" type="timestamp" column="created" not-null="true"/>
+		<property name="recent" type="boolean" column="recent" not-null="true"/>
+		
+	    <many-to-one name="friendUser" class="com.appeligo.search.entity.User" 
+			column="friend_user_id" not-null="false" />		
+	    <many-to-one name="user" class="com.appeligo.search.entity.User" 
+			column="user_id" not-null="true" />		
+	</class>
+	
+		<query name="Friend.getByEmail"><![CDATA[
+		from Friend where
+			user = :user and
+			email = :email 
+	]]></query>
+	<query name="Friend.getInvites"><![CDATA[
+		from Friend where
+			(email = :email or
+			friendUser = :invitee) and
+			status = 0
+	]]></query>
+	
+	<query name="Friend.getFriends"><![CDATA[
+		from Friend where
+			user = :user and
+			deleted != 1
+	]]></query>
+	<query name="Friend.getInviteCount"><![CDATA[
+		select count(*)  
+		from Friend where
+			email = :email and
+			deleted != true and
+	        status = 0
+	]]></query>
+
+	<query name="Friend.getByInvitee"><![CDATA[
+		from Friend where
+			id = :id and
+			friendUser = :user 
+	]]></query>
+	
+	<query name="Friend.getByInviter"><![CDATA[
+		from Friend where
+			id = :id and
+			user = :user 
+	]]></query>
+	
+	<query name="Friend.getByUser"><![CDATA[
+		from Friend where
+			user = :inviter and
+			friendUser = :invitee
+	]]></query>
+
+	
+	
+		
+</hibernate-mapping>

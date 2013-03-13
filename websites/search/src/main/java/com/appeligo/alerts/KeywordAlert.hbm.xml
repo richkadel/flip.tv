@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.appeligo.alerts" default-access="field">
+	
+	<class name="com.appeligo.alerts.KeywordAlert" 
+		proxy="com.appeligo.alerts.KeywordAlert" table="keyword_alerts">
+		<cache usage="read-write"/>
+		<id name="id" type="long" column="keyword_alert_id">
+			<generator class="native"/>
+		</id>
+		
+		<property name="userQuery" type="string" column="user_query" not-null="true" length="64"/>
+		<property name="normalizedQuery" type="string" column="normalized_query" not-null="true" length="64"/>
+		<property name="lastModified" type="java.util.Date" column="last_modified" not-null="false"/>
+		<property name="creationTime" type="java.util.Date" column="creation_time" not-null="true"/>
+		<property name="usingPrimaryEmailRealtime" type="boolean" column="using_primary_email_realtime" not-null="true"/>
+		<property name="usingAlternateEmailRealtime" type="boolean" column="using_alternate_email_realtime" not-null="true"/>
+		<property name="usingSMSRealtime" type="boolean" column="using_sms_realtime" not-null="true"/>
+		<property name="usingIMRealtime" type="boolean" column="using_im_realtime" not-null="true"/>
+		<property name="maxAlertsPerDay" type="int" column="max_alerts_per_day" not-null="true"/>
+		<property name="todaysAlertCount" type="int" column="todays_alert_count" not-null="true"/>
+		<property name="lastAlertDay" type="java.util.Date" column="last_alert_day" not-null="false"/>
+		<property name="disabled" type="boolean" column="disabled" not-null="false"/>
+		<property name="deleted" type="boolean" column="deleted" not-null="false"/>
+		
+		<many-to-one name="user" class="com.appeligo.search.entity.User" 
+			column="user_id" />
+		
+		<set name="programAlerts" inverse="true" cascade="persist,merge,save-update">
+			<key column="keyword_alert_id"/>
+			<one-to-many class="com.appeligo.alerts.ProgramAlert"/>
+		</set>
+		
+	</class>
+
+	<query name="KeywordAlert.deleteAllMarkedDeleted" cacheable="false"><![CDATA[
+		delete from KeywordAlert where deleted = true or user is null
+	]]></query>
+
+	<query name="KeywordAlert.getAllInNormalizedQueryOrder" cacheable="false"><![CDATA[
+		from KeywordAlert where creationTime < :latestCreationTime order by normalizedQuery
+	]]></query>
+	
+	<query name="KeywordAlert.getByNormalizedQuery" cacheable="false"><![CDATA[
+		from KeywordAlert p where p.user = :userId and p.normalizedQuery = :normalizedQuery and deleted = false
+	]]></query>
+</hibernate-mapping>

@@ -1,0 +1,84 @@
+#fullBegin ({
+	"title" : "Tell a friend",
+	"pageType" : "basic",
+	"search" : false,
+	"titleBarLeft" : "Tell a friend",
+	"pageType" : "basic",
+	"firstFocus"	: 'document.emails.addresses'
+})
+<script type="text/javascript">
+	function selectGroup(selected) {
+    	for (i=0;i<document.emails.friendIds.length;i++) {
+    			document.emails.friendIds[i].checked = selected;
+    	}
+    }
+</script>
+<div style="width: 700px; margin-right: auto; margin-left: auto;">
+	
+    <div style="width: 100%; text-align: center;">
+	    <h3>You are recommending #if($showOnly) <a href="$program.showWebPath">#{else}<a href="$program.webPath">#end$programTitle</a> to your friends.  </h3>
+		<br/>
+    		<form name="emails" action="/network/sendRecommendation.action">
+				<input type="hidden" name="programId" value="$program.programId"/>
+				<input type="hidden" name="showOnly" value="#if($showOnly)$showOnly#{else}false#end"/>
+            	<table CELLSPACING="10px" width="100%">            		
+					#if ($friends && $friends.size() > 0)
+	            		<tr><td>Select the friends from your network you would recommend this program to:
+							<br/>&nbsp;</td></tr>					
+	            		<tr><td align="center">Select: <a href="javascript:selectGroup(true);">All</a> <a href="javascript:selectGroup(false);">None</a><br/>&nbsp;</td></tr>							
+	            		<tr><td align="center"><table class="friendList"><tr><td>
+							#set ($columnSize = $friends.size() / 3)
+							#if ($friends.size() % 3 > 0) 
+								#set($columnSize = $math.add($columnSize, 1))
+							#end
+						<div class="friendListColumn">
+	                		#foreach($friend in $friends)				
+	        					#if ($velocityCount > 0 && ($velocityCount < $friends.size()) && $velocityCount % $columnSize == 0)</div><div class="friendListColumn">#end
+	        					<input type="checkbox" name="friendIds" value="$friend.id" alt="$friend.displayName"/> $friend.displayName<br/>				        					
+	        				#end
+						</div>
+						</td></tr></table></td></tr>
+						<tr><td>&nbsp;</td></tr>
+					#end
+            		<tr><td>To recommend this program to friends not yet in your network,
+							<br/> type their email addresses here, seperated by commas:
+					<br/>&nbsp; </td></tr>					
+					#if($actionErrors.size() > 0)
+						<tr><td><span style="color:#ff0000">
+						#foreach( $error in $actionErrors )
+							$esc.html($error)<br/>
+						#end
+						</span></td></tr>
+					#end
+					<tr><td><textarea rows="5" cols="80" id="addresses" name="addresses">#if($addresses)$addresses#end</textarea></td></tr>
+					<tr><td>&nbsp;</td></tr>
+            		<tr><td><input type="submit" name="send" value="Send"/> <input type="button" name="Cancel" value="Cancel" onclick="window.location='$program.webPath'"></td></tr>
+            	</table>
+            </form>
+    </div>	
+	<br/>
+	<br/>
+	Here is the email we will send on your behalf<sup style="color:#ff0000">*</sup>:
+	<br/>
+    <br/>
+    #noteTop("750px")
+	<p>
+	<span class="searchLabel">Subject:</span> $message.subject<br/>
+	$message.body
+	</p>
+    #noteBottom()
+	<br/>
+	<span style="color:#ff0000">*</span> If you have not filled in your first or last name on your account, we have used your username instead.
+	  If they will not recognize this, you may want update your account information before sending this message.
+
+</div>
+<br/>
+<br/>
+<br/>
+#fullEnd({
+	"pageType" : "basic",
+	"search" : false
+})
+
+
+

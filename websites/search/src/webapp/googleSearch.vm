@@ -1,0 +1,32 @@
+#set ($params = ({
+	"subtitle" : "Web Search via Google",
+	"pageType" : "basic",
+	"search" : true,
+	"titleBarLeft" : "Web Search",
+	"google" : true,
+	"activePage" : "Google"
+
+}))
+#fullBegin ($params)
+##$esc.html($query)
+<!-- Google Search Result Snippet Begins -->
+<div id="googleSearchUnitIframe"></div>
+
+<script type="text/javascript">
+   var googleSearchIframeName = 'googleSearchUnitIframe';
+   var googleSearchFrameWidth = 800;
+   var googleSearchFrameborder = 0 ;
+   var googleSearchDomain = 'www.google.com';
+</script>
+<script type="text/javascript"
+         src="http://www.google.com/afsonline/show_afs_search.js">
+</script>
+<!-- Google Search Result Snippet Ends -->
+<br/>
+
+#fullEnd ({
+	"pageType" : "basic",
+	"search" : false
+})
+
+ 

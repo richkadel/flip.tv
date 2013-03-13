@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<channelfeed>
+	<documentRoot path="/var/flip.tv"/>
+	<epgServer url="http://localhost:8080/epg/channel.epg"/>
+	<logEmail address="root@localhost"/>
+	<loggers>
+		<logger name="com.appeligo.channelfeed"
+			level="INFO"/>
+		<logger name="com.appeligo.channelfeed.work"
+			level="WARN"/>
+	</loggers>
+	<videoParams frameSize="352x288" frameRate="10"/>
+	<previewRules clipLengthSeconds="30" earliestClipSeconds="300" latestClipSeconds="1800" latestClipPercentOfDuration="50" maxClips="3" minSecondsBetweenClips="120" />
+	<providers>
+		<provider>
+			<headend>SDTW</headend>
+			<lineupDevice>C</lineupDevice>
+			<frequencyStandard>US_CABLE</frequencyStandard>
+			<tuners>
+				<tuner deviceNumber="2">
+					<stations>
+						<station channel="56" callsign="HISTORY"/>
+					</stations>
+				</tuner>
+			</tuners>
+		</provider>
+	</providers>
+</channelfeed>

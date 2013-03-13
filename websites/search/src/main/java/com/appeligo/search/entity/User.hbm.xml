@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.appeligo.search.entity" default-access="field">
+	
+	<class name="com.appeligo.search.entity.User" 
+		proxy="com.appeligo.search.entity.User" table="user">
+		<cache usage="read-write"/>
+		<id name="userId" type="long" column="user_id">
+			<generator class="native"/>
+		</id>
+		
+		<property name="username" type="string" column="username" not-null="false" length="64"/>
+		<property name="password" type="string" column="password" not-null="false" length="64"/>
+		<property name="primaryEmail" type="string" column="primary_email" not-null="false" length="255"/>
+		<property name="smsEmail" type="string" column="sms_email" not-null="false" length="255"/>
+		<property name="earliestSmsTime" type="java.sql.Time" column="earliest_sms"/>
+		<property name="latestSmsTime" type="java.sql.Time" column="latest_sms"/>
+		<property name="lowAge" type="int" column="low_age" not-null="false"/>
+		<property name="highAge" type="int" column="high_age" not-null="false"/>
+		<property name="gender" type="string" column="gender" not-null="false" length="1"/>
+		<property name="timeZone" type="java.util.TimeZone" column="timezone"/>
+		<property name="zipcode" type="string" column="zipcode" not-null="false" length="10"/>
+		<property name="city" type="string" column="city" not-null="false" length="128"/>
+		<property name="state" type="string" column="state" not-null="false" length="128"/>
+		<property name="registrationSecret" type="string" column="registration_secret" not-null="false" length="32"/>
+		<property name="registrationComplete" type="boolean" column="registration_complete" not-null="true"/>
+		<property name="smsVerified" type="boolean" column="sms_verified" not-null="true"/>
+		<property name="smsVerificationCode" type="string" column="sms_verification_code" not-null="false" length="16"/>
+		<property name="maxEntries" type="int" column="max_entries" not-null="true"/>
+		<property name="creationTime" type="java.sql.Timestamp" column="creation_time" not-null="true"/>
+		<property name="enabled" type="boolean" column="enabled" not-null="true"/>
+		<property name="lastLogin" type="java.sql.Timestamp" column="last_login" not-null="true"/>
+		<property name="firstName" type="string" column="first_name" length="64"/>
+		<property name="lastName" type="string" column="last_name" length="64"/>
+		<property name="searchType" type="string" column="search_type" not-null="true" length="16"/>
+		<property name="lineupId" type="string" column="lineup" not-null="true" length="16"/>
+		<property name="alertMinutesDefault" type="int" column="alert_minutes_default" not-null="true"/>
+		<property name="usingPrimaryEmailDefault" type="boolean" column="using_primary_email_default" not-null="true"/>
+		<property name="usingAlternateEmailDefault" type="boolean" column="using_alternate_email_default" not-null="true"/>
+		<property name="usingSMSDefault" type="boolean" column="using_sms_default" not-null="true"/>
+		<property name="usingIMDefault" type="boolean" column="using_im_default" not-null="true"/>
+		<property name="birthMonthYear" type="java.sql.Date" column="birth_month_year" not-null="false"/>
+		
+		<set name="programAlerts" inverse="true" cascade="persist,merge,save-update">
+		  <cache usage="read-write"/>
+			<key column="user_id"/>
+			<one-to-many class="com.appeligo.alerts.ProgramAlert"/>
+		</set>
+		
+		<set name="keywordAlerts" inverse="true" cascade="persist,merge,save-update">
+		  <cache usage="read-write"/>
+			<key column="user_id"/>
+			<one-to-many class="com.appeligo.alerts.KeywordAlert"/>
+		</set>
+		
+		<set name="groups" cascade="all, delete-orphan">
+		  <cache usage="read-write"/>
+			<key column="user_id"/>
+			<one-to-many class="com.appeligo.search.entity.Group"/>
+		</set>
+		
+		<set name="friends" cascade="all, delete-orphan" where="deleted != 1">
+		  <cache usage="read-write"/>
+			<key column="user_id"/>
+			<one-to-many class="com.appeligo.search.entity.Friend"/>
+		</set>		
+		
+	</class>
+	
+	<query name="User.findByUsername" cacheable="true"><![CDATA[
+		from User as u where u.username = :username
+	]]></query>
+	
+	<query name="User.findByEmail" cacheable="true"><![CDATA[
+		from User as u where u.primaryEmail = :email
+	]]></query>
+	
+	<query name="User.findBySmsEmail" cacheable="true"><![CDATA[
+		from User as u where u.smsEmail = :smsEmail
+	]]></query>
+	
+	<query name="User.checkEmailAvailableForUser" cacheable="true"><![CDATA[
+		select u.userId from User as u where (u.primaryEmail = :email or u.smsEmail = :email) and u != :user
+	]]></query>
+	
+	<query name="User.findByUsernameAndRegistrationSecret" cacheable="true"><![CDATA[
+		from User as u where u.username = :username and u.registrationSecret = :registrationSecret
+	]]></query>
+
+	<query name="User.findAll" cacheable="true"><![CDATA[
+		from User as u 
+	]]></query>
+</hibernate-mapping>

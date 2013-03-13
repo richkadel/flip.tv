@@ -1,0 +1,19 @@
+#!/bin/sh -v
+
+/sbin/service channelfeed stop
+/sbin/service capturepreviews stop
+rm -rf /usr/local/flip.tv/jars
+rm -rf /usr/local/flip.tv/lib
+if [ ! -d target/deploy ]; then
+	echo \"target/deploy/\" does not exist!
+	exit 1
+fi
+cd target/deploy/etc
+tar cf - * | (cd /etc; tar xf - --no-same-owner )
+cd ../../../target/deploy/usr/local/flip.tv
+tar cf - * | (cd /usr/local/flip.tv; tar xf - --no-same-owner )
+mkdir -p /var/flip.tv/captiondb
+/sbin/chkconfig channelfeed on
+/sbin/chkconfig capturepreviews on
+/sbin/service channelfeed start
+/sbin/service capturepreviews start

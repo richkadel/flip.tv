@@ -1,0 +1,62 @@
+<!DOCTYPE validators PUBLIC "-//OpenSymphony Group//XWork Validator 1.0//EN"
+	"http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+
+<validators>
+	<field name="username">
+		<field-validator type="requiredstring">
+			<param name="shortCircuit">true</param>
+			<param name="trim">true</param>
+			<message>You must supply a username.</message>
+		</field-validator>
+    <field-validator type="regex">
+      <param name="expression"><![CDATA[[A-Za-z0-9_]{3,30}]]></param>
+			<message>Your user name must be 3 to 30 alpha numeric characters or _.</message>
+    </field-validator>
+	</field>
+	<field name="primaryEmail">
+		<field-validator type="requiredstring">
+			<param name="shortCircuit">true</param>
+			<param name="trim">true</param>
+			<message>You must supply a valid email.</message>
+		</field-validator>
+		<field-validator type="email">
+			<message>The email format is not recognized.</message>
+		</field-validator>
+	</field>
+	<field name="smsEmail">
+		<field-validator type="email">
+			<message>The mobile device address is invalid.  See the mobile device address help below.</message>
+		</field-validator>
+	</field>
+	<field name="zipcode">
+		<field-validator type="requiredstring">
+			<param name="shortCircuit">true</param>
+			<param name="trim">true</param>
+			<message>You must supply a valid zipcode.</message>
+		</field-validator>
+    <field-validator type="regex">
+      <param name="expression"><![CDATA[[0-9]{5}]]></param>
+			<message>The zipcode must be in the format 12345.</message>
+    </field-validator>
+	</field>
+	<field name="state">
+		<field-validator type="requiredstring">
+			<param name="shortCircuit">true</param>
+			<param name="trim">true</param>
+			<message>You must supply a state.</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="trim">true</param>
+			<param name="minLength">2</param>
+			<param name="maxLength">2</param>
+			<message>Please use the two character state abbreviation.</message>
+		</field-validator>
+	</field>
+	<field name="gender">
+		<field-validator type="stringlength">
+			<param name="trim">true</param>
+			<param name="maxLength">1</param>
+			<message>Gender codes are only a single character.</message>
+		</field-validator>
+	</field>
+</validators>

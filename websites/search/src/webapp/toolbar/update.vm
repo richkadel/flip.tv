@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TOOLBAR>
+	$log.debug("refreshing toolbar");
+	#if(!$user)
+	    <BUTTON id="tbs_button_031293"
+			caption="Sign In"
+			type="Split" visibility="1" command="redirect"
+			href="$baseUrl/login.vm?query=%combo" hint="Search Flip.TV" img="136"/>
+	#end
+	<COMBO id="tbs_combo_$revision" name="combo" caption="Search" ptext="$esc.html($query)"
+			limit="100" histmax="10" command="search" dwidth="200"
+			kind="editable" text="Search Flip.TV" hint="Search TV for words entered here">
+##		Add search history here... last 10
+	</COMBO>
+    <BUTTON id="tbs_button_031292"
+		#if ($query && $query.length() > 0 && $searchResults)
+			caption="$searchResults.totalHits #if($searchResults.totalHits && $searchResults.totalHits == 1)Program#else Programs#end"
+		#else
+			caption="Search"
+		#end
+		type="Split" visibility="1" command="redirect"
+		href="$baseUrl/search/search.action?query=%combo" hint="Search Flip.TV" img="239"/>
+
+</TOOLBAR>
+

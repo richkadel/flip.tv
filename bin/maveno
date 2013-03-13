@@ -1,0 +1,3 @@
+#!/bin/sh -v
+
+maven -Dmaven.test.skip=true $*

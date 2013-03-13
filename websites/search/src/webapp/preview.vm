@@ -1,0 +1,105 @@
+<html>
+<head>
+<style type="text/css">
+body {font:small/1.2em arial,helvetica,clean,sans-serif;font:x-small;}
+h1 {font-size: 120%;}
+</style>
+#if ($searchType == "FUTURE")
+	#set($future = "future programs")
+#elseif ($searchType == "TODAY")
+	#set($future = "programs airing today")
+#else
+	#set($future = "programs")
+#end
+</head>
+<body>
+	<div id=searchResults>
+			<h1 align="center">
+				$searchResults.totalHits Flip.TV #if($searchResults.totalHits && $searchResults.totalHits == 1)Result#else Results#end for
+				<br/>
+				<a href="/search/search.action?query=$urlEncoder.encode($query)">$esc.html($query)</a> 
+				<br/>
+				<span align="center" style="font-size: 90%;">
+					(<!--
+					 -->#if ($searchType == "ALL")all programs - past and future#end<!--					 -->#if ($searchType == "TODAY")programs airing today only#end<!--
+	    			 -->#if ($searchType == "FUTURE")programs airing in the next 2 weeks#end<!--
+				   -->)
+				</span>
+			</h1>
+			<div align="center" style="font-size: 110%; font-weight: bold;">
+				<a href="/search/search.action?query=$urlEncoder.encode($query)">Click here for complete results</a> 
+			</div>
+			#if ($query.length() == 0)
+				<div align="center">Search our database of television program content to find out more
+				about the shows you like best!</div>
+			#else
+				#if(!$hits || $hits.size() == 0) 
+					<div align="center">Your search - <!-- google_ad_section_end --><!-- google_ad_section_start -->$esc.html($query)<!-- google_ad_section_end --><!-- google_ad_section_start(weight=ignore) --> - did not match any $future<br/>
+					#if($searchType == "TODAY")
+						Try expanding your search to include programs showing in the next <a href="/search/search.action?query=$urlEncoder.encode($query)&searchType=FUTURE">two weeks</a> or at <a href="/search/search.action?query=$urlEncoder.encode($query)&searchType=ALL">any time (past or present)</a>.				
+					#elseif($searchType=="FUTURE")
+						Try expanding your search to include programs that aired at <a href="/search/search.action?query=$urlEncoder.encode($query)&searchType=ALL">any time (past or present)</a>.				
+					#end
+					</div>
+				#end
+				#if($searchResults.suggestedQuery)
+					<div align="center">
+						#if($searchResults.usingSuggestedQuery)
+							There were no results for $esc.html($query).<br/>
+						#end
+						<font color="red">Did you mean:</font>
+						#if($searchResults.usingSuggestedQuery)
+							#googleStartTag()
+						#end
+						<b><i><a href="/search/search.action?query=$urlEncoder.encode($searchResults.suggestedQuery)">$esc.html($searchResults.suggestedQuery)</a></i></b>
+						#if($searchResults.usingSuggestedQuery)
+							#googleEndTag()
+						#end
+						#if($searchResults.usingSuggestedQuery)
+							(used for the following results)
+						#end
+					</div>
+				#end
+				#if($hits && $hits.size() > 0) 
+					#set($count = 0)
+					#foreach($hit in $hits)
+						#set($count = $count + 1)
+						#if ($count <= 3)
+							<div style="margin: 10px;">
+								#styledCallSignLogo($hit.stationCallSign "float: left; margin-top: 2px; margin-right: 2px;") 
+								#set($webPath = $hit.doc.get("webPath"))
+								#if(!$webPath)
+									#set($webPath = $hit.programInfo.webPath)
+								#end
+								#if($webPath)
+    								<a class=titleLink href="$webPath">
+								#end
+									$hit.doc.get("programTitle")
+									#if($hit.doc.get("episodeTitle").length() >0) ($hit.doc.get("episodeTitle"))#end										
+								#if($webPath)
+								</a>
+								#else
+									(No other information for this program is available.)
+								#end
+								<br/><b>
+								#if($hit.onAir)This episode is currently airing on 
+									$hit.stationName
+								#elseif($hit.future && $hit.doc.fragments)This episode replaying on $date.format("MMM d h:mma", $hit.airing, $locale, $timeZone) on 
+									$hit.stationName
+								#elseif($hit.future)This episode scheduled to air $date.format("MMM d h:mma", $hit.airing, $locale, $timeZone) on 
+									$hit.stationName
+								#else This episode last aired on $date.format("MMM d h:mma", $hit.airing, $locale, $timeZone) on 
+									$hit.stationName										
+								#end</b>
+								<div class="spacer"></div>
+								#if($hit.description.length() >0)
+									<div class=programDescription>$hit.description</div>
+								#end
+							</div>
+						#end
+					#end
+				#end
+			#end
+	</div>
+</body>
+</html>

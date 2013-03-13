@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<configuration>
+	<publicLaunch>false</publicLaunch>
+	<liveLineup>SDTW-C</liveLineup>
+	<url><![CDATA[http://flip.tv/]]></url>
+	<surl><![CDATA[https://flip.tv/]]></surl>
+	<documentRoot path="/var/flip.tv">/var/flip.tv</documentRoot>
+	<smtpServer>localhost</smtpServer>
+	<searchQueueSize>10</searchQueueSize>
+	<searchWordTruncation>3</searchWordTruncation>
+	<communityListMaxResults>5</communityListMaxResults>
+	<luceneIndex>/var/lucene/programIndex</luceneIndex>
+	<compositeIndex>/var/lucene/compositeIndex</compositeIndex>
+	<spellIndex>/var/lucene/spellIndex</spellIndex>
+	<luceneLiveIndex>/var/lucene/liveIndex</luceneLiveIndex>
+	<luceneProductIndex>/var/lucene/productIndex</luceneProductIndex>
+
+	<epgEndpoint>http://flip.tv/epg/channel.epg</epgEndpoint>
+	<captionsEndpoint>http://flip.tv/ccdataweb/captionstore</captionsEndpoint>
+	<channelList>11 29 41 44 51 53 55 56 70</channelList>
+	<demo>false</demo>
+	<smtpServer>localhost</smtpServer>
+	<smtpPort>25</smtpPort>
+	<debugMailSender>false</debugMailSender>
+	<!-- As long as we aren't using authentication on our servers, we don't want this set
+	<smtpUser>alerts@appeligo.com</smtpUser>
+	<smtpSenderPassword></smtpSenderPassword>
+	 -->
+	<!--
+	<minCachedPrograms>1000</minCachedPrograms>
+	<maxCachedPrograms>1500</maxCachedPrograms>
+	 -->
+	<feedbackEmail>feedback@appeligo.com</feedbackEmail>
+	<amazon>
+		<associateTag>httpwwwappeli-20</associateTag>
+		<awsId>017FHFKV6MJ6E4Q6KHR2</awsId>
+	</amazon>
+
+	<defaultUserGroup>user</defaultUserGroup>
+	<searchEngines>
+		www.google.com, /, q,
+		search.yahoo.com, /, p,
+		www.ask.com, /, q,
+		search.msn.com, /, q,
+		search.live.com, /, q,
+		www.imdb.com, /find, q,
+		www.tv.com, /search.php, qs,
+		search.aol.com, /, query,
+		localhost:8080, /search/search.action, query,
+		flip.tv, /search/search.action, query,
+		dev.flip.tv, /search/search.action, query,
+	</searchEngines>
+	
+	<genreQuery>
+		<genre label="Drama">drama</genre>
+		<genre label="SitCom">sitcom</genre>
+		<genre label="Sports">sports</genre>
+		<genre label="Event">event</genre>
+		<genre label="Children">children</genre>
+		<genre label="Animals">animals</genre>
+		<genre label="House/Garden">house garden</genre>
+		<genre label="House">house</genre>
+		<genre label="Comedy">comedy</genre>
+		<genre label="Crime">crime</genre>
+		<genre label="How-to">how</genre>
+		<genre label="Special">special</genre>
+		<genre label="Talk">talk</genre>
+		<genre label="Home improvement">home improvement</genre>
+		<genre label="Cooking">cooking</genre>
+		<genre label="Adventure">adventure</genre>		
+		<genre label="Science">science</genre>		
+		<genre label="Science fiction">science fiction</genre>		
+		<genre label="Music">music</genre>		
+		<genre label="Action">action</genre>
+		<genre label="Fantasy">fantasy</genre>
+		<genre label="Travel">travel</genre>
+		<genre label="Entertainment">entertainment</genre>
+		<genre label="History">history</genre>
+		<genre label="Suspense">suspense</genre>
+		<genre label="Soap">soap</genre>
+		<genre label="Game show">game show</genre>
+		<genre label="Shop">shop</genre>		
+		<genre label="Auto">auto</genre>		
+		<genre label="Western">western</genre>		
+		<genre label="Law">law</genre>		
+		<genre label="Medical">medical</genre>		
+		<genre label="Health">health</genre>		
+		<genre label="Art">art</genre>		
+		<genre label="Mystery">mystery</genre>		
+		<genre label="Nature">nature</genre>		
+		<genre label="Romance">romance</genre>		
+		<genre label="Adults only">adults only</genre>		
+		<genre label="Educational">educational</genre>		
+		<genre label="War">war</genre>		
+		<genre label="Biography">biography</genre>		
+		<genre label="Documentary">documentary</genre>
+		<genre label="Reality">reality</genre>
+	</genreQuery>
+	
+	<!-- 
+	<ageRanges>
+		<range value="12-17">12 to 17</range>
+		<range value="18-35">18 to 35</range>
+		<range value="36-50">36 to 50</range>
+		<range value="51-65">51 to 65</range>
+		<range value="65-100">65 and over</range>
+	</ageRanges>
+	 -->
+
+	<months>
+		<month>Select One</month>
+		<month>JAN</month>
+		<month>FEB</month>
+		<month>MAR</month>
+		<month>APR</month>
+		<month>MAY</month>
+		<month>JUN</month>
+		<month>JUL</month>
+		<month>AUG</month>
+		<month>SEP</month>
+		<month>OCT</month>
+		<month>NOV</month>
+		<month>DEC</month>
+	</months>
+	
+	<years>
+		<year>Select One</year>
+		<year>1900</year>
+		<year>1901</year>
+		<year>1902</year>
+		<year>1903</year>
+		<year>1904</year>
+		<year>1905</year>
+		<year>1906</year>
+		<year>1907</year>
+		<year>1908</year>
+		<year>1909</year>
+		<year>1910</year>
+		<year>1911</year>
+		<year>1912</year>
+		<year>1913</year>
+		<year>1914</year>
+		<year>1915</year>
+		<year>1916</year>
+		<year>1917</year>
+		<year>1918</year>
+		<year>1919</year>
+		<year>1920</year>
+		<year>1921</year>
+		<year>1922</year>
+		<year>1923</year>
+		<year>1924</year>
+		<year>1925</year>
+		<year>1926</year>
+		<year>1927</year>
+		<year>1928</year>
+		<year>1929</year>
+		<year>1930</year>
+		<year>1931</year>
+		<year>1932</year>
+		<year>1933</year>
+		<year>1934</year>
+		<year>1935</year>
+		<year>1936</year>
+		<year>1937</year>
+		<year>1938</year>
+		<year>1939</year>
+		<year>1940</year>
+		<year>1941</year>
+		<year>1942</year>
+		<year>1943</year>
+		<year>1944</year>
+		<year>1945</year>
+		<year>1946</year>
+		<year>1947</year>
+		<year>1948</year>
+		<year>1949</year>
+		<year>1950</year>
+		<year>1951</year>
+		<year>1952</year>
+		<year>1953</year>
+		<year>1954</year>
+		<year>1955</year>
+		<year>1956</year>
+		<year>1957</year>
+		<year>1958</year>
+		<year>1959</year>
+		<year>1960</year>
+		<year>1961</year>
+		<year>1962</year>
+		<year>1963</year>
+		<year>1964</year>
+		<year>1965</year>
+		<year>1966</year>
+		<year>1967</year>
+		<year>1968</year>
+		<year>1969</year>
+		<year>1970</year>
+		<year>1971</year>
+		<year>1972</year>
+		<year>1973</year>
+		<year>1974</year>
+		<year>1975</year>
+		<year>1976</year>
+		<year>1977</year>
+		<year>1978</year>
+		<year>1979</year>
+		<year>1980</year>
+		<year>1981</year>
+		<year>1982</year>
+		<year>1983</year>
+		<year>1984</year>
+		<year>1985</year>
+		<year>1986</year>
+		<year>1987</year>
+		<year>1988</year>
+		<year>1989</year>
+		<year>1990</year>
+		<year>1991</year>
+		<year>1992</year>
+		<year>1993</year>
+		<year>1994</year>
+		<year>1995</year>
+		<year>1996</year>
+		<year>1997</year>
+		<year>1998</year>
+		<year>1999</year>
+		<year>2000</year>
+		<year>2001</year>
+		<year>2002</year>
+		<year>2003</year>
+		<year>2004</year>
+		<year>2005</year>
+		<year>2006</year>
+		<year>2007</year>
+	</years>
+	
+	<stateList>
+		<state>AL</state>
+		<state>AK</state>
+		<state>AZ</state>
+		<state>AR</state>
+		<state>CA</state>
+		<state>CO</state>
+		<state>CT</state>
+		<state>DE</state>
+		<state>FL</state>
+		<state>GA</state>
+		<state>HI</state>
+		<state>ID</state>
+		<state>IL</state>
+		<state>IN</state>
+		<state>IA</state>
+		<state>KS</state>
+		<state>KY</state>
+		<state>LA</state>
+		<state>ME</state>
+		<state>MD</state>
+		<state>MA</state>
+		<state>MI</state>
+		<state>MN</state>
+		<state>MS</state>
+		<state>MO</state>
+		<state>MT</state>
+		<state>NE</state>
+		<state>NV</state>
+		<state>NH</state>
+		<state>NJ</state>
+		<state>NM</state>
+		<state>NY</state>
+		<state>NC</state>
+		<state>ND</state>
+		<state>OH</state>
+		<state>OK</state>
+		<state>OR</state>
+		<state>PA</state>
+		<state>RI</state>
+		<state>SC</state>
+		<state>SD</state>
+		<state>TN</state>
+		<state>TX</state>
+		<state>UT</state>
+		<state>VT</state>
+		<state>VA</state>
+		<state>WA</state>
+		<state>WV</state>
+		<state>WI</state>
+		<state>WY</state>
+	</stateList>
+
+	<stopWords>
+		
+		<word>a</word>
+		<word>am</word>
+		<word>an</word>
+		<word>and</word>
+		<word>are</word>
+		<word>as</word>
+		<word>at</word>
+		<word>be</word>
+		<word>but</word>
+		<word>by</word>
+		<word>for</word>
+		<word>guy</word>
+		<word>hah</word>
+		<word>huh</word>
+		<word>i</word>
+		<word>i'll</word>
+		<word>if</word>
+		<word>in</word>
+		<word>into</word>
+		<word>is</word>
+		<word>it</word>
+		<word>me</word>
+		<word>no</word>
+		<word>not</word>
+		<word>of</word>
+		<word>oh</word>
+		<word>on</word>
+		<word>okay</word>
+		<word>or</word>
+		<word>so</word>
+		<word>such</word>
+		<word>that</word>
+		<word>the</word>
+		<word>their</word>
+		<word>then</word>
+		<word>there</word>
+		<word>these</word>
+		<word>they</word>
+		<word>this</word>
+		<word>to</word>
+		<word>uh</word>
+		<word>uh-huh</word>
+		<word>um</word>
+		<word>was</word>
+		<word>we</word>
+		<word>will</word>
+		<word>with</word>
+		<word>wow</word>
+		<word>you</word>
+		<word>you'll</word>
+	</stopWords>
+</configuration>

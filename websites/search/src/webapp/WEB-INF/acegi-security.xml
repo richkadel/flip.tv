@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<!--
+  - A simple "base bones" Acegi Security configuration.
+  -
+  - The sample includes the "popular" features that people tend to use.
+  - Specifically, form authentication, remember-me, and anonymous processing.
+  - Other features aren't setup, as these can be added later by inserting
+  - the relevant XML fragments as specified in the Reference Guide.
+  -
+  - To assist new users, the filters specified in the FilterChainProxy are
+  - declared in the application context in the same order. Collaborators
+  - required by those filters are placed at the end of the file.
+  -
+  - $Id: applicationContext-acegi-security.xml 1513 2006-05-29 13:32:12Z benalex $
+  -->
+
+<beans>
+
+	<bean id="passwordEncoder" class="org.acegisecurity.providers.encoding.ShaPasswordEncoder">
+	  <constructor-arg value="256"/>
+	</bean>
+
+	<bean id="filterChainProxy" class="org.acegisecurity.util.FilterChainProxy">
+		<property name="filterInvocationDefinitionSource">
+			<value>
+				CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
+				PATTERN_TYPE_APACHE_ANT
+				/**=channelProcessingFilter,httpSessionContextIntegrationFilter,logoutFilter,authenticationProcessingFilter,securityContextHolderAwareRequestFilter,rememberMeProcessingFilter,anonymousProcessingFilter,exceptionTranslationFilter,filterInvocationInterceptor
+			</value>
+		</property>
+	</bean>
+
+	<bean id="httpSessionContextIntegrationFilter" class="org.acegisecurity.context.HttpSessionContextIntegrationFilter"/>
+
+	<bean id="logoutFilter" class="org.acegisecurity.ui.logout.LogoutFilter">
+		<constructor-arg value="/home/home.action"/> <!-- URL redirected to after logout -->
+		<constructor-arg>
+			<list>
+				<ref bean="rememberMeServices"/>
+				<bean class="org.acegisecurity.ui.logout.SecurityContextLogoutHandler"/>
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="authenticationProcessingFilter" class="org.acegisecurity.ui.webapp.AuthenticationProcessingFilter">
+		<property name="authenticationManager" ref="authenticationManager"/>
+		<property name="authenticationFailureUrl" value="/login.vm?login_error=1"/>
+		<property name="defaultTargetUrl" value="/"/>
+		<property name="filterProcessesUrl" value="/j_acegi_security_check"/>
+		<property name="rememberMeServices" ref="rememberMeServices"/>
+	</bean>
+   
+	<bean id="securityContextHolderAwareRequestFilter" class="org.acegisecurity.wrapper.SecurityContextHolderAwareRequestFilter"/>
+
+	<bean id="rememberMeProcessingFilter" class="org.acegisecurity.ui.rememberme.RememberMeProcessingFilter">
+		<property name="authenticationManager" ref="authenticationManager"/>
+		<property name="rememberMeServices" ref="rememberMeServices"/>
+	</bean>
+
+	<bean id="anonymousProcessingFilter" class="org.acegisecurity.providers.anonymous.AnonymousProcessingFilter">
+		<property name="key" value="changeThis"/>
+		<property name="userAttribute" value="anonymousUser,ROLE_ANONYMOUS"/>
+	</bean>
+
+	<bean id="exceptionTranslationFilter" class="org.acegisecurity.ui.ExceptionTranslationFilter">
+		<property name="authenticationEntryPoint">
+			<bean class="org.acegisecurity.ui.webapp.AuthenticationProcessingFilterEntryPoint">
+				<property name="loginFormUrl" value="/login.vm"/>
+				<property name="forceHttps" value="true"/>
+			</bean>
+		</property>
+		<property name="accessDeniedHandler">
+			<bean class="org.acegisecurity.ui.AccessDeniedHandlerImpl">
+				<property name="errorPage" value="/accessDenied.jsp"/>
+			</bean>
+		</property>
+	</bean>
+
+   <!-- ===================== HTTP CHANNEL REQUIREMENTS ==================== -->
+   <bean id="channelProcessingFilter" class="org.acegisecurity.securechannel.ChannelProcessingFilter">
+      <property name="channelDecisionManager"><ref local="channelDecisionManager"/></property>
+      <property name="filterInvocationDefinitionSource">
+         <value>
+			    CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
+					PATTERN_TYPE_APACHE_ANT
+					/login.vm*=REQUIRES_SECURE_CHANNEL
+					/j_acegi_security_check*=REQUIRES_SECURE_CHANNEL
+					/account/**=REQUIRES_SECURE_CHANNEL
+					/registration/**=REQUIRES_SECURE_CHANNEL
+					<!-- The reason the flowing two patterns are not more fully qualified is
+					that it word force images etc to be loaded via http vs https on the secure pages.
+					For that reason alone we need to allow some data to be loaded either way.
+					If other suffixes eventually must be forced "unsecure" to save processor, this
+					is the right place to do it. -->
+					/**/*.action*=REQUIRES_INSECURE_CHANNEL
+					/**/*.vm*=REQUIRES_INSECURE_CHANNEL
+         </value>
+      </property>
+   </bean>
+
+   <bean id="channelDecisionManager" class="org.acegisecurity.securechannel.ChannelDecisionManagerImpl">
+      <property name="channelProcessors">
+         <list>
+            <ref local="secureChannelProcessor"/>
+            <ref local="insecureChannelProcessor"/>
+         </list>
+      </property>
+   </bean>
+
+   <bean id="secureChannelProcessor" class="org.acegisecurity.securechannel.SecureChannelProcessor"/>
+   <bean id="insecureChannelProcessor" class="org.acegisecurity.securechannel.InsecureChannelProcessor"/>
+	<!-- =================== END HTTP CHANNEL REQUIREMENTS ================== -->
+
+	<bean id="filterInvocationInterceptor" class="org.acegisecurity.intercept.web.FilterSecurityInterceptor">
+		<property name="authenticationManager" ref="authenticationManager"/>
+		<property name="accessDecisionManager">
+			<bean class="org.acegisecurity.vote.AffirmativeBased">
+				<property name="allowIfAllAbstainDecisions" value="false"/>
+				<property name="decisionVoters">
+					<list>
+						<bean class="org.acegisecurity.vote.RoleVoter"/>
+						<bean class="org.acegisecurity.vote.AuthenticatedVoter"/>
+					</list>
+				</property>
+			</bean>
+		</property>
+		<property name="objectDefinitionSource">
+			<value>
+				CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
+				PATTERN_TYPE_APACHE_ANT
+				/admin/**=ROLE_admin
+		<!-- THIS IS WHAT WE NEED TO ALLOW REGISTRATION, PUBLIC ACCESS TO SITE -->
+		<!-- 
+				/network/**=IS_AUTHENTICATED_REMEMBERED
+				/alerts/**=IS_AUTHENTICATED_REMEMBERED
+				/account/**=IS_AUTHENTICATED_REMEMBERED
+				/**=IS_AUTHENTICATED_ANONYMOUSLY
+		 -->
+		 
+<!-- WHEN SITE IS LOCKED DOWN, WE HAVE THIS -->
+				/favicon.ico=IS_AUTHENTICATED_ANONYMOUSLY
+				/login.vm=IS_AUTHENTICATED_ANONYMOUSLY
+				/registration/resetauth.vm=IS_AUTHENTICATED_ANONYMOUSLY
+				/registration/resetpassword.action=IS_AUTHENTICATED_ANONYMOUSLY
+				/registration/notifyme.vm=IS_AUTHENTICATED_ANONYMOUSLY
+				/registration/notifyme.action=IS_AUTHENTICATED_ANONYMOUSLY
+				/themes/**=IS_AUTHENTICATED_ANONYMOUSLY
+				/company/**=IS_AUTHENTICATED_ANONYMOUSLY
+				/toolbar/**=IS_AUTHENTICATED_ANONYMOUSLY
+				/responsetest/**=IS_AUTHENTICATED_ANONYMOUSLY
+				/webwork/**=IS_AUTHENTICATED_ANONYMOUSLY
+				/cceventservice=IS_AUTHENTICATED_ANONYMOUSLY
+				/alertqueue=IS_AUTHENTICATED_ANONYMOUSLY
+				/**=IS_AUTHENTICATED_REMEMBERED
+  <!--  -->
+			</value>
+		</property>
+	</bean>
+
+	<bean id="rememberMeServices" class="org.acegisecurity.ui.rememberme.TokenBasedRememberMeServices">
+		<property name="userDetailsService" ref="userDetailsService"/>
+		<property name="key" value="changeThis"/>
+		<property name="tokenValiditySeconds" value="172800000"/>
+		<property name="alwaysRemember" value="true"/>
+	</bean>
+
+	<bean id="authenticationManager" class="org.acegisecurity.providers.ProviderManager">
+		<property name="providers">
+			<list>
+				<ref local="daoAuthenticationProvider"/>
+				<bean class="org.acegisecurity.providers.anonymous.AnonymousAuthenticationProvider">
+					<property name="key" value="changeThis"/>
+				</bean>
+				<bean class="org.acegisecurity.providers.rememberme.RememberMeAuthenticationProvider">
+					<property name="key" value="changeThis"/>
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="daoAuthenticationProvider" class="org.acegisecurity.providers.dao.DaoAuthenticationProvider">
+		<property name="userDetailsService" ref="userDetailsService"/>
+		<property name="passwordEncoder" ref="passwordEncoder"/>
+		<property name="userCache">
+			<bean class="org.acegisecurity.providers.dao.cache.EhCacheBasedUserCache">
+				<property name="cache">
+					<bean class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+						<property name="cacheManager">
+							<bean class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"/>
+						</property>
+						<property name="cacheName" value="userCache"/>
+					</bean>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+  <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:/comp/env/jdbc/search"/>
+	</bean>
+
+	<!-- UserDetailsService is the most commonly frequently Acegi Security interface implemented by end users -->
+	<bean id="userDetailsService" class="org.acegisecurity.userdetails.jdbc.JdbcDaoImpl">
+	  <property name="dataSource" ref="dataSource"/>
+		<property name="usersByUsernameQuery" value="SELECT username, password, (registration_complete AND enabled) as canLogin FROM user WHERE username = ?"/>
+		<property name="authoritiesByUsernameQuery" value="SELECT username, group_name FROM user_groups WHERE username = ?"/>
+		<property name="rolePrefix" value="ROLE_"/>
+	</bean>
+
+	<!-- This bean is optional; it isn't used by any other bean as it only listens and logs -->
+	<bean id="loggerListener" class="org.acegisecurity.event.authentication.LoggerListener"/>
+
+	<!-- This bean is to record when the user logs in. -->
+	<bean id="appeligoListener" class="com.appeligo.acegi.AcegiApplicationListener"/>
+
+</beans>

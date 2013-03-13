@@ -1,0 +1,348 @@
+<!DOCTYPE xwork PUBLIC 
+	"-//OpenSymphony Group//XWork 1.1.1//EN"
+	"http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+
+<xwork>
+	<!-- Include webwork defaults (from WebWork JAR, so it is always found). -->
+	<include file="webwork-default.xml" />
+	
+	<!-- Configuration for the default package. -->
+	<package name="search-default" extends="webwork-default">
+	  <!-- This is a minor tweak of the default/complete stacks in webwork-default, 
+		removes some things we don't use, and likely won't use.  I left them commented
+		out here so that we could quickly see the ones that were missing. -->
+	  <interceptors>
+		  <interceptor-stack name="searchStack">
+		     <interceptor-ref name="exception"/>
+		     <interceptor-ref name="alias"/>
+		     <interceptor-ref name="servlet-config"/>
+		     <interceptor-ref name="prepare"/>
+		     <interceptor-ref name="i18n"/>
+		     <interceptor-ref name="chain"/>
+		     <!--interceptor-ref name="debugging"/-->
+		     <interceptor-ref name="model-driven"/>
+		     <!--interceptor-ref name="fileUpload"/-->
+		     <interceptor-ref name="static-params"/>
+		     <interceptor-ref name="params"/>
+		     <interceptor-ref name="conversionError"/>
+		     <interceptor-ref name="validation">
+		         <param name="excludeMethods">input,back,cancel,browse</param>
+		     </interceptor-ref>
+		     <interceptor-ref name="workflow">
+		         <param name="excludeMethods">input,back,cancel,browse</param>
+		     </interceptor-ref>
+		  </interceptor-stack>
+	  </interceptors>
+		<default-interceptor-ref name="searchStack" />
+		
+	  <default-action-ref name="relayAction"/>
+		
+		<action name="relayAction" class="com.appeligo.search.actions.SimpleRenderAction">
+			<result name="success" type="velocity">${successUrl}</result>
+			<result name="error" type="velocity">/error.vm</result>
+		</action>
+	</package>
+
+	<!-- This module is only for registering new users. -->
+	<package name="registration" namespace="/registration" extends="search-default">
+		<!-- Well, once everyone is used to seeing this we can take this comment out.
+		this action is now a reference to a spring bean.  This was done so that it 
+		would always use exactly the same instance of passwordEncoder as Acegi. 
+		Once Spring gets introduced, it has a tendency to become pervasive....-->
+		<action name="registration" class="registerUserAction">
+			<result name="input" type="velocity">/registration/registration.vm</result>
+			<result name="success" type="velocity">/registration/registration.vm</result>
+			<result name="logged_in" type="redirect">/account/account.vm</result>
+		</action>
+		
+		<action name="saveRegistration" method="register" class="registerUserAction">
+			<result name="input" type="velocity">/registration/registration.vm</result>
+			<result name="success" type="redirect">/registration/instructions.vm</result>
+			<result name="logged_in" type="redirect">/account/account.vm</result>
+		</action>
+		
+		<action name="confirmRegistration" method="confirmRegistration" class="registerUserAction">
+			<result name="input" type="redirect">/registration/registration.vm?failedConfirm=true</result>
+			<result name="success" type="redirect">/registration/welcome.vm</result>
+		</action>
+		
+		<action name="instructions" class="com.appeligo.search.actions.SimpleRenderAction">
+			<result name="success" type="velocity">/registration/instructions.vm</result>
+			<result name="error" type="velocity">/error.vm</result>
+		</action>
+		
+		<action name="welcome" class="com.appeligo.search.actions.SimpleRenderAction">
+			<result name="success" type="velocity">/registration/welcome.vm</result>
+			<result name="error" type="velocity">/error.vm</result>
+		</action>
+		
+		<action name="resetPassword" method="resetPassword" class="changePasswordAction">
+			<param name="validatePassword">false</param>
+			<result name="success" type="redirect">/login.vm</result>
+			<result name="input" type="velocity">/registration/resetauth.vm</result>
+		</action>
+		
+		<action name="notifyme" method="notifyMe" class="com.appeligo.search.actions.account.NotifyMeAction">
+			<result name="success" type="redirect">/login.vm</result>
+			<result name="input" type="velocity">/registration/notifyme.vm</result>
+		</action>
+	</package>
+	
+	<!-- User edit actions that can be executed by a logged in user. -->
+	<package name="account" namespace="/account" extends="search-default">	
+		<action name="account" method="viewAccount" class="com.appeligo.search.actions.account.UpdateAccountAction">
+			<result name="success" type="velocity">/account/account.vm</result>
+		</action>
+		
+		<action name="saveAccount" method="saveAccount" class="com.appeligo.search.actions.account.UpdateAccountAction">
+			<result name="input" type="velocity">/account/account.vm</result>
+			<result name="success" type="velocity">/account/account.vm</result>
+			<result name="logout" type="redirect">/j_acegi_logout</result>
+		</action>
+		
+		<action name="sms" method="enterSmsAddress" class="com.appeligo.search.actions.account.UpdateAccountAction">
+			<result name="input" type="velocity">/account/verifySms.vm</result>
+			<result name="success" type="velocity">/account/verifySms.vm</result>
+			<result name="logout" type="redirect">/j_acegi_logout</result>
+		</action>
+		
+		<action name="resendSmsCode" method="resendSmsCode" class="com.appeligo.search.actions.account.UpdateAccountAction">
+			<result name="input" type="velocity">/account/verifySms.vm</result>
+		</action>
+		
+		<action name="verifySms" method="verifySmsAddress" class="com.appeligo.search.actions.account.UpdateAccountAction">
+			<result name="input" type="velocity">/account/verifySms.vm</result>
+			<result name="success" type="velocity">/account/verifySms.vm</result>
+			<result name="logout" type="redirect">/j_acegi_logout</result>
+		</action>
+		
+		<action name="savePassword" method="savePassword" class="com.appeligo.search.actions.account.ChangePasswordAction">
+			<result name="success" type="redirect">/account/account.vm?pc</result>
+			<result name="input" type="velocity">/account/changePassword.vm</result>
+		</action>
+	</package>
+	
+	<package name="home" namespace="/home" extends="search-default">
+		<action name="home" class="com.appeligo.search.actions.home.HomeAction">
+			<result name="success" type="velocity">/index.vm</result>
+			<result name="home" type="velocity">/home/home.vm</result>
+		</action>				
+	</package>		
+	<package name="favorites" namespace="/home/favorites" extends="search-default">
+		<action name="up" method="up" class="com.appeligo.search.actions.home.FavoriteAction">
+			<result name="success" type="velocity">/index.vm</result>
+			<result name="home" type="velocity">/home/home.vm</result>
+		</action>				
+		<action name="down" method="down" class="com.appeligo.search.actions.home.FavoriteAction">
+			<result name="success" type="velocity">/index.vm</result>
+			<result name="home" type="velocity">/home/home.vm</result>
+		</action>				
+		<action name="delete" method="delete" class="com.appeligo.search.actions.home.FavoriteAction">
+			<result name="success" type="velocity">/index.vm</result>
+			<result name="home" type="velocity">/home/home.vm</result>
+		</action>				
+	</package>
+	<package name="site" namespace="/site" extends="search-default">
+		<action name="blog" class="com.appeligo.search.actions.BlogAction">
+			<result name="success" type="velocity">/blog.vm</result>
+		</action>		
+	</package>		
+	<package name="search" namespace="/search" extends="search-default">
+		<action name="search" class="com.appeligo.search.actions.CaptionSearchAction">
+			<result name="success" type="velocity">/Search.vm</result>
+			<result name="oneresult" type="redirect">${webPath}?oneResult=true</result>
+			<result name="input" type="redirect">/home/home.action</result>
+		</action>
+		<action name="preview" class="com.appeligo.search.actions.CaptionSearchAction">
+			<result name="success" type="velocity">/preview.vm</result>
+			<result name="input" type="redirect">/home/home.action</result>
+		</action>
+		<action name="products" class="com.appeligo.search.actions.ProductSearchAction">
+			<result name="programList" type="velocity">/products.vm</result>
+			<result name="adsense" type="velocity">/productAdsense.vm</result>
+		</action>
+		<action name="program" class="com.appeligo.search.actions.ProgramAction">
+			<result name="success" type="velocity">/Program.vm</result>
+			<result name="programNotFound" type="velocity">/ProgramNotFound.vm</result>
+			<result name="redirect" type="redirect">${webPath}${queryStringNoProgramId}</result>
+		</action>
+		<!--
+		<action name="show" method="showDetails" class="com.appeligo.search.actions.ProgramAction">
+			<result name="success" type="velocity">/Show.vm</result>
+		<action name="show" class="com.appeligo.search.actions.ProgramAction">
+			<result name="success" type="velocity">/Program.vm</result>
+			<result name="programNotFound" type="velocity">/ProgramNotFound.vm</result>
+		</action>		
+		  -->
+		<!--
+		<action name="team" method="teamDetails" class="com.appeligo.search.actions.ProgramAction">
+		<action name="team" class="com.appeligo.search.actions.ProgramAction">
+			<result name="success" type="velocity">/Program.vm</result>
+			<result name="programNotFound" type="velocity">/ProgramNotFound.vm</result>
+		</action>		
+		  -->
+		<action name="location" class="com.appeligo.search.actions.LocationAction">
+			<result name="success" type="velocity">/location.vm</result>
+			<result name="account" type="redirect">/account/account.action</result>			
+		</action>
+		<action name="saveLocation" method="saveLocation" class="com.appeligo.search.actions.LocationAction">
+			<result name="success" type="redirect">${returnUrl}${hash}</result>
+			<result name="input" type="velocity">/location.vm</result>
+		</action>
+		<action name="favoriteShow" method="setFavorite" class="com.appeligo.search.actions.ProgramAction">
+			<param name="episodeOnly">false</param>
+			<result name="success" type="velocity">/Program.vm</result>
+			<result name="programNotFound" type="velocity">/ProgramNotFound.vm</result>
+		</action>
+		<action name="favoriteEpisode" method="setFavorite" class="com.appeligo.search.actions.ProgramAction">
+			<param name="episodeOnly">true</param>
+			<result name="success" type="velocity">/Program.vm</result>
+			<result name="programNotFound" type="velocity">/ProgramNotFound.vm</result>
+		</action>		
+	</package>		
+	
+	<package name="alerts" namespace="/alerts" extends="search-default">
+		<action name="setAlertDefaults" method="setAlertDefaults" class="com.appeligo.search.actions.ProgramAction">
+			<result name="success" type="velocity">/Program.vm</result>
+			<result name="programNotFound" type="velocity">/ProgramNotFound.vm</result>
+		</action>
+		<action name="alerts" class="com.appeligo.search.actions.KeywordAlertsPageAction">
+			<param name="alertsPage">KeywordAlerts</param>
+			<result name="success" type="velocity">/Alerts.vm</result>
+		</action>		
+		<action name="reminders" class="com.appeligo.search.actions.ProgramRemindersPageAction">
+			<param name="alertsPage">ProgramReminders</param>
+			<result name="success" type="velocity">/Alerts.vm</result>
+		</action>		
+		<action name="createProgramAlert" method="createProgramAlert" class="com.appeligo.search.actions.ProgramAlertAction">
+			<result name="success" type="redirect">${returnUrl}${hash}</result>
+			<result name="input" type="redirect">${returnUrl}&amp;valid=false${hash}</result>
+		</action>		
+		<action name="changeProgramAlertDisabled" method="changeProgramAlertDisabled" class="com.appeligo.search.actions.ProgramAlertAction">
+			<result name="success" type="redirect">${returnUrl}${hash}</result>
+		</action>
+		<action name="deleteProgramAlert" method="deleteProgramAlert" class="com.appeligo.search.actions.ProgramAlertAction">
+			<result name="success" type="redirect">${returnUrl}${hash}</result>
+		</action>
+		<action name="deleteProgramAlerts" method="deleteProgramAlerts" class="com.appeligo.search.actions.ProgramAlertAction">
+			<result name="success" type="redirect">${returnUrl}${hash}</result>
+		</action>
+		<action name="setScheduledAlert" method="setScheduledAlert" class="com.appeligo.search.actions.ProgramAlertAction">
+			<result name="success" type="redirect">${returnUrl}${hash}</result>
+		</action>
+		<action name="createKeywordAlert" method="createKeywordAlert" class="com.appeligo.search.actions.KeywordAlertAction">
+			<result name="success" type="redirect">${returnUrl}${hash}</result>
+			<result name="input" type="redirect">${returnUrl}&amp;valid=false${hash}</result>
+		</action>		
+		<action name="changeKeywordAlert" method="changeKeywordAlert" class="com.appeligo.search.actions.KeywordAlertAction">
+			<result name="success" type="redirect">${returnUrl}${hash}</result>
+			<result name="input" type="redirect">${returnUrl}&amp;valid=false${hash}</result>
+		</action>		
+		<action name="changeKeywordAlertDisabled" method="changeKeywordAlertDisabled" class="com.appeligo.search.actions.KeywordAlertAction">
+			<result name="success" type="redirect">${returnUrl}${hash}</result>
+		</action>		
+		<action name="deleteKeywordAlert" method="deleteKeywordAlert" class="com.appeligo.search.actions.KeywordAlertAction">
+			<result name="success" type="redirect">${returnUrl}${hash}</result>
+		</action>		
+	</package>	
+	<package name="feedback" namespace="/feedback" extends="search-default">
+		<action name="capture" class="com.appeligo.search.actions.FeedbackAction">
+			<result name="success" type="velocity">/feedback.vm</result>
+		</action>		
+		<action name="save" method="save" class="com.appeligo.search.actions.FeedbackAction">
+			<result name="input" type="velocity">/feedback.vm</result>
+			<result name="success" type="velocity">/feedbackSent.vm</result>
+		</action>		
+	</package>	
+	
+	<package name="network" namespace="/network" extends="search-default">
+		<action name="invite" method="prepareInvite" class="com.appeligo.search.actions.network.InviteAction">
+			<result name="success" type="velocity">/network/invite.vm</result>
+		</action>		
+		<action name="sendInvite" method="sendInvite" class="com.appeligo.search.actions.network.InviteAction">
+			<result name="success" type="velocity">/network/inviteSent.vm</result>
+			<result name="input" type="velocity">/network/invite.vm</result>
+		</action>					
+		<action name="recommendProgram" method="prepareRecommendation" class="com.appeligo.search.actions.network.RecommendProgramAction">
+			<result name="success" type="velocity">/network/programRecommendation.vm</result>
+			<result name="error" type="velocity">/network/programRecommendationError.vm</result>
+		</action>		
+		<action name="sendRecommendation" method="sendRecommendation" class="com.appeligo.search.actions.network.RecommendProgramAction">
+			<result name="success" type="velocity">/network/programRecommendationSent.vm</result>
+			<result name="input" type="velocity">/network/programRecommendation.vm</result>
+			<result name="error" type="velocity">/network/programRecommendationError.vm</result>
+		</action>		
+		<action name="friends" class="com.appeligo.search.actions.network.FriendsAction">
+			<result name="success" type="velocity">/network/friends.vm</result>
+		</action>		
+		<action name="respondToInvitation" method="respondToInvitation" class="com.appeligo.search.actions.network.FriendsAction">
+			<result name="success" type="velocity">/network/friends.vm</result>
+		</action>		
+		<action name="deleteFriend" method="deleteFriend" class="com.appeligo.search.actions.network.FriendsAction">
+			<result name="success" type="velocity">/network/friends.vm</result>
+		</action>			
+		<action name="editFriend" method="editFriend" class="com.appeligo.search.actions.network.FriendsAction">
+			<result name="success" type="velocity">/network/editFriend.vm</result>
+			<result name="error" type="velocity">/network/friends.vm</result>
+		</action>			
+		<action name="saveFriend" method="saveFriend" class="com.appeligo.search.actions.network.FriendsAction">
+			<result name="success" type="velocity">/network/friends.vm</result>
+			<result name="error" type="velocity">/network/friends.vm</result>
+		</action>			
+	</package>	
+
+	<package name="donation" namespace="/donation" extends="search-default">
+		<action name="make" class="com.appeligo.search.actions.MakeDonationAction">
+			<result name="success" type="velocity">/donation/MakeADonation.vm</result>
+		</action>		
+		<action name="thankyou" method="thankyou" class="com.appeligo.search.actions.MakeDonationAction">
+			<result name="success" type="velocity">/donation/ThankYou.vm</result>
+		</action>		
+	</package>	
+	
+	<package name="responsetest" namespace="/responsetest" extends="search-default">
+		<action name="report" class="com.appeligo.search.actions.ResponseReportAction">
+			<result name="success" type="velocity">/responsetest/check.vm</result>
+		</action>
+	</package>	
+	
+	<package name="toolbar" namespace="/toolbar" extends="search-default">
+		<action name="update" class="com.appeligo.search.actions.ToolbarUpdateAction">
+			<result name="success" type="velocity">/toolbar/update.vm</result>
+		</action>
+	</package>	
+	
+	<!-- Admin actions that can be executed by a logged in admin user. -->
+	<package name="admin" namespace="/admin" extends="search-default">	
+		<action name="users" class="com.appeligo.search.actions.admin.AdminAction">
+			<result name="success" type="velocity">/admin/users.vm</result>
+		</action>
+		
+		<action name="createUserForm" class="registerUserAction">
+		    <param name="administrativeAction">true</param>
+			<result name="success" type="velocity">/admin/createuser.vm</result>
+			<result name="input" type="velocity">/admin/createuser.vm</result>
+			<result name="logged_in" type="redirect">/admin/index.vm</result>
+		</action>
+		
+		
+		<action name="createUser" method="register" class="registerUserAction">
+		  <param name="administrativeAction">true</param>
+			<result name="input" type="velocity">/admin/createuser.vm</result>
+			<result name="success" type="redirect">/admin/users.vm</result>
+		</action>
+		
+		<action name="validateUser" method="validateUser" class="com.appeligo.search.actions.admin.AdminAction">
+			<result name="success" type="velocity">/admin/users.vm</result>
+			<result name="error" type="velocity">/admin/users.vm</result>
+		</action>
+		<action name="validateSMS" method="validateSMS" class="com.appeligo.search.actions.admin.AdminAction">
+			<result name="success" type="velocity">/admin/users.vm</result>
+			<result name="error" type="velocity">/admin/users.vm</result>
+		</action>
+		<action name="enableUser" method="enableUser" class="com.appeligo.search.actions.admin.AdminAction">
+			<result name="success" type="velocity">/admin/users.vm</result>
+			<result name="error" type="velocity">/admin/users.vm</result>
+		</action>
+	</package>
+</xwork>

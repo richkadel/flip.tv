@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<channelfeed>
+	<documentRoot path="/var/flip.tv"/>
+	<epgServer url="http://dev.flip.tv/epg/channel.epg"/>
+	<logEmail address="root@localhost"/>
+	<writing>false</writing>
+	<loggers>
+		<logger name="com.appeligo.channelfeed.SendSentence"
+			level="INFO"/>
+	</loggers>
+	<destinations>
+		<destination url="http://192.168.0.105:8090" raw="true"/>
+	</destinations>
+	<providers>
+		<provider>
+			<headend>SDTW</headend>
+			<lineupDevice>C</lineupDevice>
+			<frequencyStandard>US_CABLE</frequencyStandard>
+			<tuners>
+				<tuner deviceNumber="0" channel="56" callsign="HISTORY"/>
+<!--
+				<tuner deviceNumber="1" channel="7" callsign="NBC"/>
+				<tuner deviceNumber="2" channel="30" callsign="ESPN2"/>
+-->
+			</tuners>
+		</provider>
+	</providers>
+</channelfeed>

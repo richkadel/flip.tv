@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping package="com.knowbout.epg.entities">
+
+	<class name="com.knowbout.epg.entities.NetworkLineup" 
+		proxy="com.knowbout.epg.entities.NetworkLineup" 
+		table="network_lineups" >
+		<cache usage="nonstrict-read-write"/>
+		<id name="id" type="java.lang.String" column="network_lineup_id" >
+			<generator class="assigned" />
+		</id>
+	
+		<property name="name" type="java.lang.String" column="title" length="120" />
+		<property name="digital" type="java.lang.Boolean" column="digital" length="1" />
+		<property name="delay" type="java.lang.Integer" column="delay" length="11" />
+		<property name="affiliateDelay" type="java.lang.Integer" column="affiliate_delay" length="11" />
+		<!-- Associations -->
+	
+		 <set name="networks" table="network_lineup_network" inverse="true" >
+			 <cache usage="nonstrict-read-write"/>
+			 <key column="network_lineup_id"/>
+			 <many-to-many column="network_id" class="com.knowbout.epg.entities.Network"/>
+		</set>
+		
+		<!--
+		Since networkSchedules don't get deleted, this got to big to be of any use, and it was never used
+		to begin with.
+		<set name="networkSchedules" inverse="true" cascade="all-delete-orphan">			
+			<key column="network_lineup_id"/>
+			<one-to-many class="com.knowbout.epg.entities.NetworkSchedule" />
+		</set>	
+		-->
+
+	</class>
+	
+	<query name="NetworkLineup.selectSearchable"><![CDATA[
+		from NetworkLineup where id != 'SDTW-C'
+	]]></query>
+	
+	<query name="NetworkLineup.selectAll"><![CDATA[
+		from NetworkLineup
+	]]></query>
+	
+</hibernate-mapping>

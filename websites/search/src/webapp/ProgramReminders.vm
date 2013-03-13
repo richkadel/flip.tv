@@ -1,0 +1,120 @@
+#if($message)
+	<div class="alertErrorMessage">$message</div>
+#elseif($valid && $valid == false)
+	<div class="alertErrorMessage">Invalid setting.</div>
+#end
+
+#macro(nextAiring)
+	#if($schedule)
+		<div class="progAlertNextAiring">
+			#if($program.episode || $program.sports || $program.movie)
+			    <b>Next airing:</b> 
+			#elseif($program.team)
+			    <b>Next game:</b> $schedule.getVersus($program.teamName),
+			#else
+			    <b>Next episode:</b>
+					#if($schedule.episodeTitle.length() > 0)
+						<a href="$schedule.webPath">$schedule.episodeTitle</a>#if($schedule.newEpisode)
+							(New Episode)#else
+							(Repeat Episode#if($currentAlert.newEpisodes)...so no reminder#end)#end,
+					#end
+			#end
+			$date.format("EEEE, MMM d, h:mma", $schedule.startTime, $locale, $timeZone) - $date.format("h:mma", $schedule.endTime, $locale, $timeZone)</span>
+			#if($schedule.newEpisode)<img src="/themes/default/images/new.png" alt="New"/>#end 
+			on $schedule.network.stationName
+		</div>
+	#elseif ($programId != "")
+		This program is not yet scheduled to air, but may rerun in the coming weeks.
+	#end
+#end
+
+#if($programAlerts.size() > 0) 
+	<div>
+	#set($count = -1)
+	#set($programId = "")
+	#foreach($programAlert in $programAlerts)
+		#set($count = $count + 1)
+		#set ($pendingAlert = $programAlert.firstPendingAlert)
+		#if ($pendingAlert)
+			#set ($scheduledProgram = $pendingAlert.scheduledProgram)
+		#end
+		#if($programAlert.programId != $programId)
+			
+			#nextAiring()
+			#set($schedule = $nextAiringList.get($count))
+			
+			#set($program = $programAlert.program)
+			#set($programId = $programAlert.programId)
+			#set($currentAlert = $programAlert)
+			</div>
+			#if($programAlert.disabled)
+				<div class="alertBlock" id="disabled">				
+			#else
+				<script type="text/javascript">
+					<!-- hide from old browsers
+					var hash = window.location.hash;
+					if (hash != null && hash.length > 1 && hash.substring(1) == "$programId") {
+						document.writeln('<div class="alertBlock" id="highlighted">');
+					} else {
+						document.writeln('<div class="alertBlock">');
+					}
+					// -->
+				</script>
+			#end
+			<a name="$programId"></a>	
+			<form style="float: right;" action="/alerts/deleteProgramAlerts.action">
+				<input type="hidden" name="returnUrl" value="${webwork.urlEncode("${fullRequestURL}")}"/>
+				<input type="hidden" name="programId" value="$programAlert.programId"/>
+				<script type="text/javascript">
+					function confirmDelete$programId() {
+						return confirm("Are you sure you want to delete all of the reminders for \"$esc.javascript($program.label)\"?");
+					}
+				</script>
+				<input type="submit" value="Delete All Reminders" onclick='return confirmDelete$programId();'/>
+			</form>
+			<b>
+				<a href="$program.webPath">
+        			#googleStartTag()
+        			$program.label
+        			#googleEndTag()
+    			</a>
+			</b>
+			#if($scheduledProgram)
+				<br/>
+				Next reminder:
+				$date.format("MMM d h:mma", $scheduledProgram.startTime, $locale, $timeZone) on $scheduledProgram.network.stationName
+				<br/>
+				#set($showScheduled = false)
+			#else
+				#set($showScheduled = true)
+			#end
+		<br>
+		#end
+		<a href="/alerts/deleteProgramAlert.action?programAlertId=$programAlert.id&returnUrl=${webwork.urlEncode("${fullRequestURL}")}#$programId"><img src="/themes/default/images/delete.png" alt="Delete"></a>
+		Notify me #roundTime($programAlert.alertMinutes) before by
+		#if($programAlert.usingPrimaryEmail)email#end<!-- no space
+	 -->#if($programAlert.usingPrimaryEmail && $programAlert.usingSMS) and #end<!-- no space
+	 -->#if($programAlert.usingSMS)mobile alert#end<!-- no space 
+     -->#if($programAlert.newEpisodes), <i>if the episode is new</i>#end
+		#if($programAlert.originatingKeywordAlert) ## I don't think this is used anymore
+			(from keyword "$programAlert.originatingKeywordAlert.userQuery")
+		#end
+		#if($programAlert.disabled)
+			(disabled)
+		#end
+		<br>
+##		#if($scheduledProgram)
+##			Next reminder:
+##			$date.format("MMM d h:mma", $scheduledProgram.startTime) on $scheduledProgram.network.stationName
+##		#end
+	#end
+	
+	#nextAiring()
+	</div>
+#else
+	<div class="alertMessageBlock">
+		You have no active program reminders.
+		<br/>
+		(<a href="/">Search for a program.</a>)
+	</div>
+#end

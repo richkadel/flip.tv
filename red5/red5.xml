@@ -1,0 +1,8 @@
+<Context path="@contextPath@" docBase="@docBase@"
+	debug="5" reloadable="true" crossContext="false">
+
+    <Parameter name="contextConfigLocation"
+	    value="/WEB-INF/applicationContext.xml, /WEB-INF/red5-common.xml, /WEB-INF/red5-core.xml, /WEB-INF/*-context.xml, /WEB-INF/@config.name@Context.xml"
+	    override="false"/>
+
+</Context>

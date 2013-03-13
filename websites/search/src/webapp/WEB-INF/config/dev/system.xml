@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<configuration>
+<!--
+	<publicLaunch>true</publicLaunch>
+-->
+	<luceneIndex>/var/lucene/dev/programIndex</luceneIndex>
+	<spellIndex>/var/lucene/dev/spellIndex</spellIndex>
+	<luceneLiveIndex>/var/lucene/dev/liveIndex</luceneLiveIndex>
+	<compositeIndex>/var/lucene/dev/compositeIndex</compositeIndex>
+	<luceneProductIndex>/var/lucene/dev/productIndex</luceneProductIndex>
+	<url><![CDATA[http://dev.flip.tv/]]></url>
+	<surl><![CDATA[https://dev.flip.tv/]]></surl>
+	<captionsEndpoint>http://dev.flip.tv/ccdataweb/captionstore</captionsEndpoint>
+	<epgEndpoint>http://dev.flip.tv/epg/channel.epg</epgEndpoint>
+</configuration>

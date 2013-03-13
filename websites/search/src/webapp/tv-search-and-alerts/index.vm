@@ -1,0 +1,25 @@
+
+#* HERE'S ONE OF SEVERAL WAYS TO TWEAK THE LANDING PAGE
+
+#set($indexUpperRight = true)
+#macro(indexUpperRight)
+	<div style="text-align: center; float: right; border-style: double; border: 3; padding: 3px;">
+		<b>Google Users!</b>
+		<br/>
+		<a href="/registration/registration.action">Register</a>
+		to participate in the
+		<br/>
+		<B>Flip.TV Beta.</B>
+		<br/>
+		(Only a limited number of users
+		<br/>
+		will be accepted at this time.)
+	</div>
+	<br/>
+	<br/>
+#end
+
+*#
+
+#parse("/index.vm")
+	

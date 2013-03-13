@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<configuration>
+	<epgEndpoint>http://demo.flip.tv/epgDemo/channel.epg</epgEndpoint>
+	<channelList>41</channelList>
+	<videoServer>demo.flip.tv</videoServer>
+	<configSubdirectory>demo</configSubdirectory>
+	<demo>true</demo>
+	<luceneIndex>/var/lucene/demo/programIndex</luceneIndex>
+	<luceneLiveIndex>/var/lucene/demo/liveIndex</luceneLiveIndex>
+
+</configuration>

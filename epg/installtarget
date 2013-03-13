@@ -1,0 +1,8 @@
+#!/bin/sh
+
+rm -rf /usr/local/flip.tv/epg
+mkdir -p /usr/local/flip.tv/epg/logs
+mkdir -p /usr/local/flip.tv/epg/downloads
+cp -r dist/* /usr/local/flip.tv/epg
+chown -R tomcat:tomcat /usr/local/flip.tv/epg
+chmod 744 /usr/local/flip.tv/epg/runEpg

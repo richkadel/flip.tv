@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		#header({
+			"subtitle" : "Mobile Device Address Help",
+			"pageType" : "basic"}
+		)
+	</head>
+
+	#headerBar({
+			"search"		: false,
+			"titleBarLeft"	: "Mobile Device Address",
+			"noLogo"		: true
+			})
+	#bodyStart({
+			"pageType" : "basic"
+			})
+			
+	#letterHeadTop()
+		<p class="memoheader">Email Address Format for Mobile Devices</p>
+		<UL>
+			<LI>To use the Flip.TV Alert or Flip.TV reminder mobile service,
+				your device (cell phone, pager, PDA, or email 
+			account) must be able to receive email messages. 
+			<LI>Your address will vary depending on your service provider and the type of 
+			device that you are using. Some common examples of device addresses are listed 
+			below. 
+			<LI>Please contact your service provider if you have questions about receiving 
+			text messages on your device. </LI>
+		</UL>
+		<br>
+		<TABLE cellSpacing=1 cellPadding=4 width=628 border=0>
+			<TR>
+				<TH class="smalltext" scope=col width=118>Service&nbsp;Provider</TH>
+				<TH class="smalltext" scope=col width=320>Device&nbsp;Address</TH>
+				<TH class="smalltext" scope=col width=190>Example</TH>
+			</TR>
+			<TR class=tableRowOdd>
+				<TD class="smalltext" scope=row>ATT</TD>
+				<TD class="smalltext">your cell phone number@mmode.com</TD>
+				<TD class="smallertext" class=subNotes>4443332222@mmode.com</TD>
+			</TR>
+			<TR class=tableRowEven>
+				<TD class="smalltext" scope=row>Cingular</TD>
+				<TD class="smalltext">your cell phone number@mobile.mycingular.com</TD>
+				<TD class="smallertext" class=subNotes>4443332222@mobile.mycingular.com</TD>
+			</TR>
+			<TR class=tableRowOdd>
+				<TD class="smalltext" scope=row>Nextel</TD>
+				<TD class="smalltext">your cell&nbsp;phone number@messaging.nextel.com</TD>
+				<TD class="smallertext" class=subNotes>4443332222@messaging.nextel.com</TD>
+			</TR>
+			<TR class=tableRowEven>
+				<TD class="smalltext" scope=row>Sprint PCS</TD>
+				<TD class="smalltext">your cell phone number@messaging.sprintpcs.com</TD>
+				<TD class="smallertext" class=subNotes>4443332222@messaging.sprintpcs.com</TD>
+			</TR>
+			<TR class=tableRowOdd>
+				<TD class="smalltext" scope=row>T-Mobile</TD>
+				<TD class="smalltext">your cell&nbsp;phone number@tmomail.net</TD>
+				<TD class="smallertext" class=subNotes>4443332222@tmomail.net</TD>
+			</TR>
+			<TR class=tableRowEven>
+				<TD class="smalltext" scope=row>Verizon</TD>
+				<TD class="smalltext">your cell&nbsp;phone number@vtext.com</TD>
+				<TD class="smallertext" class=subNotes>4443332222@vtext.com</TD>
+			</TR>
+		</TABLE>
+	#letterHeadBottom()
+	
+<br/>
+	#bodyEnd({
+			"pageType" : "basic"
+			})
+
+	#footer({"search" : false})
+</html>
+
+
+
+
+   

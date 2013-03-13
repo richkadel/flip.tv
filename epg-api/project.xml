@@ -1,0 +1,44 @@
+<project>
+	<extend>${basedir}/../project.xml</extend>
+	<name>Know'bout EPG API</name>
+	<groupId>knowbout</groupId>
+	<artifactId>epg-api</artifactId>
+	<url>http://www.knowbout.tv/</url>
+	<currentVersion>${epgapi.current}</currentVersion>
+	<developers>
+		<developer>
+			<id>exline</id>
+			<name>Chris Exline</name>
+			<email>chris.exline@knowbout.com</email>
+		</developer>
+	</developers>
+	<dependencies>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.13</version>
+			<type>jar</type>
+			<properties>
+				<war.bundle>true</war.bundle>
+			</properties>
+		</dependency>
+		<dependency>
+			<groupId>knowbout</groupId>
+			<artifactId>util</artifactId>
+			<version>${util.current}</version>
+			<type>jar</type>
+			<properties>
+				<war.bundle>true</war.bundle>
+			</properties>
+		</dependency>
+	</dependencies>
+	<build>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<unitTestSourceDirectory>src/main/test</unitTestSourceDirectory>
+		<unitTest>
+			<includes>
+				<include>**/*Test.java</include>
+			</includes>
+		</unitTest>
+	</build>
+</project>

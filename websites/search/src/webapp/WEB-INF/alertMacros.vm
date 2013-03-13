@@ -1,0 +1,29 @@
+
+#macro(roundTime $minutes)
+	#if($minutes == 0)
+		immediately
+	#end
+	#if($minutes < 120)
+		#if($minutes == 1)
+			$minutes minute
+		#else
+			$minutes minutes
+		#end	#elseif($minutes < 60*48)
+		#set($hours = $minutes / 60)
+		#if($hours == 1)
+			$hours hour
+		#else
+			$hours hours
+		#end	#else
+		#set($days = $minutes / 1440)
+		#if($days == 1)
+			$days day
+		#else
+			$days days
+		#end	#end
+#end
+
+#macro (smsMessageTime $user) 
+	(Mobile alerts will only be sent between $date.format("h:mma", $user.earliestSmsTime) and $date.format("h:mma", $user.latestSmsTime) <a href="/account/account.vm">change</a>)
+#end
+

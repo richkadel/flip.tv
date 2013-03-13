@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<toolbox>
+	
+	 <tool>
+	   <key>alternator</key>
+	   <scope>application</scope>
+	   <class>org.apache.velocity.tools.generic.AlternatorTool</class>
+	   <parameter name="auto-alternate" value="true"/>
+	 </tool>
+
+	<tool>
+		<key>security</key>
+		<scope>request</scope>
+		<class>com.appeligo.velocity.view.SecurityTool</class>
+	</tool>
+
+	<tool>
+		<key>logo</key>
+		<scope>request</scope>
+		<class>com.appeligo.velocity.view.LogoTool</class>
+	</tool>	
+	<tool>
+		<key>location</key>
+		<scope>request</scope>
+		<class>com.appeligo.velocity.view.LocationTool</class>
+	</tool>
+	<tool>
+		<key>link</key>
+		<scope>request</scope>
+		<class>org.apache.velocity.tools.view.tools.LinkTool</class>
+	</tool>
+
+	<tool>
+		<key>esc</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.EscapeTool</class>
+	</tool>
+
+	<tool>
+		<key>math</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.MathTool</class>
+	</tool>
+
+	 <tool>
+	   <key>date</key>
+	   <scope>application</scope>
+	   <class>org.apache.velocity.tools.generic.DateTool</class>
+	   <parameter name="format" value="yyyy-M-d"/>
+	 </tool>
+	
+</toolbox>

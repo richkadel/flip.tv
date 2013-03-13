@@ -1,0 +1,103 @@
+<project xmlns:j="jelly:core" xmlns:ant="jelly:ant"
+	xmlns:u="jelly:util" xmlns:maven="jelly:maven">
+	
+	<goal name="recreate-db" prereqs="schemagen,init-db,seed-db"
+		description="Recreates the entire database" />
+
+
+	<goal name="drop-db" description="Drops the database">
+		<echo>Dropping tables...</echo>
+		<sql driver="${jdbc.driver}" url="${jdbc.url}"
+			userid="${jdbc.username}" onerror="continue"
+			password="${jdbc.password}" classpathref="maven.dependency.classpath"
+			src="data/mysql/drop-schema.sql" />
+	</goal>
+
+	<goal name="init-db" prereqs="drop-db"
+		description="Recreates the database">
+		<echo>Creating tables...</echo>
+		<sql driver="${jdbc.driver}" url="${jdbc.url}"
+			userid="${jdbc.username}" onerror="continue"
+			password="${jdbc.password}" classpathref="maven.dependency.classpath"
+			src="data/mysql/create-schema.sql" />
+	</goal>
+<!-- 
+	<goal name="seed-db"
+		description="Seeds the database with the base data">
+		<echo>Seeding database...</echo>
+		<sql driver="${jdbc.driver}" url="${jdbc.url}"
+			userid="${jdbc.username}" onerror="continue"
+			password="${jdbc.password}" classpathref="maven.dependency.classpath"
+			src="data/mysql/init-seed-data.sql" />
+		<echo>Seeding data...</echo>
+		<sql driver="${jdbc.driver}" url="${jdbc.url}"
+			userid="${jdbc.username}" onerror="continue"
+			password="${jdbc.password}" classpathref="maven.dependency.classpath"
+			src="data/mysql/robbins-seed-data.sql" />
+	</goal>
+ -->
+	<goal name="schemagen">
+		<ant:path id="my-classpath">
+		  <ant:path refid="maven.dependency.classpath"/>
+		  <ant:pathelement path="${maven.build.dest}"/>
+		</ant:path>
+		<taskdef name="schemaexport"
+			classname="org.hibernate.tool.hbm2ddl.SchemaExportTask"
+			classpathref="my-classpath" />
+
+		<schemaexport propertiesFile="build.properties" quiet="yes" 
+			text="yes" drop="yes" delimiter=";"
+			output="data/mysql/drop-schema.sql">
+			<fileset dir="${maven.src.dir}/main/java">
+				<include name="**/*.hbm.xml" />
+			</fileset>
+		</schemaexport>
+
+		<schemaexport propertiesFile="build.properties" quiet="yes"
+			text="yes" create="yes" delimiter=";"
+			output="data/mysql/create-schema.sql">
+			<fileset dir="${maven.src.dir}/main/java">
+				<include name="**/*.hbm.xml" />
+			</fileset>
+		</schemaexport>
+	</goal>
+
+<!--
+		<goal name="deploy" prereqs="war:war"
+		description="Deploys the war file into your tomcat home">
+		<delete failonerror="false"
+			dir="${tomcat.home}/webapps/${pom.artifactId}" />
+		<delete failonerror="false"
+			dir="${tomcat.home}/work/Catalina/localhost/${pom.artifactId}" />
+		<copy todir="${tomcat.home}/webapps">
+			<ant:fileset file="${maven.build.dir}/${pom.artifactId}.war" />
+		</copy>
+	</goal>
+-->
+	<goal name="dist" prereqs="jar:jar"
+		description="Creates a distribution target for EPG">
+		<delete failonerror="false"
+			dir="dist/jars" />
+		<delete failonerror="false"
+			dir="dist/downloads" />
+	    <copy todir="dist/jars" file="${maven.build.dir}/${maven.final.name}.jar"/>  
+	    <copy todir="dist/" file="bin/runEpg"/>  
+	    <copy todir="dist/" file="bin/runEpgOnWindows"/>  
+	    <copy tofile="dist/epg.xml" file="sample.epg.xml"/>  
+	    <copy todir="dist/classes/" file="${basedir}/log4j.xml"/>  
+		<j:forEach var="lib" items="${pom.artifacts}">
+		  <j:set var="dep" value="${lib.dependency}"/>     
+		  <!--
+		  <j:if test="${dep.getProperty('war.bundle')=='true'}">
+		  -->
+			 <j:if test="${dep.type =='jar'}"> 
+			   <ant:copy todir="dist/jars" file="${lib.path}"/>  
+			 </j:if> 
+		  <!--
+		  </j:if>  
+		  -->
+		</j:forEach>            
+		
+	    <echo>NOW, as superuser, run installtarget</echo>
+	</goal>
+</project>

@@ -1,0 +1,62 @@
+<project xmlns:j="jelly:core" xmlns:ant="jelly:ant"
+	xmlns:u="jelly:util" xmlns:maven="jelly:maven"
+	xmlns:artifact="artifact"
+	xmlns:deploy="deploy">
+	
+	<preGoal name="java:compile">
+		<!-- Write the version numbers to a properties file to be read
+			 at runtime -->
+		<echo file="${maven.src.dir}/main/java/com/knowbout/cc4j/VideoDevice.properties">
+cc4j.current=${cc4j.current}
+zvbi.current=${zvbi.current}
+</echo>
+	</preGoal>
+
+	<preGoal name="test:test">
+		<attainGoal name="native:compile"/>
+	<!-- Ok, watch out, unit tests are destructive.  This will regenerate the schema, destory the DB, 
+		recreate the DB and then seed the db with the test data-->
+		<!--attainGoal name="recreate-db"/-->
+	</preGoal>
+
+	<postGoal name="native:compile">
+		<copy todir="${basedir}/target/native">
+			<ant:fileset file="${maven.src.dir}/main/unix/zvbi-${zvbi.current}/libzvbi-${zvbi.current}.so" />
+		</copy>
+	</postGoal>
+
+	<goal name="installso">
+		<artifact:install
+			artifact="${maven.build.dir}/native/${maven.final.name}.so"
+			type="so"
+			project="${pom}"
+		/>
+	</goal>
+	
+	<goal name="deployso">
+		<artifact:deploy
+			artifact="${maven.build.dir}/native/${maven.final.name}.so"
+			type="so"
+			project="${pom}"
+		/>
+	</goal>
+	
+	<postGoal name="jar:deploy">
+		<exec executable="maven">
+			<arg line="-p libcc4j.xml deployso"/>
+		</exec>
+		<exec executable="maven">
+			<arg line="-p libzvbi.xml deployso"/>
+		</exec>
+	</postGoal>
+
+	<postGoal name="jar:install">
+		<exec executable="maven">
+			<arg line="-p libcc4j.xml installso"/>
+		</exec>
+		<exec executable="maven">
+			<arg line="-p libzvbi.xml installso"/>
+		</exec>
+	</postGoal>
+
+</project>

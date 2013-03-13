@@ -1,0 +1,74 @@
+#fullBegin ({
+	"subtitle" : "Account Info",
+	"title" : "Account Info",
+	"noLogo" : true,
+	"pageType" : "basic",
+	"search" : false,
+	"titleBarLeft" : "Account Info",
+	"wwform" : true,
+	"onLoad" : "setTimeout('hideMessage()', 5000);"
+})
+
+#if($action.isInformationSaved())
+	<script type="text/javascript">
+		function hideMessage() {
+			var ca = document.getElementById("changeAcknowledgement");
+			//ca.style.display = "none";
+			ca.style.color = "white";
+		}
+	</script>
+#end
+
+<div style="position: absolute; left: 0; width: 160px; text-align: center">
+<ul>
+	<li><a href="/">Flip.TV Home</a></li>
+	<li style="margin-bottom: 3px; margin-top: 4px;"><a href="sms.vm">Verify Mobile Device</a></li>
+	<li><a href="changePassword.vm">Change Password</a></li>
+</ul>
+</div>
+
+<br/>
+#noteTop("500px")
+<div style="text-align: center;">
+<a href="/">
+	<img id="logo" width="134" height="62" alt="Flip.TV Search" src="/themes/default/images/logo.gif"/>
+</a>
+</div>
+<p class="memoheader">Update Account Information<br/>
+<span style="font-size: 80%">Screen Name: ${req.remoteUser}</span>
+</p>
+<br/>
+You can update most of your account information here.
+If you choose a new email address you will be immediately logged out and sent a 
+confirmation email for your account.
+#noteBottom()
+
+#if($action.isInformationSaved())
+	<div align="center" class="informativeText" id="changeAcknowledgement" style="color: red;">Your changes have been saved.</div>
+#end
+
+<div align="center">
+#wwactionerror()
+</div>
+<div align="center">
+	#editAccount(false "saveAccount" false "Save")
+	<p>(<a href="/smshelp.vm">What is my Mobile Device Address?</a>)</p>
+</div>
+
+<div class="finePrint">
+	<p>Note: If you choose to send Flip.TV alerts and reminders to your mobile device, your mobile
+		service provider may charge additional
+		fees for Text Messaging (also known as SMS).
+		Contact your mobile service provider for more information.</p>
+Accounts whose email is not validated for a period of several days may be deleted at the 
+discression of system administrators.
+</div>
+
+<br/>
+
+#fullEnd ({
+	"pageType" : "basic",
+	"search" : false
+})
+
+ 

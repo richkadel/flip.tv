@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		#header({
+			"title" : "Blog",
+			"pageType" : "basic"}
+		)
+	</head>
+
+	#headerBar({
+			"search"		: false,
+			"titleBarLeft"	: "Blog",
+			"noLogo"		: true
+			})
+	#bodyStart({
+			"pageType" : "basic"
+			})
+	<div id="bd-a">
+		#letterHeadTop()
+		
+			<br/>
+			<p class="memoheader">Flip.TV Blog</p>
+			
+			#set($first = true)
+			#foreach($feedItem in $feedItems)
+				#if(!$first)
+					<hr/>
+				#end
+				<p>
+					<span style="margin-left: -1em; font-size: 110%; font-weight: bold;">
+						<a href="$feedItem.link">$feedItem.title</a>
+					</span>
+					<i>($date.format("MMM d, yyyy", $feedItem.date))</i>
+				</p>
+				<p>
+					$feedItem.description
+				</p>
+				<p>
+					<b>Posted by:</b> <i>$feedItem.getElementValue("author/name")</i> at $date.format("h:mma z", $feedItem.date)
+				</p>
+				<p>
+					<a href="$feedItem.link">View and post comments</a>.
+				</p>
+				#set($first = false)
+			#end
+			
+		#letterHeadBottom()
+	</div>
+<br/>
+#bodyEnd({
+	"pageType" : "basic"
+	})
+
+#footer({"search" : false})
+</html>
+
+
+
+	

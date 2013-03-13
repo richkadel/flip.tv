@@ -1,0 +1,645 @@
+#macro(tivoButton)
+	#if ($nextAiring)
+		#if($programInfo.sports) 
+			<a href="http://www3.tivo.com/tivo-tco/search.do?tsn=&dispatch=advancedsearch&searchTitle=$urlEncoder.encode($programInfo.sportName)&searchDesc=$urlEncoder.encode(${homeTeam.teamName})&searchCastCrew=&searchCategory=&searchGenre=&searchWhen=14" target="tivo"><img src="/themes/default/images/tivo.gif" alt="Record with Tivo"/></a> 
+		#else
+			<a href="http://www3.tivo.com/tivo-tco/search.do?tsn=&dispatch=advancedsearch&searchTitle=$urlEncoder.encode($programInfo.programTitle)&searchDesc=#if($programInfo.episodeTitle && $programInfo.episodeTitle.length()>0)$urlEncoder.encode($programInfo.episodeTitle)#{end}&searchCastCrew=&searchCategory=&searchGenre=&searchWhen=14"  target="tivo"><img src="/themes/default/images/tivo.gif" alt="Record with Tivo"/></a>						
+		#end
+	#end
+#end
+#set($titleBar = $programInfo.label)
+#set($titleBarLeft = "Program Details")
+#if ($oneResult)
+	#set($titleBarLeft = "$titleBarLeft - One Exact Match for $query")
+#end
+#set ($params = ({
+	"subtitle" : "Program Details",
+	"search" : true,
+	"title" : $titleBar,
+	"titleBarLeft" : $titleBarLeft,
+	"pageType" : "search",
+	"activePage" : "Search",
+	"onLoad"		: "checkAuto();"
+}))
+#fullBegin($params)
+<link rel="stylesheet" type="text/css" href="/themes/default/css/alerts.css">
+<script type="text/javascript" src="/scripts/yahoo.js"></script>
+<script type="text/javascript" src="/scripts/connection.js"></script>
+<script type="text/javascript" src="/scripts/amazon.js"></script>
+
+<script type="text/javascript">
+function checkAuto() {
+	#if ($autoDeleteReminders)
+		document.reminderButtonForm.deleteAll.click();
+	#end
+	if (window.location.hash == "#addreminder") {
+		document.reminderButtonForm.remindMe.click();
+	}
+}
+
+function showReminderForm() {
+	div = document.getElementById("reminderButtonDiv");
+	div.style.display = "none";
+	div = document.getElementById("reminderFormDiv");
+	div.style.display = "block";
+}
+
+function hideReminderForm() {
+	div = document.getElementById("reminderButtonDiv");
+	div.style.display = "block";
+	div = document.getElementById("reminderFormDiv");
+	div.style.display = "none";
+}
+
+function toggleAlarm(entryId, programId, callSign, timestamp) {
+	var span = document.getElementById("clockSpan"+entryId);
+	if (span.className == "on") {
+		span.className = "off";
+	} else {
+		span.className = "on";
+	}
+	var path = contextPath + '/alerts/setScheduledAlert.action'+
+			'?programId='+programId+
+			'&callSign='+callSign+
+			'&programStartTime='+timestamp+
+			'&onOff='+span.className;
+	YAHOO.util.Connect.asyncRequest(
+		'GET',
+		path,
+		{
+			success: function(o) {
+				//noop
+			},
+			failure: function(o) {
+				/* THIS VERSION IS GOOD FOR DEBUGGING BUT UGLY FOR USERS
+				alert("Error: "+o.statusText+" for "+path);
+				*/
+				alert("There was an error while trying to switch this Quick Alert.\n"+
+					"Try again later, and if the problem persists,\n"+
+					"please contact Flip.TV Technical Support.");
+				if (span.className == "on") {
+					span.className = "off";
+				} else {
+					span.className = "on";
+				}
+			}
+		}
+	);
+}
+
+function toggleDefaultSettings() {
+	div = document.getElementById("quickReminderFormDiv");
+	if (div.style.display == "none") {
+		div.style.display = "block";
+	} else {
+		div.style.display = "none";
+	}
+}
+</script>
+
+#if(($episodeAlerts && $episodeAlerts.size() > 0) || ($seriesAlerts && $seriesAlerts.size() > 0) || ($teamAlerts && $teamAlerts.size() > 0))
+	#set ($addAlertLabel = "Add Another Reminder")
+#else
+	#set($addAlertLabel	= "Remind Me")
+#end
+
+#if($programInfo.episode)
+	#set($episodeType = "Episode")
+	#set($episodeTypeLc = "episode")
+#elseif($programInfo.show)
+	#set($episodeType = "Show")
+	#set($episodeTypeLc = "show")
+#elseif($programInfo.movie)
+	#set($episodeType = "Movie")
+	#set($episodeTypeLc = "movie")
+#else
+	#set($episodeType = "Game")
+	#set($episodeTypeLc = "game")
+#end
+<div id=searchBody>
+	<div id=searchResults>
+		<ol start=1>
+			<li>
+				<div style="float: right;">
+	
+					<div>
+					#if(($episodeAlerts && $episodeAlerts.size() > 0) || ($seriesAlerts && $seriesAlerts.size() > 0) || ($teamAlerts && $teamAlerts.size() > 0)) 
+						<a href="#reminders">You have active reminders</a>.
+					#elseif ($programGuide && $programGuide.alertCount > 0)
+						You have $programGuide.alertCount#if($programGuide.alertCount > 1) reminders#else reminder#end for specific airings of this show.
+						<br/>
+						You can also set a <a onclick='javascript:showReminderForm();document.location="#addreminder";' style="cursor:pointer;text-decoration:underline;">recurring reminder</a> below.
+					#else
+						<input type="button" value="$addAlertLabel" onclick='javascript:showReminderForm();document.location="#addreminder";'/>
+					#end
+					</div>	
+					<div>
+						#tivoButton()
+					</div>						
+				</div>
+				<h1 class="programDetailsTitle">					
+					#googleStartTag()
+					#if($programInfo.sports) 
+						${programInfo.sportName}'s 
+    							<a href="$awayTeam.webPath">$awayTeam.teamName</a>
+							$programInfo.teamSeparator 
+    							<a href="$homeTeam.webPath">$homeTeam.teamName</a>
+					#elseif($programInfo.episode)
+						<a href="$programInfo.showWebPath">$programInfo.programTitle</a>
+    					#if($programInfo.episode && $programInfo.episodeTitle.length() >0)
+							($programInfo.episodeTitle)
+						#else
+							(Untitled Episode)
+						#end
+					#else
+    					$programInfo.label
+					#end
+					#if($programInfo.episode && $programInfo.episodeTitle.length() >0)
+						<a href="http://www.imdb.com/find?s=ep&q=$urlEncoder.encode($programInfo.episodeTitle)" target="imdb" >
+							<img src="/themes/default/images/imdb.jpg" border="0" alt="Search IMDB"/>
+						</a>
+					#else
+						<a href="http://www.imdb.com/find?s=tt&q=$urlEncoder.encode($programInfo.programTitle)" target="imdb" >
+							<img src="/themes/default/images/imdb.jpg" alt="Search IMDB"/>
+						</a>
+					#end
+					#googleEndTag()
+				</h1>
+				<br/>
+				<div class="programInfoBlock" style="padding-left: 1.0em;">
+					#if ($nextAiring)
+						#styledNetworkLogo($nextAiring.network "float: left; margin-right: 2px; margin-top: 2px;") 
+					#elseif ($lastAiring)
+						#styledNetworkLogo($lastAiring.network "float: left; margin-right: 2px; margin-top: 2px;") 
+					#elseif ($nextShowAiring)
+						#styledNetworkLogo($nextShowAiring.network "float: left; margin-right: 2px; margin-top: 2px;") 
+					#end
+					<p> #if(!$lastAiring && $nextAiring.NewEpisode)<img src="/themes/default/images/new.png" alt="New"/>#end
+						#if($nextAiring)
+							This $episodeTypeLc will
+							#if($programInfo.show)next#end
+							#if($nextAiring.repeat) replay#else air#end
+							on $date.format("MMM d h:mma", $nextAiring.startTime, $locale, $timeZone) on
+							##	$logo.network("/logos", "gif", $nextAiring.network)
+							$nextAiring.network.stationName
+						#elseif ($lastAiring)
+							This $episodeTypeLc last aired 
+							on $date.format("MMM d h:mma", $lastAiring.startTime, $locale, $timeZone) on
+							##	$logo.network("/logos", "gif", $lastAiring.network)
+							$lastAiring.network.stationName										
+						#end
+						#if($user.isInGroup("admin"))
+							#if ($searchResult && $searchResult.airing.time < $now.time)
+								#if($searchResult.airing.time < $newEpgDate.time)
+									#set($oldChannel = $oldChannelDirConverter.getChannel($searchResult.stationCallSign))
+									#if (!$oldChannel)
+										Can't find channel for $searchResult.stationCallSign
+									#else
+										<a href="http://dev.flip.tv/showfiles/ShowFile/captiondb/CA04542-DEFAULT/$date.format("yyyy/MM/dd", $searchResult.airing, $locale, $gmtTimeZone)/$oldChannel/${searchResult.airing.time}.html.gz">Transcript</a>
+									#end
+								#else
+									<a href="http://dev.flip.tv/showfiles/ShowFile/captiondb/SDTW-C/$date.format("yyyy/MM/dd", $searchResult.airing, $locale, $gmtTimeZone)/$searchResult.stationCallSign/${searchResult.airing.time}.html.gz">Transcript</a>
+								#end
+    						#elseif ($lastAiring &&  $lastAiring.startTime.time < $now.time)
+								#if($lastAiring.startTime.time < $newEpgDate.time)
+									#set($oldChannel = $oldChannelDirConverter.getChannel($lastAiring.network.stationCallSign))
+									#if (!$oldChannel)
+										Can't find channel for $lastAiring.network.stationCallSign
+									#else
+										<a href="http://dev.flip.tv/showfiles/ShowFile/captiondb/CA04542-DEFAULT/$date.format("yyyy/MM/dd", $lastAiring.startTime, $locale, $gmtTimeZone)/$oldChannel/${lastAiring.startTime.time}.html.gz">Possible Transcript</a>
+									#end
+								#else
+									<a href="http://dev.flip.tv/showfiles/ShowFile/captiondb/SDTW-C/$date.format("yyyy/MM/dd", $lastAiring.startTime, $locale, $gmtTimeZone)/$lastAiring.network.stationCallSign/${lastAiring.startTime.time}.html.gz">Possible Transcript</a>
+								#end
+    						#end
+						#end
+						#if ($nextAiring && $nextShowAiring && $nextAiring.programId == $nextShowAiring.programId)
+							#if($programInfo.sports)
+    							<div>This is the next available game with either of these two teams</div>
+							#elseif($programInfo.episode)
+    							<div>This is the next airing of $programInfo.programTitle</div>
+							#end
+						#else
+    						<div>Next airing of $programInfo.programTitle 
+								#if($programInfo.episode || $programInfo.show)
+    								(any episode): 
+								#elseif($programInfo.sports)
+									(any game with either team)
+								#elseif($programInfo.team)
+									(any game with this team)
+								#end
+								#if($nextShowAiring)<a href="$nextShowAiring.webPath">#if($nextShowAiring.episodeTitle)<i>$nextShowAiring.episodeTitle </i>#end$date.format("MMM d h:mma", $nextShowAiring.startTime, $locale, $timeZone)</a>#if(!$programGuide.singleStation) on
+								## $logo.network("/logos", "gif", $nextShowAiring.network)
+								$nextShowAiring.network.stationName#end#else [N/A]#end
+							</div>
+						#end
+						#if($programInfo.orginalAirDate && $programInfo.programId.startsWith("EP"))<div>First aired: $date.format("MMM d yyyy", $programInfo.originalAirDate, $locale, $timeZone)</div>#end
+					</p>
+					<p style="clear: left;">
+		                #if($programInfo.description && $programInfo.description.trim().length()>0)<div class=programDescription><span class="searchLabel">Program Description:</span> #googleStartTag()$programInfo.description#googleEndTag()</div>#end
+						#if($fragments && $fragments.trim().length() > 0)<div class=fragments><span class="searchLabel">Relevant Dialogue:</span><i>#googleStartTag()$fragments#googleEndTag()</i></div>#end
+					</p>
+					<p>
+						<div id="$programInfo.programId"></div>
+					</p>
+					<p>
+	                    <div class="spacer"></div>
+						<div>
+							#if($programInfo.tvRating && $programInfo.tvRating.length()>0)<span class="searchLabel">Rating:</span> $programInfo.tvRating &nbsp;#end
+							#if($programInfo.runTime> 0)<span class="searchLabel">Runtime:</span>  $programInfo.runTime minutes &nbsp;#end
+							#if($programInfo.genreDescription && $programInfo.genreDescription.trim().length() >0)
+								<span class="searchLabel">Genre:</span> 
+								##$programInfo.genreDescription
+								#set($firstGenre = true)
+								#foreach ($genre in $genres)#if (!$firstGenre),#end
+									<a href="/search/search.action?query=$webwork.urlEncode("genre:${esc.q}$genre${esc.q}")">$genre</a>#set($firstGenre = false)#end
+							&nbsp;#end
+						</div>
+						<div>
+							#if($programInfo.credits && $programInfo.credits.size() >0)
+								<span class="searchLabel">Cast & Crew:</span>
+								#foreach ($credit in $programInfo.credits)#if($velocityCount >0), #end
+    								#set($fullName = $credit.firstName +" " + $credit.lastName)
+									<a href="/search/search.action?query=$webwork.urlEncode("$esc.q$credit.firstName $credit.lastName$esc.q")">
+										$credit.firstName&nbsp;$credit.lastName</a>&nbsp;<a href="http://www.imdb.com/find?s=nm&q=$urlEncoder.encode($fullName)" target="imdb" >*</a><!--
+								 -->#if($credit.roleDescription && $credit.roleDescription.length() > 0 && $credit.roleDescription != "Actor")
+    									($credit.roleDescription)<!--
+								 -->#end<!--
+							 -->#end
+								<br/>
+								<br/>
+								<span class="searchLabel">
+									Click on the cast & crew to find other shows they are in, or on the asterisk (*)
+									to get more details on the people from 
+									<img src="/themes/default/images/imdb.jpg" border="0" alt="IMDB"/>
+								</span>
+							#end
+						</div>
+					</p>
+
+					<p>					
+    					<a href="/network/recommendProgram.action?programId=$programInfo.programId"
+    						><b>Tell a friend about this show!</b></a>
+						#if ($publicLaunch)
+        					<a href="/search/favoriteShow.action?programId=$programInfo.programId"
+        						>#if($favoriteShow && !$favoriteShow.deleted)I don't like this show any more
+        						#{else}This is one of my favorite shows
+        						#end</a>
+        					#if($programInfo.programId.startsWith("EP"))
+    							<a href="/search/favoriteEpisode.action?programId=$programInfo.programId"
+    								>#if($favoriteEpisode && !$favoriteEpisode.deleted)I don't like this episode any more
+    								#{else}This is one of my favorite episodes!
+            						#end</a>
+                            #end
+                        #end
+					</p>
+					
+					#if ($previewURLs && $publicLaunch)
+						#set($previewNum = 0)
+    					<div>
+    						<object type="application/x-shockwave-flash" data="/showfiles/FlowPlayer.swf" 
+                            	width="352" height="304" id="FlowPlayer">
+                            	<param name="allowScriptAccess" value="sameDomain" />
+                            	<param name="movie" value="/showfiles/FlowPlayerLP.swf" />
+                            	<param name="quality" value="high" />
+                            	<param name="scale" value="noScale" />
+                            	<param name="wmode" value="transparent" />
+                            
+                            	<param name="flashvars" value="config={
+                            		streamingServer: 'fms', <!-- don't use 'red5' value -->
+                            		loop: false,
+                            		initialScale: 'fit',
+                            		streamingServerURL: 'rtmp://$servletRequest.serverName:1935/flvserver',
+                            		playList: [ 
+										#foreach($previewURL in $previewURLs)
+                                			{
+                                				url: '$previewURL',
+                                				start: 0,
+                                				end: 30
+                							},
+										#end
+                            		]
+                            	}" />
+                            </object>
+    					</div>
+					#end
+					
+					#if($user && $programGuide.schedule.size() > 0)
+						<div class="quickReminderBlock">
+							<img alt="clock" src="/themes/default/images/clock.png"/> Click the clock to set a Quick Reminder based on your current
+								<a onclick="toggleDefaultSettings();" style="cursor: pointer; text-decoration: underline;">default alert settings</a>.
+						
+							<div id="quickReminderFormDiv" style="display: none;"/>
+								<br/>
+								<b>Default Alert Settings:</b>
+								<br/>
+								<form name="alertForm" action="/alerts/setAlertDefaults.action">
+									<input type="hidden" name="programId" value="$programInfo.programId"/>
+									<input type="hidden" name="returnUrl" value="${fullRequestURL}"/>
+									Notify me <input style="text-align: right; padding-right: 2px;" type="text" name="prewarn" value="$prewarn" size="2" maxlength="3"/>
+									<select name="prewarnUnits">
+										<option value="Minutes" #if($prewarnUnits == "Minutes")selected="yes"#end>Minutes</option>
+										<option value="Hours" #if($prewarnUnits == "Hours")selected="yes"#end>Hours</option>
+										<option value="Days" #if($prewarnUnits == "Days")selected="yes"#end>Days</option>
+									</select>
+									before the program, by:
+									<br/>
+									<input type="checkbox" name="usingPrimaryEmail" value="true" #if($usingPrimaryEmail)checked="checked"#end/> Email
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									#if($user.smsVerified)										<input type="checkbox" name="usingSMS" value="true" #if($usingSMS)checked="checked"#end/> Mobile #smsMessageTime($user)
+									#else
+										<input type="checkbox" name="usingSMS" value="true" disabled="disabled"/> Mobile
+										(<a href="/account/account.vm">enable</a>)
+									#end									<br/>
+									<br/>
+									<input type="submit" value="Save Settings"/>									<input type="button" value="Cancel" onclick='javascript:toggleDefaultSettings()'/>
+								</form>
+							</div>
+						</div>
+					#end
+					
+					<div class="epgBlock">
+						#if($programGuide.schedule.size() > 0)
+								#if($programGuide.singleStation)
+									<div style="float: right;">
+										<span class="searchLabel">
+											$nextShowAiring.network.stationName #styledNetworkLogo($nextShowAiring.network "vertical-align: text-top; margin-right: 2px;") 
+										</span>
+									</div>
+								#end
+							<span class="searchLabel">
+								Program Guide
+								##if($programGuide.singleStation)
+								##	$logo.network("/logos", "gif", $nextShowAiring.network)($nextShowAiring.network.stationName)
+								##end
+							</span>
+							#foreach($guideDay in $programGuide.schedule)
+								<ul>
+									#foreach($entry in $guideDay)
+										#set($schedule = $entry.scheduledProgram)
+										#set($pendingAlert = $entry.pendingAlert)
+										#if($velocityCount ==0)<span class="searchLabel">$date.format("EEEE, MMM d", $schedule.startTime, $locale, $timeZone)</span>#end
+									    <li>
+											#if(!$programGuide.singleStation)
+												#styledNetworkLogo($schedule.network "float: right; margin-left: 2px; margin-top: 2px;") 
+											#end
+											#if($user)
+												<a class="clock" onclick='toggleAlarm($entry.id, "$schedule.programId", "$schedule.network.stationCallSign", $schedule.startTime.time);'>
+													<span id="clockSpan$entry.id" 
+														#if($pendingAlert)
+															class="on"
+														#else
+															class="off"
+														#end
+													>
+														##&nbsp;
+														<img title="Quick Alert" alt="Quick Alert" src="/themes/default/images/clock_transparent_area.gif"/>
+													</span>
+												</a>
+											#end
+											<span class="fixedTime">
+												<!--
+												<font color="red">ALARM ON/OFF (pending alert active - if off, setDisabled(true))</font>
+												-->
+	
+												#if($schedule.programId != $programInfo.programId)
+													<a href="$schedule.webPath">
+												#end
+												$date.format("h:mma", $schedule.startTime, $locale, $timeZone) - $date.format("h:mma", $schedule.endTime, $locale, $timeZone)
+												#if($schedule.programId != $programInfo.programId)
+													</a>
+												#end
+											</span>
+											<span class="epgInfo">
+												#if($schedule.newEpisode)<img src="/themes/default/images/new.png" alt="New"/>#end	 
+												#if(!$programGuide.singleStation) on 
+													##$logo.network("/logos", "gif", $schedule.network) 
+													$schedule.network.stationName#end 
+												#if($schedule.episodeTitle)
+													#if($schedule.programId != $programInfo.programId)
+														<a href="$schedule.webPath">
+													#end
+													<i>$schedule.episodeTitle</i>
+													#if($schedule.programId != $programInfo.programId)
+														</a>
+													#end
+												#end 
+												#if((!$programGuide.singleStation || ($schedule.episodeTitle && $schedule.episodeTitle.length() > 0)) && ($schedule.description && $schedule.description.length() > 0))-- #end 
+												#if($schedule.description)$schedule.description#end&nbsp
+												#if(!$schedule.newEpisode && $schedule.originalAirDate && $schedule.programId.startsWith("EP"))(Originally aired on $date.format("M/d/yy", $schedule.originalAirDate))#end&nbsp
+											</span>
+										</li>
+									#end
+								</ul>
+							#end
+						#else
+							This program is not scheduled to replay in the near future (at least two weeks).  If you want to add a reminder below, we'll let you know as soon as it is rescheduled.
+						#end
+					</div>
+					<a name="addreminder"></a>
+					<a name="reminders"></a>
+					<h3>
+						$programInfo.programTitle
+					</h3>
+					
+					<div style="margin: 15px;">
+						#if($seriesAlerts && $seriesAlerts.size() > 0) 
+							#foreach($alert in $seriesAlerts)
+								<div class="alertInstruction">
+									<a alt="Delete" title="Delete" href="/alerts/deleteProgramAlert.action?programAlertId=$alert.id&returnUrl=${webwork.urlEncode("${fullRequestURL}#reminders")}">
+										<img src="/themes/default/images/delete.png" alt="Delete"></a>
+									Notify me <b>#roundTime($alert.alertMinutes)</b>
+										before any
+										#if($alert.newEpisodes)<b><i>new</i></b>#end
+										#if($programInfo.show)
+											episode of
+										#elseif($programInfo.team)
+											game featuring the
+										#else
+											airing of
+										#end
+										$programInfo.programTitle, by
+									<b>
+									#if($alert.usingPrimaryEmail)Email#end
+									#if($alert.usingPrimaryEmail && $alert.usingSMS) and #end
+									</b>
+									#if($alert.usingSMS)
+										<b>SMS</b>
+									#if(!$user.smsVerified)										(requires you <a href="/account/account.vm">enable SMS</a>)
+									#end									#end
+								</div>
+							#end
+						#end
+						#if($teamAlerts && $teamAlerts.size() > 0) 
+							#foreach($alert in $teamAlerts)
+								<div class="alertInstruction">
+									<a alt="Delete" title="Delete" href="/alerts/deleteProgramAlert.action?programAlertId=$alert.id&returnUrl=${webwork.urlEncode("${fullRequestURL}#reminders")}">
+										<img src="/themes/default/images/delete.png" alt="Delete"></a>
+									Notify me <b>#roundTime($alert.alertMinutes)</b> before any $alert.program.teamName game, by
+									<b>
+									#if($alert.usingPrimaryEmail)Email#end
+									#if($alert.usingPrimaryEmail && $alert.usingSMS) and #end
+									</b>
+									#if($alert.usingSMS)
+										<b>SMS</b>
+									#if(!$user.smsVerified)										(requires you <a href="/account/account.vm">enable SMS</a>)
+									#end									#end
+								</div>
+							#end
+						#end
+					</div>
+					<h4>
+						#if($programInfo.episode || $programInfo.sports)
+							${episodeType}:
+    						#if($programInfo.episodeTitle.length() > 0)
+								$programInfo.episodeTitle
+							#else
+								Untitled
+							#end
+						#end
+					</h4>
+					<div>
+						#tivoButton()
+					</div>						
+
+					<div style="margin: 15px;">
+						#if($episodeAlerts && $episodeAlerts.size() > 0) 
+							#foreach($alert in $episodeAlerts)
+								<div class="alertInstruction">
+									<a alt="Delete" title="Delete" href="/alerts/deleteProgramAlert.action?programAlertId=$alert.id&returnUrl=${webwork.urlEncode("${fullRequestURL}#reminders")}">
+										<img src="/themes/default/images/delete.png" alt="Delete"></a>
+									Notify me <b>#roundTime($alert.alertMinutes)</b> before this specific
+									${episodeTypeLc}, by
+									<b>
+									#if($alert.usingPrimaryEmail)Email#end
+									#if($alert.usingPrimaryEmail && $alert.usingSMS) and #end
+									</b>
+									#if($alert.usingSMS)
+										<b>SMS</b>
+									#if(!$user.smsVerified)										(requires you <a href="/account/account.vm">enable SMS</a>)
+									#end									#end
+								</div>
+							#end
+						#end
+					</div>
+					<div id="reminderButtonDiv">
+						#if($message)
+							<div class="errorMessage">$message</div>
+							<br/>
+						#elseif($valid && $valid == false)
+							<div class="errorMessage">Invalid setting.</b></div>
+							<br/>
+						#end
+						
+						<form name="reminderButtonForm" action="/alerts/deleteProgramAlerts.action">
+							<input type="hidden" name="returnUrl" value="${webwork.urlEncode("${fullRequestURL}#reminders")}"/>
+							<input type="button" name="remindMe" value="$addAlertLabel" onclick='javascript:showReminderForm()'/>
+							<input type="hidden" name="programId" value="$programInfo.programId"/>
+    						#if($episodeAlerts && $episodeAlerts.size() > 0) 
+								<script type="text/javascript">
+									function confirmDelete() {
+										return confirm("Are you sure you want to delete all of the reminders for this specific $episodeTypeLc \"$esc.javascript($titleBar)\"?");
+									}
+								</script>
+								<input name="deleteAll" type="submit" value="Delete $episodeType Reminders" onclick='return confirmDelete();'/>
+    						#end
+    						#if($teamAlerts && $teamAlerts.size() > 0) 
+    							<input type="hidden" name="teamAlerts" value="true"/>
+								<script type="text/javascript">
+									function confirmDelete() {
+										return confirm("Are you sure you want to delete all of the reminders for both the \"$esc.javascript($programInfo.homeTeamName)\" and the \"$esc.javascript($programInfo.awayTeamName)\"?");
+									}
+								</script>
+								<input name="deleteAll" type="submit" value="Delete Team Reminders" onclick='return confirmDelete();'/>
+    						#end
+    						#if($seriesAlerts && $seriesAlerts.size() > 0) 
+								#if($programInfo.team)
+    								<script type="text/javascript">
+    									function confirmDelete() {
+    										return confirm("Are you sure you want to delete all of the reminders for the \"$esc.javascript($programInfo.programTitle)\"?");
+    									}
+    								</script>
+    								<input name="deleteAll" type="submit" value="Delete Team Reminders" onclick='return confirmDelete();'/>
+								#else
+    								<script type="text/javascript">
+    									function confirmDelete() {
+    										return confirm("Are you sure you want to delete all of the reminders for \"$esc.javascript($programInfo.programTitle)\"?");
+    									}
+    								</script>
+    								<input name="deleteAll" type="submit" value="Delete Show Reminders" onclick='return confirmDelete();'/>
+								#end
+    						#end
+							<br/>
+						</form>
+					</div>
+					<div id="reminderFormDiv" style="display: none;"/>
+						<form name="alertForm" action="/alerts/createProgramAlert.action">
+							<input type="hidden" name="programId" value="$programInfo.programId"/>
+##							<input type="hidden" name="programTitle" value="$programInfo.programTitle"/>
+							##<input type="hidden" name="sportName" value="$programInfo.sportName"/>
+							##<input type="hidden" name="teamName" value="$programInfo.teamName"/>
+							<input type="hidden" name="returnUrl" value="${fullRequestURL}#reminders"/>
+							#if ($programInfo.episode)
+    							<b>For </b>
+    							<select name="reminderType" onChange='span = document.getElementById("newEpisodes"); if (value == "series") span.style.display = "inline"; else span.style.display = "none";'>
+    								<option value="episode">this specific episode#if($programInfo.episodeTitle.length() > 0) "$programInfo.episodeTitle"#end</option>
+    								<option value="series">any episode of "$programInfo.programTitle"</option>
+    							</select>
+    							<span id="newEpisodes" style="display: none;">
+    								<input type="checkbox" name="newEpisodes" value="true"/> only if a new episode
+    							</span>
+							#elseif ($programInfo.sports)
+    							<b>For </b>
+    							<select name="reminderType" onChange='span = document.getElementById("originalAiring"); if (value != "game") span.style.display = "inline"; else span.style.display = "none";'>
+    								<option value="game">this specific game between the "$programInfo.awayTeamName" and the "$programInfo.homeTeamName"</option>
+    								<option value="awayTeam">any game featuring the "$programInfo.awayTeamName"</option>
+    								<option value="homeTeam">any game featuring the "$programInfo.homeTeamName"</option>
+    							</select>
+    							<span id="originalAiring" style="display: none;">
+    								<input type="checkbox" name="newEpisodes" value="true"/> only for original airing (usually live)
+    							</span>
+							#elseif ($programInfo.team)
+    							<input type="hidden" name="reminderType" value="team"/>
+    							<b>For all games featuring the "$programInfo.programTitle"</b>
+							#else
+    							<input type="hidden" name="reminderType" value="series"/>
+    							<b>For all airings of "$programInfo.programTitle"</b>
+							#end
+							<br/>
+							<br/>
+							Notify me <input style="text-align: right; padding-right: 2px;" type="text" name="prewarn" value="$prewarn" size="2" maxlength="3"/>
+							<select name="prewarnUnits">
+								<option value="Minutes" #if($prewarnUnits == "Minutes")selected="yes"#end>Minutes</option>
+								<option value="Hours" #if($prewarnUnits == "Hours")selected="yes"#end>Hours</option>
+								<option value="Days" #if($prewarnUnits == "Days")selected="yes"#end>Days</option>
+							</select>
+							before the program, by:
+							<br/>
+							<input type="checkbox" name="usingPrimaryEmail" value="true" #if($usingPrimaryEmail)checked="checked"#end/> Email
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							#if($user.smsVerified)								<input type="checkbox" name="usingSMS" value="true" #if($usingSMS)checked="checked"#end/> Mobile #smsMessageTime($user)
+							#else
+								<input type="checkbox" name="usingSMS" value="true" disabled="disabled"/> Mobile
+								(<a href="/account/account.vm">enable</a>)
+							#end							<br/>
+							<br/>
+							<input type="submit" value="Save Reminder"/>							<input type="button" value="Cancel" onclick='javascript:hideReminderForm()'/>
+						</form>
+					</div>
+					<br/>
+					<a href="/alerts/reminders.action">See Reminders for All Programs</a>
+				</div>
+			</li>						
+		</ol>
+	</div>
+</div>
+<script type="text/javascript">
+loadProgram("$programInfo.programId");
+</script>
+
+
+#fullEnd({
+		"pageType" : "search",
+		"ads" : "google",
+		"search" : true
+})

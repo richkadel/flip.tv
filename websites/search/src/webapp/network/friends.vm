@@ -1,0 +1,73 @@
+#set ($params = ({
+	"subtitle" : "",
+	"search" : true,
+	"title" : "Friends",
+	"titleBarLeft" : "Friend Network",
+	"pageType" : "basic",
+	"activePage" : "Search"
+}))
+#fullBegin($params)
+<script type="text/javascript">
+function verifyDelete(id) {
+	if (confirm("Are you sure you want to delete your friend?")) {
+		window.location='/network/deleteFriend.action?id='+id;
+	}
+}
+
+function showStatusHelp() {
+
+}
+</script>
+<div style="margin: 10px">
+	<p>
+	#if ($existingFriends.size() == 0)
+		<b>You haven't added any of your friends yet!</b> They're missing out! 
+		#if($publicLaunch)
+			Why not <a href="/network/invite.action">invite them now</a>.
+		#else
+			We'll be opening up registrations again during our next public beta.  At that time, you can invite your friends to join.
+		#end
+		<br/><br/>
+	#else
+		<b>Your current friends:</b><br/><br/>
+		<table class="friendTable" ><tr><th>Actions</a></th><th>Displayed As</th><th>First Name</th><th>Last Name</th><th>Email Address</th><th>Since</th><th>Status<!--<a href="javascript:showStatusHelp()">?</a>--></th></tr>		
+			#foreach($friend in $existingFriends) 
+				<tr>
+	    			<td><a href="/network/editFriend.action?id=$friend.id"><img src="/themes/default/images/vcard_edit.png" alt="Edit Friend" title="Edit Friend"/></a> <a href="javascript:verifyDelete($friend.id)"><img src="/themes/default/images/cancel.png" alt="Delete" title="Delete"/></a></td>
+	    			<td>$friend.displayName</td>
+	    			<td>#if($friend.firstName)$friend.firstName#else&nbsp;#end</td>
+	    			<td>#if($friend.lastName)$friend.lastName#else&nbsp;#end</td>
+	    			<td>#if($friend.email && $friend.email.length() > 0)$friend.email#else&nbsp;#end</td>
+	    			<td>$date.format("MM/dd/yyyy", $friend.created)</td>
+	    			<td>#if($friend.status.ordinal() == 0)Invited#elseif($friend.status.ordinal() == 2 || $friend.status.ordinal() == 3)Declined#else&nbsp;#end</td>
+				</tr>
+			#end
+		</table>
+	#end
+	</p>
+	<br/>
+	<p>
+	#if($networkRequests && $networkRequests.size() > 0) 
+	<br/><br/>
+	<b>People who have asked to be your friend:</b>
+	<br/><br/>
+	<table class="friendTable" ><tr><th>Friend</th><th>When</th><th>Accept/Decline</th></tr>
+		#foreach($friend in $networkRequests) 
+			<tr>
+    			<td>$friend.user.displayName</td> 
+    			<td>$date.format("MM/dd/yyyy h:mm a", $friend.created)</td>
+    			<td><a href="/network/respondToInvitation.action?id=$friend.id&inviteAction=ACCEPTED">Accept</a> <a href="/network/respondToInvitation.action?id=$friend.id&inviteAction=DECLINED">Decline</a></td>
+			</tr>
+		#end
+	</table>
+	#end
+	</p>
+</div>
+
+
+
+#fullEnd({
+		"pageType" : "basic",
+		"ads" : "none",
+		"search" : true
+})

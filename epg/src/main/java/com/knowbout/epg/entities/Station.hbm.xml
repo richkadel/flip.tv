@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping package="com.knowbout.epg.entities">
+	<class name="com.knowbout.epg.entities.Station" 
+		proxy="com.knowbout.epg.entities.Station" table="stations">
+		<cache usage="nonstrict-read-write"/>
+		<id name="id" type="java.lang.Long" column="station_id">
+			<generator class="assigned"/>
+		</id>
+		<property name="timeZone" type="java.lang.String" column="time_zone" length="30"/>
+		<property name="name" type="java.lang.String" column="name" length="40"/>
+		<property name="callSign" type="java.lang.String" column="call_sign" length="10"/>
+		<property name="affiliation" type="java.lang.String" column="affiliation" length="25"/>
+		<property name="city" type="java.lang.String" column="city" length="20"/>
+		<property name="state" type="java.lang.String" column="state" length="15"/>
+		<property name="zipCode" type="java.lang.String" column="zip_code" length="12"/>
+		<property name="country" type="java.lang.String" column="country" length="15"/>
+		<property name="dmaName" type="java.lang.String" column="dma_name" length="70"/>
+		<property name="dmaNumber" type="java.lang.Integer" column="dma_num"/>
+		<property name="fccChannelNumber" type="java.lang.Integer" column="fcc_channel_number"/>
+		
+		<!-- Associations -->		
+		<set name="channels" inverse="true">
+		  <cache usage="nonstrict-read-write"/>
+			<key column="station_id"/>
+			<one-to-many class="com.knowbout.epg.entities.Channel"/>
+		</set>
+		
+	</class>
+		<query name="Station.selectAll"><![CDATA[
+		from Station
+	]]></query>
+</hibernate-mapping>

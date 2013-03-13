@@ -1,0 +1,28 @@
+#fullBegin ({
+	"subtitle" : "Thank You",
+	"pageType" : "basic",
+	"search" : true,
+	"titleBarLeft" : "Thank You",
+	"ads" : false
+})
+
+<br/>
+#noteTop("400px")
+
+	<p style="text-align: center;">
+		Thank you for your donation of $amt $cc in support of Flip.TV!
+	</p>
+	<p style="text-align: center;">
+		We hope you will continue to find Flip.TV
+		useful and look forward to serving you well into the future.
+	</p>
+#noteBottom()
+<br/>
+<br/>
+
+#fullEnd ({
+	"pageType" : "basic",
+	"search" : false
+})
+
+ 

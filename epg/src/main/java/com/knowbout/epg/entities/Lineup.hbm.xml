@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping package="com.knowbout.epg.entities">
+
+<class name="com.knowbout.epg.entities.Lineup"  
+	proxy="com.knowbout.epg.entities.Lineup" table="lineups" > 
+   <cache usage="nonstrict-read-write"/>
+    <id name="id" type="java.lang.String" column="lineup_id" >
+        <generator class="assigned"/>
+    </id>
+
+	<property name="name" type="java.lang.String" column="name" length="50" />
+	<property name="device" not-null="true" >
+		<column name="device" sql-type="integer"/>
+		<type name="com.knowbout.hibernate.EnumType">
+			<param name="class">com.knowbout.epg.entities.Device</param>
+		</type>
+	</property>
+
+<!-- Associations --> 
+		<set name="channels" inverse="true" cascade="all-delete-orphan"
+			sort="com.knowbout.epg.entities.ChannelComparator">
+			<cache usage="nonstrict-read-write"/>
+			<key column="lineup_id"/>
+			<one-to-many class="com.knowbout.epg.entities.Channel"/>
+		</set>
+	    <many-to-one name="headend" class="com.knowbout.epg.entities.Headend" 
+			column="headend_id" not-null="true" />
+
+</class>
+	<!-- Queries -->
+		<query name="Lineup.getHeadendAndDevice" cacheable="true"><![CDATA[
+		from Lineup where headend = :headendId and device = :device  
+	]]></query>
+
+	<query name="Lineup.getChannels" cacheable="true"><![CDATA[
+		from Channel where lineup_id = :lineupId and channelNumber = :channelNumber  
+	]]></query>
+
+</hibernate-mapping>

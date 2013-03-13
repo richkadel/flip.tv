@@ -1,0 +1,10 @@
+#!/bin/sh
+
+rm -rf /usr/local/flip.tv/ccdataindexer
+mkdir -p /usr/local/flip.tv/ccdataindexer/jars
+cp -r target/ccdataindexer/WEB-INF/classes /usr/local/flip.tv/ccdataindexer
+cp target/ccdataindexer/WEB-INF/lib/* /usr/local/flip.tv/ccdataindexer/jars
+cp bin/* /usr/local/flip.tv/ccdataindexer
+cp -r dtd /usr/local/flip.tv/ccdataindexer
+chown -R tomcat:tomcat /usr/local/flip.tv/ccdataindexer
+chmod +x /usr/local/flip.tv/ccdataindexer/run*

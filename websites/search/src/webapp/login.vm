@@ -1,0 +1,105 @@
+#fullBegin ({
+	"subtitle" : "Sign In",
+	"noLogo" : true,
+	"pageType" : "basic",
+	"search" : false,
+	"firstFocus" : "document.loginForm.j_username",
+	"titleBarLeft" : "Sign In"
+})
+
+   <div id="bd">
+		#if(!$req.getParameter("returnURL"))
+			#set($returnURL = "/")
+		#else
+			#set($returnURL = $req.getParameter("returnURL"))
+		#end
+		#if($publicLaunch)
+			<br/>
+			<br/>
+			<br/>
+			<div style="text-align: center;">
+			<a href="/">
+				<img id="logo" width="134" height="62" alt="Flip.TV Search" src="/themes/default/images/logo.gif"/>
+			</a>
+			</div>
+		#else
+			#letterHeadTop()
+			
+				<br/>
+				<p class="memoheader">End of Flip.TV Beta 1<br>
+					Access is Currently Limited to Registered Users</p>
+				
+				<p>
+					If you are already a registered Flip.TV user, welcome back!  Please sign in below.
+				</p>
+				<p>
+					If not, we appreciate your intereste in Flip.TV.  Currently, our open registration period is closed
+					while we prepare for our public launch of Flip.TV Beta 2!  If you'd like to be notified by email
+					as soon as registration re-opens, <a href="/registration/notifyme.vm">enter your email address					here</a> and you will be one of the first to be invited back.  Remember, Flip.TV Beta 2 will once
+					again have a limited number of registrations, so make sure you ask to be notified so you won't miss
+					the next opportunity.
+				</p>
+				<p>
+					If you are already a registered Flip.TV user, your account is still valid and you can still
+					search for programs and manage your existing program reminders and topic alerts.
+				</p>
+				
+			#letterHeadBottom()
+		#end
+		<form action="/j_acegi_security_check" name="loginForm" method="POST">
+		#if($returnURL)<hidden name="targetUrl" value="$returnURL"/>#end
+		<table align="center">
+			<tr>
+				<td>
+					User Name:
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="text" name="j_username"/>
+				</td>
+			</tr>			
+			<tr>
+				<td>
+					Password:
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="password" name="j_password"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" name="_acegi_security_remember_me"/> Remember Me<br/><br/>
+				</td>
+			</tr>
+		</table>
+		<div align="center">
+		#if($request.getParameter("login_error"))
+					<p style="color: red; max-width: 20em;">The username and password you entered do not match your account. Please try again.</p>
+					<br/>
+		#end
+					<input type="submit" value="Login"/>
+		</form>
+		</div>
+		<br/>
+		<br/>
+		<div align="center">
+			#if($publicLaunch)
+				Not registered? <a href="/registration/registration.action">Register here</a> to set up your personalized TV alerts and reminders.
+				<br/>
+			#end
+			Forgot your password? <a href="/registration/resetauth.vm">Reset your password here</a>.
+		</div>
+   </div>
+	<br/>
+	<br/>
+	<br/>
+
+#fullEnd ({
+	"pageType" : "basic",
+	"search" : false
+})
+
+ 

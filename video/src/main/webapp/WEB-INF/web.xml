@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+	version="2.4">
+	<display-name>Flip TV Video</display-name>
+	<distributable />
+<!--
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.vm</welcome-file>
+	</welcome-file-list>
+-->
+
+
+	<security-constraint>
+		<web-resource-collection>
+		<web-resource-name>FlipTV Video Content</web-resource-name>
+		<url-pattern>/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>video</role-name>
+		</auth-constraint>
+  	<user-data-constraint>
+    	<transport-guarantee>NONE</transport-guarantee>
+  	</user-data-constraint>
+	</security-constraint>
+	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Other Confidential Resources</web-resource-name>
+			<url-pattern>/login.jsp</url-pattern>
+			<url-pattern>/login_error.jsp</url-pattern>
+		</web-resource-collection>
+  	<user-data-constraint>
+    	<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+  	</user-data-constraint>
+	</security-constraint>
+		
+		<login-config>
+			<auth-method>FORM</auth-method>
+			<realm-name>Knowbout Demo</realm-name>
+			<form-login-config>
+				<form-login-page>/login.jsp</form-login-page>
+				<form-error-page>/login_error.jsp</form-error-page>
+			</form-login-config>
+		</login-config>
+		
+		
+
+</web-app>

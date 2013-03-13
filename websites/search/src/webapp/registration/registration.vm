@@ -1,0 +1,58 @@
+#fullBegin ({
+	"subtitle"		: "User Registration",
+	"pageType"		: "basic",
+	"noLogo"		: "true",
+	"search"		: false,
+	"firstFocus"	: 'document.getElementById("saveRegistration_user_username")',
+	"titleBarLeft"	: "User Registration",
+	"wwform"		: true
+})
+
+<br/>
+#noteTop("500px")
+<div style="text-align: center;">
+<a href="/">
+	<img id="logo" width="134" height="62" alt="Flip.TV Search" src="/themes/default/images/logo.gif"/>
+</a>
+</div>
+<p class="memoheader">Registration</p>
+
+<br/>
+We can only accept a limited number of beta participants at this time.
+The earlier you apply, the more likely you will be invited to participate.
+If you are not approved within an hour or two, we have probably exceed our
+user limit for this round of beta testing.  But we will notify you as soon as
+we expand the beta program to additional users.
+<br/>
+<br/>
+Registration is simple!  Just tell us a little bit about yourself and,
+when approved, you'll receive an email with an account activation link.
+After you sign in, you'll be able to find out
+when your favorite shows, actors or topics are going to be on next and get alerted
+by email, text messaging to your mobile device, or by using the Flip.TV website.
+#noteBottom()
+
+<div align="center">
+#wwactionerror()
+</div>
+<div align="center">
+	#editAccount(true "saveRegistration" true "I Accept")
+	<p>(<a href="/smshelp.vm">What is my Mobile Device Address?</a>)</p>
+</div>
+
+<br/>
+<div align="center" class="finePrint">
+	<p>Note: If you choose to send Flip.TV alerts and reminders to your mobile device, your mobile
+		service provider may charge additional
+		fees for Text Messaging (also known as SMS).
+	Contact your mobile service provider for more information.</p>
+By clicking on the "I Accept" button, you are agreeing to the 
+<a href="/termsOfService.vm">Terms of Service</a>
+and the <a href="/privacy.vm">Privacy Policy</a>.
+</div>
+
+<br/>
+#fullEnd ({
+	"pageType" : "basic",
+	"search" : false
+})

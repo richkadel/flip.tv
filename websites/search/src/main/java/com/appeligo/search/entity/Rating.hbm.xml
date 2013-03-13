@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.appeligo.search.entity" default-access="field">
+	
+	<class name="com.appeligo.search.entity.Rating" 
+		proxy="com.appeligo.search.entity.Rating" table="rating">
+
+		<id name="id" type="long" column="rating_id">
+			<generator class="native"/>
+		</id>
+		<property name="programId" type="string" column="program_id" not-null="true" length="255" />
+		<property name="created" type="timestamp" column="created" not-null="true"/>		
+		<property name="lastModified" type="timestamp" column="last_modified" not-null="false"/>		
+		<property name="rating" type="double" column="rating" not-null="false"/>		
+		<property name="deleted" type="boolean" column="deleted" not-null="true"/>		
+		<property name="label" type="string" column="label" not-null="true" length="275" />
+	    <many-to-one name="user" class="com.appeligo.search.entity.User" 
+			column="user_id" not-null="true" />		
+	</class>
+	
+	
+	<query name="Rating.getUserRatings"><![CDATA[
+		from Rating where
+			user = :user
+			order by showId
+	]]></query>
+
+		<query name="Rating.getProgram"><![CDATA[
+		from Rating where
+			user = :user and
+			programId = :programId
+	]]></query>
+	
+		
+</hibernate-mapping>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Tomcat-specific configuration file that sets up JNDI references to the
+    database connection pools for the EPG data.
+
+    As written, the code below requires that the following jars be in Tomcat's
+    common/lib directory or the web application (any recent version of the jars will do, hence the
+    "x.x.x"'s):
+        mysql-connector-java-x.x.x-ga-bin.jar - For connecting to the MySQL
+           database.
+        commons-dbcp-x.x.x.jar - Contains the DataSource implementation for
+           database connection pooling.
+        commons-pool-x.x.jar - Used by commons-dbcp.
+        commons-collections-x.x.jar - Used by commons-dbcp.
+-->
+
+<Context path="/epg">
+    <!--
+        EPG database connection.  
+    -->
+    <Resource
+        name="jdbc/epg"
+        auth="Container"
+        type="javax.sql.DataSource"
+        driverClassName="com.mysql.jdbc.Driver"
+        factory="org.apache.commons.dbcp.BasicDataSourceFactory"
+        url="jdbc:mysql://localhost/epg"
+        username="knowbout"
+        password="C0tt3r"
+        maxActive="100"
+        maxIdle="30"
+        maxWait="10000"
+    />
+</Context>
+

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<channelfeed>
+	<documentRoot path="/var/flip.tv"/>
+	<epgServer url="http://dev.flip.tv/epg/channel.epg"/>
+	<logEmail address="root@localhost"/>
+	<loggers>
+		<logger name="com.appeligo.channelfeed.SendSentence"
+			level="INFO"/>
+	</loggers>
+	<destinations>
+		<destination url="http://other.flip.tv/cceventservice"/>
+		<destination url="http://dev.flip.tv/cceventservice"/>
+	</destinations>
+	<captionPort number="8090"/>
+	
+	<!-- in addition to reading captions from the port above,
+	 also read from tuners below -->
+	 
+<!--
+	<providers>
+		<provider>
+			<headend>SDTW</headend>
+			<lineupDevice>C</lineupDevice>
+			<frequencyStandard>US_CABLE</frequencyStandard>
+			<tuners>
+				<tuner deviceNumber="0" channel="56" callsign="HISTORY"/>
+				<tuner deviceNumber="1" channel="7" callsign="NBC"/>
+				<tuner deviceNumber="2" channel="30" callsign="ESPN2"/>
+			</tuners>
+		</provider>
+	</providers>
+-->
+</channelfeed>

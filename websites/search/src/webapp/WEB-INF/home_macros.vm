@@ -1,0 +1,102 @@
+#*
+A set of Appelligo specific macros.
+*#
+
+#macro(friendList $title $friends $friendsLink)
+    <div class="widget-container">
+		<div class="widget-round-border-topleft"></div><div class="widget-round-border-topright"></div>
+		<h3 class="widget-round-header"><a href="/network/friends.action">$title</a></h3>
+        <ul>
+			#foreach($friend in $friends)
+			<li>$friend.displayName</li>
+			#end
+		</ul>
+	</div>
+#end
+
+#macro(friendInviteList $title $friends $friendsLink)
+    <div class="widget-container">
+		<div class="widget-round-border-topleft"></div><div class="widget-round-border-topright"></div>
+		<h3 class="widget-round-header"><a href="/network/friends.action">$title</a></h3>
+        <ul>
+			#foreach($friend in $friends)
+			<li>$friend.user.displayName</li>
+			#end
+		</ul>
+	</div>
+#end
+
+#macro(favoriteShows $title $favorites $link)
+    <div class="widget-container">
+		<div class="widget-round-border-topleft"></div><div class="widget-round-border-topright"></div>
+		<h3 class="widget-round-header">$title</h3>
+		#if($favorites && $favorites.size() > 0) 
+			<ol>
+    			#foreach($favorite in $favorites)
+    			<li>
+					#if($velocityCount > 0)
+						<a href="/home/favorites/up.action?f=$favorite.id">
+							<img src="/themes/default/images/arrow_up.png" alt="Move Up"/>
+						</a>
+					#else
+						<img src="/themes/default/images/arrow_up_gray.png" alt="Move Up"/>
+					#end
+					#if($math.add($velocityCount, 1) < $favorites.size())
+						<a href="/home/favorites/down.action?f=$favorite.id">
+							<img src="/themes/default/images/arrow_down.png" alt="Move Down"/>
+						</a>
+					#else
+						<img src="/themes/default/images/arrow_down_gray.png" alt="Move Down"/>
+					#end
+					<a href="/home/favorites/delete.action?f=$favorite.id">
+						<img src="/themes/default/images/delete.png" alt="Delete"/>
+					</a>
+					<a href="$favorite.program.webPath">
+						$favorite.label
+					</a>
+				</li>
+				#end
+			</ol>
+		#else
+			You have choosen any favorite shows yet
+		#end
+	</div>
+#end
+
+#macro(favoriteEpisodes $title $favorites $link)
+	
+    <div class="widget-container">
+		<div class="widget-round-border-topleft"></div><div class="widget-round-border-topright"></div>
+		<h3 class="widget-round-header">$title</h3>
+		#if($favorites && $favorites.size() > 0) 
+			<ol>
+    			#foreach($favorite in $favorites)
+    			<li>
+					#if($velocityCount > 0)
+						<a href="/home/favorites/up.action?f=$favorite.id">
+							<img src="/themes/default/images/arrow_up.png" alt="Move Up"/>
+						</a>
+					#else
+						<img src="/themes/default/images/arrow_up_gray.png" alt="Move Up"/>
+					#end
+					#if($math.add($velocityCount, 1) < $favorites.size())
+						<a href="/home/favorites/down.action?f=$favorite.id">
+							<img src="/themes/default/images/arrow_down.png" alt="Move Down"/>
+						</a>
+					#else
+						<img src="/themes/default/images/arrow_down_gray.png" alt="Move Down"/>
+					#end
+					<a href="/home/favorites/delete.action?f=$favorite.id">
+						<img src="/themes/default/images/delete.png" alt="Delete"/>
+					</a>
+					<a href="$favorite.program.webPath">
+						$favorite.label
+					</a>
+				</li>
+    			#end
+			</ol>
+		#else
+			You have choosen any favorite episodes yet
+		#end
+	</div>
+#end

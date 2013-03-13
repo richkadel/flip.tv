@@ -1,0 +1,19 @@
+#fullBegin({
+	"subtitle" : "Admin",
+	"search" : false,
+	"titleBarLeft" : "Admin",
+	"pageType" : "basic"
+})
+
+<h1>Administration for Flip.TV</h1>
+<table width="80%" border="1">
+		<tr><td><a href="/admin/users.action">Users</a></td></tr>
+		<tr><td><a href="/admin/createUserForm.action">Create User</a></td></tr>
+	</tr>
+</table>
+
+#fullEnd({
+		"pageType" : "basic",
+		"ads" : false,
+		"search" : false
+})

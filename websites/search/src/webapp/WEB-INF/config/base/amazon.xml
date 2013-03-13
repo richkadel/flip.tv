@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<configuration>
+	<programIndex>/var/lucene/dev/amazonProgramIndex</programIndex>
+	<productIndex>/var/lucene/productIndex</productIndex>
+	<associateTag>httpwwwappeli-20</associateTag>
+	<awsId>017FHFKV6MJ6E4Q6KHR2</awsId>
+	<staleDays>30</staleDays>
+	<throttle>1000</throttle>
+	
+	<jdbc>
+		<driver>com.mysql.jdbc.Driver</driver>
+		<url>jdbc:mysql:///guide</url>
+		<username>knowbout</username>
+		<password>C0tt3r</password>
+		<fetchSize>1000</fetchSize>
+	</jdbc>
+	
+	<browseNodeFilter>
+		<!--
+		<exclude>123456</exclude>
+		-->
+	</browseNodeFilter>
+</configuration>

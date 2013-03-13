@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+	version="2.4">
+	<display-name>Keyword Finder</display-name>
+
+	<context-param>
+		<param-name>configFile</param-name>
+		<param-value>/WEB-INF/config/system.xml</param-value>
+	</context-param>
+
+	<filter>
+		<filter-name>HessianLogger</filter-name>
+		<filter-class>com.knowbout.web.HessianLogger</filter-class>
+	</filter>
+
+	<filter>
+		<filter-name>webwork</filter-name>
+		<filter-class>
+			com.opensymphony.webwork.dispatcher.FilterDispatcher
+		</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>webwork</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
+	<filter-mapping>
+		<filter-name>HessianLogger</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<listener>
+		<listener-class>
+			com.knowbout.web.ApplicationInitializer
+		</listener-class>
+	</listener>
+	
+	<listener>
+		<listener-class>
+			com.appeligo.config.ConfigurationInitializer
+		</listener-class>
+	</listener>
+
+	<servlet>
+		<display-name>Keyword Finder Serlet</display-name>
+		<servlet-name>keyword-finder</servlet-name>
+		<servlet-class>
+			com.knowbout.nlp.keywords.servlet.KeywordExtracterServlet
+		</servlet-class>
+		<init-param>
+			<param-name>pipeline</param-name>
+			<param-value>
+				opennlp.grok.preprocess.namefind.WebStuffDetector,
+				opennlp.grok.preprocess.sentdetect.EnglishSentenceDetectorME,
+				opennlp.grok.preprocess.tokenize.EnglishTokenizerME,
+				opennlp.grok.preprocess.postag.EnglishPOSTaggerME,
+				opennlp.grok.preprocess.namefind.EnglishNameFinderME,
+				com.knowbout.nlp.keywords.EnglishSearchWordFinderME,
+			</param-value>
+		</init-param>
+
+	</servlet>
+
+	<servlet>
+		<servlet-name>CCEventService</servlet-name>
+		<servlet-class>
+			com.caucho.hessian.server.HessianServlet
+		</servlet-class>
+		<init-param>
+			<param-name>home-class</param-name>
+			<param-value>
+				com.knowbout.cc2nlp.server.CCEventServiceImpl
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>home-api</param-name>
+			<param-value>
+				com.knowbout.cc2nlp.CCEventService
+			</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet>
+		<servlet-name>velocity</servlet-name>
+		<servlet-class>
+			com.opensymphony.webwork.views.velocity.WebWorkVelocityServlet
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>velocity</servlet-name>
+		<url-pattern>*.vm</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>CCEventService</servlet-name>
+		<url-pattern>/cceventservice</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>keyword-finder</servlet-name>
+		<url-pattern>*.extract</url-pattern>
+	</servlet-mapping>
+
+	<jsp-config>
+		<jsp-property-group>
+			<url-pattern>*.jsp</url-pattern>
+			<el-ignored>false</el-ignored>
+			<scripting-invalid>true</scripting-invalid>
+		</jsp-property-group>
+	</jsp-config>
+
+</web-app>

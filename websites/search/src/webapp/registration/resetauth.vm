@@ -1,0 +1,35 @@
+#fullBegin ({
+	"subtitle" : "Reset Your Password",
+	"pageType" : "basic",
+	"search" : false,
+	"titleBarLeft" : "Reset Your Password",
+	"wwform" : true
+})
+
+#noteTop("600px")
+<p class="memoheader">Reset Password</p>
+<p>
+		Forgot your password?  Selecting this option will create a new password for your
+		Flip.TV account, and send it to the email address on file.  We recommend you
+		change your password to something you select, after logging in successfully.
+</p>
+
+<div align="center">
+#wwactionerror()
+</div>
+<div align="center">
+	#wwform("method=post" "action=resetPassword" "title=Reset Password" "validate=true")	
+		#wwtextfield("required=true" "label=Email" "size=40" "name=emailAddress")
+		#wwsubmit("value=Reset Password" "name=reset" "type=button" "align=center")
+	#end
+</div>
+#noteBottom()
+<br/>
+<br/>
+
+#fullEnd ({
+	"pageType" : "basic",
+	"search" : false
+})
+
+ 

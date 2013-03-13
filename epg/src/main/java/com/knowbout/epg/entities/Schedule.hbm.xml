@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping package="com.knowbout.epg.entities">
+
+    <class name="com.knowbout.epg.entities.Schedule" 
+    	proxy="com.knowbout.epg.entities.Schedule" table="schedules" >
+    
+      <cache usage="nonstrict-read-write"/>
+    		<id name="id" type="long" column="schedule_id">
+            	<generator class="native"/>
+    		</id>
+        <property name="airTime" type="java.util.Date" column="air_time" index="airTimeIndex"/>
+        <property name="endTime" type="java.util.Date" column="end_time"/>
+        <property name="duration" type="java.lang.Integer" column="duration"/>
+        <property name="partNumber" type="java.lang.Integer" column="part_number" />
+        <property name="numberOfParts" type="java.lang.Integer" column="number_of_parts"/>
+        <property name="cc" type="java.lang.Boolean" column="cc"/>
+        <property name="stereo" type="java.lang.Boolean" column="stereo"/>
+        <property name="newEpisode" type="java.lang.Boolean" column="new_episode"/>
+        <property name="liveTapeDelay" type="java.lang.String" column="live_tape_delay" length="25"/>
+        <property name="subtitled" type="java.lang.Boolean" column="subtitled"/>
+        <property name="premiereFinale" type="java.lang.String" column="premiere_finale" length="25"/>
+        <property name="joinedInProgress" type="java.lang.Boolean" column="joined_in_progress"/>
+        <property name="cableInClassroom" type="java.lang.Boolean" column="cable_classroom"/>
+        <property name="tvRating" type="java.lang.String" column="tv_rating" length="4"/>
+        <property name="sap" type="java.lang.Boolean" column="sap"/>
+        <property name="lineupId" type="java.lang.String" column="lineup_id"/>
+        <property name="sexRating" type="java.lang.Boolean" column="sex_rating"/>
+        <property name="violenceRating" type="java.lang.Boolean" column="violence_rating"/>
+        <property name="languageRating" type="java.lang.Boolean" column="language_rating"/>
+        <property name="dialogRating" type="java.lang.Boolean" column="dialog_rating"/>
+        <property name="fvRating" type="java.lang.Boolean" column="fv_rating"/>
+        <property name="threeD" type="java.lang.Boolean" column="three_d"/>
+        <property name="letterbox" type="java.lang.Boolean" column="letterbox"/>
+        <property name="hdtv" type="java.lang.Boolean" column="hdtv"/>
+        <property name="dolby" type="java.lang.String" column="dolby" length="5"/>
+        <property name="dvs" type="java.lang.Boolean" column="dvs"/>
+    <!-- Associations -->
+    	
+    	    <many-to-one name="network" class="com.knowbout.epg.entities.Network" 
+    			column="network_id" not-null="true" />
+    	
+    	    <many-to-one name="program" class="com.knowbout.epg.entities.Program" 
+    			column="program_id" not-null="true" />
+    	
+    		<set name="networkSchedules" inverse="true" cascade="all-delete-orphan">			
+    			<key column="schedule_id"/>
+    			<one-to-many class="com.knowbout.epg.entities.NetworkSchedule" />
+    		</set>	
+    
+    </class>
+    
+	<query name="Schedule.getNowPlaying" cacheable="false"><![CDATA[	
+			from NetworkSchedule as n
+			where n.schedule.airTime <= :currentTime
+			and n.schedule.endTime > :currentTime
+			and n.schedule.network.id = :network
+			and n.networkLineup.id = :lineup
+	]]></query>
+
+	<query name="Schedule.getNowPlayingCallSign" cacheable="false"><![CDATA[	
+			from NetworkSchedule as n
+			where n.schedule.airTime <= :currentTime
+			and n.schedule.endTime > :currentTime
+			and n.schedule.network.callSign = :callSign
+			and n.networkLineup.id = :lineup
+	]]></query>	
+
+	<query name="Schedule.getNowPlayingLineup" cacheable="false"><![CDATA[
+			from NetworkSchedule as n
+			where n.schedule.program.programId = :programId
+			and n.schedule.airTime <= :currentTime
+			and n.schedule.endTime > :currentTime
+			and n.networkLineup.id = :lineup
+	]]></query>
+	
+	<query name="Schedule.getNextProgramSchedulesForList" cacheable="false"><![CDATA[
+			from NetworkSchedule as n
+			where n.schedule.program.programId in (:programIds)
+			and n.schedule.endTime > :startTime
+			and n.networkLineup.id = :lineup
+			order by n.schedule.airTime	
+	]]></query>
+
+	<query name="Schedule.getAllNextProgramSchedulesForList" cacheable="false"><![CDATA[
+			from NetworkSchedule as n
+			where n.schedule.program.programId in (:programIds)
+			and n.schedule.endTime > :startTime
+			order by n.schedule.airTime	
+	]]></query>
+	
+	<query name="Schedule.getLastProgramSchedulesForList" cacheable="false"><![CDATA[
+			from NetworkSchedule as n
+			where n.schedule.program.programId in (:programIds)
+			and n.schedule.airTime <= :startTime
+			and n.networkLineup.id = :lineup
+			order by n.schedule.airTime	DESC
+	]]></query>
+	
+	
+	<query name="Schedule.getLastProgramSchedule" cacheable="false"><![CDATA[
+			from NetworkSchedule as n
+			where n.schedule.program.programId = :programId
+			and n.schedule.airTime <= :startTime
+			and n.networkLineup.id = :lineup
+			order by n.schedule.airTime DESC	
+	]]></query>
+	
+	<query name="Schedule.getLastShowSchedule" cacheable="false"><![CDATA[
+			from NetworkSchedule as n
+			where ( n.schedule.program.programId = :showId
+    			or n.schedule.program.programId like :episodeIdLike )
+			and n.schedule.airTime <= :startTime
+			and n.networkLineup.id = :lineup
+			order by n.schedule.airTime DESC	
+	]]></query>
+	
+	<query name="Schedule.getLastTeamSchedule" cacheable="false"><![CDATA[
+			from NetworkSchedule as n
+			where n.schedule.program.programId like 'SP%'
+			and n.schedule.program.programTitle = :sportName
+			and n.schedule.program.episodeTitle like :teamLike
+			and n.schedule.airTime <= :startTime
+			and n.networkLineup.id = :lineup
+			order by n.schedule.airTime DESC	
+	]]></query>
+	
+	<!-- 
+	<query name="Schedule.getNextProgramSchedules" cacheable="false"><![CDATA[
+			from NetworkSchedule as n
+			where n.schedule.program.programId = :programId
+			and n.schedule.endTime > :startTime
+			and n.networkLineup.id = :lineup
+			order by n.schedule.airTime	
+	]]></query>
+	
+	<query name="Schedule.getNextProgramSchedulesCheckNew" cacheable="false"><![CDATA[
+			from NetworkSchedule as n
+			where n.schedule.program.programId = :programId
+			and n.schedule.endTime > :startTime
+			and n.schedule.newEpisode = :newEpisode
+			and n.networkLineup.id = :lineup
+			order by n.schedule.airTime	
+	]]></query>
+	
+	<query name="Schedule.getShowSchedules" cacheable="false"><![CDATA[
+			from NetworkSchedule as n
+			where ( n.schedule.program.programId = :showId
+    			or n.schedule.program.programId like :episodeIdLike )
+			and n.schedule.endTime >= :startTime
+			and n.networkLineup.id = :lineup
+			order by n.schedule.airTime
+	]]></query>
+
+	<query name="Schedule.getShowSchedulesCheckNew" cacheable="false"><![CDATA[
+			from NetworkSchedule as n
+			where ( n.schedule.program.programId = :showId
+    			or n.schedule.program.programId like :episodeIdLike )
+			and n.schedule.endTime >= :startTime
+			and n.schedule.newEpisode = :newEpisode
+			and n.networkLineup.id = :lineup
+			order by n.schedule.airTime
+	]]></query>
+
+	<query name="Schedule.getTeamSchedules" cacheable="false"><![CDATA[
+			from NetworkSchedule as n
+			where n.schedule.program.programId like 'SP%'
+			and n.schedule.program.programTitle = :sportName
+			and n.schedule.program.episodeTitle like :teamLike
+			and n.schedule.endTime >= :startTime
+			and n.networkLineup.id = :lineup
+			order by n.schedule.airTime
+	]]></query>
+
+	<query name="Schedule.getTeamSchedulesCheckNew" cacheable="false"><![CDATA[
+			from NetworkSchedule as n
+			where n.schedule.program.programId like 'SP%'
+			and n.schedule.program.programTitle = :sportName
+			and n.schedule.program.episodeTitle like :teamLike
+			and n.schedule.endTime >= :startTime
+			and n.schedule.newEpisode = :newEpisode
+			and n.networkLineup.id = :lineup
+			order by n.schedule.airTime
+	]]></query>
+	 -->
+
+		
+	<query name="Schedule.deleteByDate"><![CDATA[
+		delete from Schedule where airTime >= :date
+	]]></query>
+</hibernate-mapping>

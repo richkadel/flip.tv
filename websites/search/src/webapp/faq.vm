@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		#header({
+			"title" : "Help",
+			"pageType" : "basic"}
+		)
+	</head>
+
+	#headerBar({
+			"search"		: false,
+			"titleBarLeft"	: "Help",
+			"noLogo"		: true
+			})
+	#bodyStart({
+			"pageType" : "basic"
+			})
+	<div id="bd-a">
+		#letterHeadTop()
+			<p class="memoheader">Common Questions About Flip.TV</p>
+			#set ($sections = [ "Q", "A" ])
+			
+			#foreach ($section in $sections)
+				#if ($section == "A")
+					<br/>
+					<p class="memoheader">Answers</p>
+				#end
+				#set ($count = 0)
+				<p>
+					#set ($count = $count + 1)
+					#question("What can I search for?")
+					#if ($section == "A")
+						<br/>
+		  				A: You can search for the program basics (title, episode title, description, genre, etc.)  How ever the real
+						advantage is that we also search all the closed captions which will provide a greater chance of finding what you 
+						are looking for.  Since titles and episode titles are very specific, we give those more relevance, which will make
+						them return at the top of the list.
+					#end
+				</p>
+				<p>
+					#set ($count = $count + 1)
+					#question("How far in advance are the TV listings?")
+					#if ($section == "A")
+						<br/>
+						A: We get the TV listings from a third party and receive a 2 week schedule every night.
+					#end
+				</p>
+				<p>
+					#set ($count = $count + 1)
+					#question("Can I find only shows that are going to air soon (I don't care about past programs)?")
+					#if ($section == "A")
+						<br/>
+						A: Yes!  That is what the future programs only check box does.  Check that and the search will
+						only return programs that are scheduled to air in the next two weeks.
+					#end
+				</p>
+				<p>
+					#set ($count = $count + 1)
+					#question("Why didn't Flip.TV find what I expected?")
+					#if ($section == "A")
+						<a name="searchlimits"></a>
+						<br/>
+						A: Unfortunately, we're not perfect.  But sometimes there's a perfectly logical reason we didn't
+						return the result you were expecting.  (If you think we can improve, you may be right, and
+						<a href="/feedback.vm">we want your input!</a>)  But here are a few reasons
+						we may not have been able to return what you expected:
+						<ol style="list-style-type: decimal; padding-left=2em;">
+							<li>
+								We are monitoring several channels, and adding more over time, but we may not
+								cover a channels you were expecting.  
+								<a href="/about.vm#coverage">Here's the current list of channels</a> we monitor.
+								(<a href="/feedback.vm">Let us know</a> what you'd like us to cover.)
+							</li>
+							<li>
+								We may get the program information but not the captions (yet), and if the
+								topic is not mentioned in the name of the program or the description, we might
+								not know it's relevant.
+							</li>
+							<li>
+								We may need to optimize our search engine.  Try some variations on the
+								spelling.  
+								<a href="/feedback.vm">Let us know</a> if you think we've missed something.			
+							</li>
+						</ol>
+					#end
+				</p>
+				<p>
+					#set ($count = $count + 1)
+					#question("Do I need to register?")
+					#if ($section == "A")
+						<br/>
+						A: You don't need to be a registered user to search for programs.  But to take advantage
+						of the alerts and reminders, you need to register.  We have to know who you are (your email or SMS address)
+						in order to send alerts and reminders to you.
+					#end
+				</p>
+				<p>
+					#set ($count = $count + 1)
+					#question("What is a topic alert?")
+					#if ($section == "A")
+						<a name="alertme"></a>
+						<br/>
+						A: As a registered user, when you press the "Alert Me" button next to the search box,
+						you are telling Flip.TV to watch for any TV program that mentions the words you were
+						searching for.  Please be informed: Though Flip.TV Alerts are generated as soon as a
+						match for your topic is recognized, some factors may slow the delivery of that alert
+						to you.  In addition, note that Flip.TV monitors several channels, but not every possible one.
+						See our <a href="/about.vm#coverage">current list of supported channels</a>.  Flip.TV Alerts
+						have a high degree of reliability as long as a program
+						matching your alert topic is airing on one of our supported channels; however, we cannot
+						guarantee we will recognize the topic.  Flip.TV alerts are dependent on the availability of
+						the broadcasts (thankfully, US cable systems and television are highly reliability services
+						but we are not in control of these factors), and the availability and accuracy of the closed
+						captioning.  Other factors that may slow delivery of alerts to you include Flip.TV system
+						load (usually a factor of the number of users, and something we can address if it becomes
+						an issue) and timezone.  Currently, Flip.TV is deployed only on the West Coast, so programs
+						airing earlier (for instance, 3 hours earlier for Eastern and Central, and 2 hours Mountain
+						is typical) will effectively generate alerts 2 or 3 hours later than for Pacific timezone users.
+						We plan to deploy servers on the East Coast as soon as feasible so this limitation can be
+						overcome.  Thankfully, the proliferation of TV Reruns is so great (about 90% of non-live
+						television is repeat programming), Flip.TV will primarily tell you of upcoming programs,
+						regardless of channel, when we know the dialog matches your topics based on earlier airings.
+					#end
+				</p>
+				<p>
+					#set ($count = $count + 1)
+					#question("What is a program reminder?")
+					#if ($section == "A")
+						<br/>
+						A: As a registered user, when you select a specific program from a list of search results,
+						you have the ability to schedule one or more reminders prior to the scheduled start
+						time of the program.  Flip.TV can send an email or text message, notifying you that
+						the program is about to start, or informing you days in advance so you can plan your
+						time or schedule a recording on your personal video recorder.
+					#end
+				</p>
+				<p>
+					#set ($count = $count + 1)
+					#question("Why did I stop receiving topic alerts?")
+					#if ($section == "A")
+						<br/>
+						A: When you create a topic alert, there is a maximum that gets sent in a single day.
+						This is done to avoid spamming you with hundreds of messages. You can change this maximum number
+						on the alerts page.  Once this number has been reached, you will no longer receive alerts until the next day.
+					#end
+				</p>
+				<p>
+					#set ($count = $count + 1)
+					#question("I received a topic alert that said I had reached my limit of 5, but it was only my 3rd alert. Why is this?")
+					#if ($section == "A")
+						<br/>
+						A: The email for each alert is sent out individually. If a several programs mention your topic at close to the same time, then
+						it is possible for the emails to arrive in a different order than the order they were sent.  So the final email with the warning 
+						may be received out of order.  You should see the other alerts shortly after.
+					#end
+				</p>			
+				<p>
+					#set ($count = $count + 1)
+					#question("Why can't I create any more program reminders?")
+					#if ($section == "A")
+						<br/>
+						A: There are a maximum number of reminders that each user can create.  You can simply delete one or more of your current program reminders to 
+						allow you create a new one.  If you feel the current limit is to
+						low, please send us some feedback and we will consider changing the limit for you.
+					#end
+				</p>			
+				<p>
+					#set ($count = $count + 1)
+					#question("Why does it log me out after I change my email address?")
+					#if ($section == "A")
+						<br/>
+						A: This is a security feature to prevent spam.  Each email address must be verified before the account
+						can be used.  When you change your email address, you will receive a new confirmation email and follow the
+						instructions to reactivate your account.
+					#end
+				</p>
+				<p>
+					#set ($count = $count + 1)
+					#question("Why can't I watch the video?  What are my options for viewing this show I found?")
+					#if ($section == "A")
+						<br/>
+						A: Most of these videos are under copyright protection, and we are not authorized to rebroadcast 
+						their video content.  We may provide video or links to video for specific programs or channels, 
+						based on partnering arrangements with the content providers.  We also try to identify videos 
+						available for purchase (for download or shipped, such as DVDs).  Finally, we recommend upcoming 
+						programs you can watch or record on your TV, if available.  And if the program isn't airing in 
+						the near future (such as the next two weeks), you can register a Program Reminder for the next 
+						time it airs on any channel.
+					#end
+				</p>
+				
+			#end
+			
+		#letterHeadBottom()
+	</div>
+<br/>
+#bodyEnd({
+	"pageType" : "basic"
+	})
+
+#footer({"search" : false})
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+</html>
+
+
+
+	

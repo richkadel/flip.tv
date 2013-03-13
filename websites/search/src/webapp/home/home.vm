@@ -1,0 +1,34 @@
+#set ($params = ({
+	"search" : true,
+	"title" : "Home Page",
+	"titleBarLeft" : "$currentUser.displayName's Home Page",
+	"pageType" : "search",
+	"activePage" : "Search"
+}))
+#fullBegin($params)
+<link rel="stylesheet" type="text/css" href="/themes/default/css/alerts.css">
+<script type="text/javascript" src="/scripts/yahoo.js"></script>
+<script type="text/javascript" src="/scripts/connection.js"></script>
+<script type="text/javascript" src="/scripts/amazon.js"></script>
+
+<div id=searchBody>
+	<div id=searchResults>		
+		<div class="leftHome">
+		#friendList("Friends", $existingFriends, "/network/friends.action")
+		#friendInviteList("Invitations to join their network", $networkRequests, "/network/friends.action")
+		</div>
+		<div class="centerHome">
+		#favoriteShows("Favorite Shows", $favoriteShows, "/home/favorite.action")
+		</div>
+		<div class="rightHome">
+		#favoriteEpisodes("Favorite Episodes", $favoriteEpisodes, "/home/favorite.action")
+		</div>
+	</div>
+</div>
+
+
+#fullEnd({
+		"pageType" : "search",
+		"ads" : "google",
+		"search" : true
+})

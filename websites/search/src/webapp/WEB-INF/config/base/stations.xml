@@ -1,0 +1,1818 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<stations>
+	<station>
+		<name>5 StarMAX</name>
+		<call_sign>5MAX</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>A &amp; E Network (Pacific Feed)</name>
+		<call_sign>AETVP</call_sign>
+		<logo>ae.tif</logo>
+	</station>
+	<station>
+		<name>A &amp; E On Demand</name>
+		<call_sign>AEDM</call_sign>
+		<logo>ae.tif</logo>
+	</station>
+	<station>
+		<name>ABC</name>
+		<call_sign>KGTV</call_sign>
+		<logo>abc.tif</logo>
+	</station>
+	<station>
+		<name>ABC Family Channel (Pacific)</name>
+		<call_sign>FAMP</call_sign>
+		<logo>abc-family.tif</logo>
+	</station>
+	<station>
+		<name>ActionMAX (Pacific)</name>
+		<call_sign>ACMAXP</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Adult On Demand</name>
+		<call_sign>ADLTDM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>AMC (Pacific)</name>
+		<call_sign>AMCP</call_sign>
+		<logo>amc.tif</logo>
+	</station>
+	<station>
+		<name>AmericanLife TV Network</name>
+		<call_sign>ALN</call_sign>
+		<logo>american-life.tif</logo>
+	</station>
+	<station>
+		<name>Animal Planet (Pacific)</name>
+		<call_sign>ANIMALP</call_sign>
+		<logo>animal-planet.tif</logo>
+	</station>
+	<station>
+		<name>Answers On Demand</name>
+		<call_sign>ANSWDM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>AOL Music On Demand</name>
+		<call_sign>AOLMDM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>AtMAX</name>
+		<call_sign>ATMAX</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Automotive On Demand</name>
+		<call_sign>AUTOMDM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>AZNTV</name>
+		<call_sign>AZNTV</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Azteca Satellite Feed</name>
+		<call_sign>AZTSAT</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>BBC America</name>
+		<call_sign>BBCA</call_sign>
+		<logo>bbc-america.tif</logo>
+	</station>
+	<station>
+		<name>BBC America On Demand</name>
+		<call_sign>BBCADM</call_sign>
+		<logo>bbc-america.tif</logo>
+	</station>
+	<station>
+		<name>BET J</name>
+		<call_sign>BETJ</call_sign>
+		<logo>bet.tif</logo>
+	</station>
+	<station>
+		<name>Biography On Demand</name>
+		<call_sign>BIODM</call_sign>
+		<logo>biography.tif</logo>
+	</station>
+	<station>
+		<name>Black Entertainment Television (Pacific)</name>
+		<call_sign>BETP</call_sign>
+		<logo>bet.tif</logo>
+	</station>
+	<station>
+		<name>Black Family Channel</name>
+		<call_sign>BLKFAM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Bloomberg Business Television</name>
+		<call_sign>BLOOM</call_sign>
+		<logo>bloomberg.tif</logo>
+	</station>
+	<station>
+		<name>Boomerang</name>
+		<call_sign>BOOM</call_sign>
+		<logo>boomerang.tif</logo>
+	</station>
+	<station>
+		<name>Boomerang Latin America</name>
+		<call_sign>BOOML</call_sign>
+		<logo>boomerang.tif</logo>
+	</station>
+	<station>
+		<name>Boomerang On Demand</name>
+		<call_sign>BOOMDM</call_sign>
+		<logo>boomerang.tif</logo>
+	</station>
+	<station>
+		<name>Bravo (Pacific Feed)</name>
+		<call_sign>BRAVOP</call_sign>
+		<logo>bravo.tif</logo>
+	</station>
+	<station>
+		<name>Cable Satellite Public Affairs Network</name>
+		<call_sign>CSPAN</call_sign>
+		<logo>c-span.tif</logo>
+	</station>
+	<station>
+		<name>Cable Satellite Public Affairs Network 2</name>
+		<call_sign>CSPAN2</call_sign>
+		<logo>c-span-2.tif</logo>
+	</station>
+	<station>
+		<name>Cable Satellite Public Affairs Network 3</name>
+		<call_sign>CSPAN3</call_sign>
+		<logo>c-span.tif</logo>
+	</station>
+	<station>
+		<name>Canal Sur</name>
+		<call_sign>SUR</call_sign>
+		<logo>canal-sur.tif</logo>
+	</station>
+	<station>
+		<name>Cartoon Network (Pacific)</name>
+		<call_sign>TOONP</call_sign>
+		<logo>cartoon-network.tif</logo>
+	</station>
+	<station>
+		<name>Cartoon Network On Demand</name>
+		<call_sign>TOONDM</call_sign>
+		<logo>cartoon-network.tif</logo>
+	</station>
+	<station>
+		<name>CBS</name>
+		<call_sign>KFMB</call_sign>
+		<logo>cbs.tif</logo>
+	</station>
+	<station>
+		<name>Cine Latino</name>
+		<call_sign>CINL</call_sign>
+		<logo>cine-latino.tif</logo>
+	</station>
+	<station>
+		<name>CineMAX (Pacific)</name>
+		<call_sign>MAXP</call_sign>
+		<logo>cinemax.tif</logo>
+	</station>
+	<station>
+		<name>CineMAX High Definition (Pacific)</name>
+		<call_sign>MAXHDP</call_sign>
+		<logo>cinemax.tif</logo>
+	</station>
+	<station>
+		<name>Cinemax On Demand</name>
+		<call_sign>MAXDM</call_sign>
+		<logo>cinemax.tif</logo>
+	</station>
+	<station>
+		<name>Club Jenna</name>
+		<call_sign>CLUBJEN</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>CNBC</name>
+		<call_sign>CNBC</call_sign>
+		<logo>cnbc.tif</logo>
+	</station>
+	<station>
+		<name>CNBC World</name>
+		<call_sign>CNBCWLD</call_sign>
+		<logo>cnbc-world.tif</logo>
+	</station>
+	<station>
+		<name>CNN</name>
+		<call_sign>CNN</call_sign>
+		<logo>cnn.tif</logo>
+	</station>
+	<station>
+		<name>CNN En Espanol- Mexico and US</name>
+		<call_sign>CNNLM</call_sign>
+		<logo>cnn-espanol.tif</logo>
+	</station>
+	<station>
+		<name>CNN Headline News</name>
+		<call_sign>CNNH</call_sign>
+		<logo>cnn-headline-news.tif</logo>
+	</station>
+	<station>
+		<name>CNN International</name>
+		<call_sign>CNNI</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>CNN Showcase On Demand</name>
+		<call_sign>CNNSDM</call_sign>
+		<logo>cnn.tif</logo>
+	</station>
+	<station>
+		<name>College Sports Television</name>
+		<call_sign>CSTV</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Columbia Cable Washington - CCTV</name>
+		<call_sign>CCTV</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Comedy Central (Pacific)</name>
+		<call_sign>COMEDYP</call_sign>
+		<logo>comedy-central.tif</logo>
+	</station>
+	<station>
+		<name>Country Music Television (Pacific)</name>
+		<call_sign>CMTVP</call_sign>
+		<logo>cmt.tif</logo>
+	</station>
+	<station>
+		<name>County Television Network</name>
+		<call_sign>CTNSD</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Court TV (Pacific Feed)</name>
+		<call_sign>COURTP</call_sign>
+		<logo>court-tv.tif</logo>
+	</station>
+	<station>
+		<name>Court TV On Demand</name>
+		<call_sign>CRTDM</call_sign>
+		<logo>court-tv.tif</logo>
+	</station>
+	<station>
+		<name>Cox Cable San Diego (Upgraded)</name>
+		<call_sign>CA4SD</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Current TV</name>
+		<call_sign>CURRENT</call_sign>
+		<logo>current.tif</logo>
+	</station>
+	<station>
+		<name>Cutting Edge On Demand</name>
+		<call_sign>CEDGDM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>CW</name>
+		<call_sign>KSWB</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Discovery en Espanol</name>
+		<call_sign>TDCES</call_sign>
+		<logo>discovery-espanol.tif</logo>
+	</station>
+	<station>
+		<name>Discovery HD Theater</name>
+		<call_sign>DHD</call_sign>
+		<logo>discovery.tif</logo>
+	</station>
+	<station>
+		<name>Discovery Health (Pacific)</name>
+		<call_sign>DHCP</call_sign>
+		<logo>discovery-health.tif</logo>
+	</station>
+	<station>
+		<name>Discovery Home</name>
+		<call_sign>DCHOME</call_sign>
+		<logo>discovery-home.tif</logo>
+	</station>
+	<station>
+		<name>Discovery Kids Network</name>
+		<call_sign>DCKIDS</call_sign>
+		<logo>discovery-kids.tif</logo>
+	</station>
+	<station>
+		<name>Discovery Times Channel</name>
+		<call_sign>DTIMES</call_sign>
+		<logo>discovery-times.tif</logo>
+	</station>
+	<station>
+		<name>Disney Channel</name>
+		<call_sign>DISN</call_sign>
+		<logo>disney.tif</logo>
+	</station>
+	<station>
+		<name>Disney Channel (Pacific)</name>
+		<call_sign>DISNP</call_sign>
+		<logo>disney.tif</logo>
+	</station>
+	<station>
+		<name>Do-It-Yourself Network</name>
+		<call_sign>DIY</call_sign>
+		<logo>diy.tif</logo>
+	</station>
+	<station>
+		<name>E! Entertainment Television (Pacific)</name>
+		<call_sign>EP</call_sign>
+		<logo>e.tif</logo>
+	</station>
+	<station>
+		<name>ENCORE - Encore</name>
+		<call_sign>ENCORE</call_sign>
+		<logo>encore.tif</logo>
+	</station>
+	<station>
+		<name>ENCORE - Encore (Pacific)</name>
+		<call_sign>ENCOREP</call_sign>
+		<logo>encore.tif</logo>
+	</station>
+	<station>
+		<name>Encore Action</name>
+		<call_sign>EACT</call_sign>
+		<logo>encore-actiion.tif</logo>
+	</station>
+	<station>
+		<name>Encore Action (Pacific)</name>
+		<call_sign>EACTP</call_sign>
+		<logo>encore-actiion.tif</logo>
+	</station>
+	<station>
+		<name>Encore Drama</name>
+		<call_sign>EDRA</call_sign>
+		<logo>encore-drama.tif</logo>
+	</station>
+	<station>
+		<name>Encore Drama (Pacific)</name>
+		<call_sign>EDRAP</call_sign>
+		<logo>encore-drama.tif</logo>
+	</station>
+	<station>
+		<name>Encore Love</name>
+		<call_sign>ELOVE</call_sign>
+		<logo>encore-love.tif</logo>
+	</station>
+	<station>
+		<name>Encore Love (Pacific)</name>
+		<call_sign>ELOVEP</call_sign>
+		<logo>encore-love.tif</logo>
+	</station>
+	<station>
+		<name>Encore Mystery</name>
+		<call_sign>EMYST</call_sign>
+		<logo>encore-mystery.tif</logo>
+	</station>
+	<station>
+		<name>Encore Mystery (Pacific)</name>
+		<call_sign>EMYSTP</call_sign>
+		<logo>encore-mystery.tif</logo>
+	</station>
+	<station>
+		<name>Encore Wam (Pacific)</name>
+		<call_sign>EWAMP</call_sign>
+		<logo>encore-wam.tif</logo>
+	</station>
+	<station>
+		<name>Encore Westerns</name>
+		<call_sign>EWST</call_sign>
+		<logo>encore-wam.tif</logo>
+	</station>
+	<station>
+		<name>Encore Westerns (Pacific)</name>
+		<call_sign>EWSTP</call_sign>
+		<logo>encore-westerns.tif</logo>
+	</station>
+	<station>
+		<name>Entertainment On Demand</name>
+		<call_sign>ENTDM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>ESPN</name>
+		<call_sign>ESPN</call_sign>
+		<logo>espn.tif</logo>
+	</station>
+	<station>
+		<name>ESPN Classic</name>
+		<call_sign>ESPNCL</call_sign>
+		<logo>espn-classic.tif</logo>
+	</station>
+	<station>
+		<name>ESPN2</name>
+		<call_sign>ESPN2</call_sign>
+		<logo>espn-2.tif</logo>
+	</station>
+	<station>
+		<name>ESPNEWS</name>
+		<call_sign>ESPNEWS</call_sign>
+		<logo>espn-news.tif</logo>
+	</station>
+	<station>
+		<name>ESPNHD</name>
+		<call_sign>ESPNHD</call_sign>
+		<logo>espn.tif</logo>
+	</station>
+	<station>
+		<name>Eternal Word Television Network</name>
+		<call_sign>EWTN</call_sign>
+		<logo>ewtn.tif</logo>
+	</station>
+	<station>
+		<name>Events On Demand</name>
+		<call_sign>EVNDM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>EWTN Espanol</name>
+		<call_sign>EWTNES</call_sign>
+		<logo>ewtn-espanol.tif</logo>
+	</station>
+	<station>
+		<name>Exercise On Demand</name>
+		<call_sign>EXERDM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Expo TV On Demand</name>
+		<call_sign>EXPODM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Fine Living</name>
+		<call_sign>FLIVING</call_sign>
+		<logo>fine-living.tif</logo>
+	</station>
+	<station>
+		<name>Fit Tv</name>
+		<call_sign>FITV</call_sign>
+		<logo>fit-tv.tif</logo>
+	</station>
+	<station>
+		<name>Food Network (Pacific)</name>
+		<call_sign>FOODP</call_sign>
+		<logo>food.tif</logo>
+	</station>
+	<station>
+		<name>Fox</name>
+		<call_sign>XETV</call_sign>
+		<logo>fox.tif</logo>
+	</station>
+	<station>
+		<name>Fox College Sports - Atlantic</name>
+		<call_sign>FCSA</call_sign>
+		<logo>fox-sports.tif</logo>
+	</station>
+	<station>
+		<name>Fox College Sports - Central</name>
+		<call_sign>FCSC</call_sign>
+		<logo>fox-sports.tif</logo>
+	</station>
+	<station>
+		<name>Fox College Sports - Pacific</name>
+		<call_sign>FCSP</call_sign>
+		<logo>fox-sports.tif</logo>
+	</station>
+	<station>
+		<name>Fox HD Channel (FOXHDSW)</name>
+		<call_sign>FOXHDSW</call_sign>
+		<logo>fox.tif</logo>
+	</station>
+	<station>
+		<name>Fox Movie Channel</name>
+		<call_sign>FMC</call_sign>
+		<logo>fox-movies.tif</logo>
+	</station>
+	<station>
+		<name>Fox News Channel</name>
+		<call_sign>FNC</call_sign>
+		<logo>fox.tif</logo>
+	</station>
+	<station>
+		<name>Fox Reality Channel</name>
+		<call_sign>FOXREAL</call_sign>
+		<logo>fox-reality.tif</logo>
+	</station>
+	<station>
+		<name>Fox Soccer Channel</name>
+		<call_sign>FSC</call_sign>
+		<logo>fox-soccer.tif</logo>
+	</station>
+	<station>
+		<name>Fox Sports en Espanol</name>
+		<call_sign>FSE</call_sign>
+		<logo>fox-sports-espanol.tif</logo>
+	</station>
+	<station>
+		<name>Fox Sports West (San Diego feed)</name>
+		<call_sign>FSW1</call_sign>
+		<logo>fox-sports.tif</logo>
+	</station>
+	<station>
+		<name>Free Movies On Demand</name>
+		<call_sign>FRMVDM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Fuel TV</name>
+		<call_sign>FUEL</call_sign>
+		<logo>fuel-tv.tif</logo>
+	</station>
+	<station>
+		<name>Fuse</name>
+		<call_sign>FUSE</call_sign>
+		<logo>fuse.tif</logo>
+	</station>
+	<station>
+		<name>FX Networks Inc. (Pacific)</name>
+		<call_sign>FXP</call_sign>
+		<logo>fx.tif</logo>
+	</station>
+	<station>
+		<name>G4-Video Game Television (Pacific)</name>
+		<call_sign>G4P</call_sign>
+		<logo>g4.tif</logo>
+	</station>
+	<station>
+		<name>GAME 1</name>
+		<call_sign>GAME1</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>GAME 10</name>
+		<call_sign>GAME10</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>GAME 11</name>
+		<call_sign>GAME11</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>GAME 12</name>
+		<call_sign>GAME12</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>GAME 13</name>
+		<call_sign>GAME13</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>GAME 14</name>
+		<call_sign>GAME14</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>GAME 2</name>
+		<call_sign>GAME2</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>GAME 3</name>
+		<call_sign>GAME3</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>GAME 4</name>
+		<call_sign>GAME4</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>GAME 5</name>
+		<call_sign>GAME5</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>GAME 6</name>
+		<call_sign>GAME6</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>GAME 7</name>
+		<call_sign>GAME7</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>GAME 8</name>
+		<call_sign>GAME8</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>GAME 9</name>
+		<call_sign>GAME9</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Golf Channel On Demand</name>
+		<call_sign>GOLFDM</call_sign>
+		<logo>golf-channel.tif</logo>
+	</station>
+	<station>
+		<name>GOSPEL MUSIC CHANNEL</name>
+		<call_sign>GMC</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Great American Country</name>
+		<call_sign>GAC</call_sign>
+		<logo>gac.tif</logo>
+	</station>
+	<station>
+		<name>Great American Country On Demand</name>
+		<call_sign>GACDM</call_sign>
+		<logo>gac.tif</logo>
+	</station>
+	<station>
+		<name>GSN</name>
+		<call_sign>GSN</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>GSN (Pacific)</name>
+		<call_sign>GSNP</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Hallmark Channel (Pacific)</name>
+		<call_sign>HALMRKP</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>HBO Latino Pacific feed</name>
+		<call_sign>HBOLATP</call_sign>
+		<logo>hbo.tif</logo>
+	</station>
+	<station>
+		<name>HBO On Demand</name>
+		<call_sign>HBODEM</call_sign>
+		<logo>hbo.tif</logo>
+	</station>
+	<station>
+		<name>HDNet</name>
+		<call_sign>HDNET</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>HDNet Movies</name>
+		<call_sign>HDNETMV</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>here! On Demand</name>
+		<call_sign>HEREDM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>History International</name>
+		<call_sign>HISI</call_sign>
+		<logo>history-intl.tif</logo>
+	</station>
+	<station>
+		<name>Home &amp; Garden Television (Pacific)</name>
+		<call_sign>HGTVP</call_sign>
+		<logo>hgtv.tif</logo>
+	</station>
+	<station>
+		<name>Home Box Office</name>
+		<call_sign>HBO</call_sign>
+		<logo>hbo.tif</logo>
+	</station>
+	<station>
+		<name>Home Box Office (Pacific)</name>
+		<call_sign>HBOP</call_sign>
+		<logo>hbo.tif</logo>
+	</station>
+	<station>
+		<name>Home Box Office Comedy (Pacific)</name>
+		<call_sign>HBOCP</call_sign>
+		<logo>hbo.tif</logo>
+	</station>
+	<station>
+		<name>Home Box Office Digital Pacific Feed</name>
+		<call_sign>HBOHDP</call_sign>
+		<logo>hbo.tif</logo>
+	</station>
+	<station>
+		<name>Home Box Office Family (Pacific)</name>
+		<call_sign>HBOFP</call_sign>
+		<logo>hbo.tif</logo>
+	</station>
+	<station>
+		<name>Home Box Office Plus (Pacific)</name>
+		<call_sign>HB2P</call_sign>
+		<logo>hbo.tif</logo>
+	</station>
+	<station>
+		<name>Home Box Office Signature (Pacific)</name>
+		<call_sign>HBOSIGP</call_sign>
+		<logo>hbo.tif</logo>
+	</station>
+	<station>
+		<name>Home Box Office Zone (Pacific)</name>
+		<call_sign>HBOZP</call_sign>
+		<logo>hbo.tif</logo>
+	</station>
+	<station>
+		<name>Home Shopping Network</name>
+		<call_sign>HSN</call_sign>
+		<logo>home-shopping-network.tif</logo>
+	</station>
+	<station>
+		<name>HorseRacing TV</name>
+		<call_sign>HRTV</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Howard TV On Demand</name>
+		<call_sign>HWTVDM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>In Demand HDPV (HD Events)</name>
+		<call_sign>HDPPV</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>iN Demand/IN1</name>
+		<call_sign>IN1</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>iN Demand/IN2</name>
+		<call_sign>IN2</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Independent Film Channel</name>
+		<call_sign>IFC</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>IndiePlex</name>
+		<call_sign>IPLEX</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Information Channel - INFO999</name>
+		<call_sign>INFO999</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Interactive Games On Demand</name>
+		<call_sign>INTGMDM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Interactive News On Demand</name>
+		<call_sign>INTNWDM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>International Movies On Demand</name>
+		<call_sign>INMVDM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>ION Television Satellite Feed (Pacific)</name>
+		<call_sign>ISATP</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Jewelry Television by ACN</name>
+		<call_sign>JWLTV</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>KBNTCA</name>
+		<call_sign>KBNTCA</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>KFMBDT (KFMB-DT)</name>
+		<call_sign>KFMBDT</call_sign>
+		<logo>cbs.tif</logo>
+	</station>
+	<station>
+		<name>KGTVDT (KGTV-DT)</name>
+		<call_sign>KGTVDT</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>KIDS (Kids Channel) On Demand</name>
+		<call_sign>KIDSDM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Kids/Pre-School On Demand</name>
+		<call_sign>KDPREDM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>KNSDDT (KNSD-DT)</name>
+		<call_sign>KNSDDT</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>KNSDDT2 (KNSD-DT2)</name>
+		<call_sign>KNSDDT2</call_sign>
+		<logo>abc.tif</logo>
+	</station>
+	<station>
+		<name>KPBS</name>
+		<call_sign>KPBS</call_sign>
+		<logo>pbs.tif</logo>
+	</station>
+	<station>
+		<name>KPBSDT (KPBS-DT)</name>
+		<call_sign>KPBSDT</call_sign>
+		<logo>pbs.tif</logo>
+	</station>
+	<station>
+		<name>KTLA</name>
+		<call_sign>KTLA</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>KUSI</name>
+		<call_sign>KUSI</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>La Familia Television Network</name>
+		<call_sign>LFN</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Leased Access - LEAC071</name>
+		<call_sign>LEAC071</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Lifestyles &amp; Learning On Demand</name>
+		<call_sign>LFDM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Lifetime (Pacific)</name>
+		<call_sign>LIFEP</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Lifetime Movie Network</name>
+		<call_sign>LMN</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Lifetime Real Women</name>
+		<call_sign>LRW</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Local News</name>
+		<call_sign>NEWS</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Local On Demand</name>
+		<call_sign>LOCDM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Local Origination - LOOR012</name>
+		<call_sign>LOOR012</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Local Origination - LOOR019</name>
+		<call_sign>LOOR019</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Local Origination - LOOR343</name>
+		<call_sign>LOOR343</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>LOGO (Pacific Feed)</name>
+		<call_sign>LOGOP</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>MOJO HD</name>
+		<call_sign>MOJOHD</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>MoreMAX (Pacific)</name>
+		<call_sign>MOMAXP</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Movie Trailers On Demand</name>
+		<call_sign>MVTRDM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Movies On Demand</name>
+		<call_sign>MVDM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>MSNBC</name>
+		<call_sign>MSNBC</call_sign>
+		<logo>msnbc.tif</logo>
+	</station>
+	<station>
+		<name>MTV Tres</name>
+		<call_sign>MTV3S</call_sign>
+		<logo>mtv-espanol.tif</logo>
+	</station>
+	<station>
+		<name>MTV2 West</name>
+		<call_sign>MTV2P</call_sign>
+		<logo>mtv-2.tif</logo>
+	</station>
+	<station>
+		<name>Mun2</name>
+		<call_sign>MUN2</call_sign>
+		<logo>mun2.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice On Demand</name>
+		<call_sign>MUSCDM</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: 70's</name>
+		<call_sign>70S</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: 80's</name>
+		<call_sign>80S</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: 90s Channel</name>
+		<call_sign>MC90S</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Adult Alternative</name>
+		<call_sign>ADALT</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Alternative</name>
+		<call_sign>ALT</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Arena Rock</name>
+		<call_sign>ARNHIT</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Big Band &amp; Swing</name>
+		<call_sign>BIGBAND</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Bluegrass</name>
+		<call_sign>BLUEGR</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Blues</name>
+		<call_sign>BLUS</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Classic Country</name>
+		<call_sign>CLCNTRY</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Classic R&amp;B</name>
+		<call_sign>CLASRB</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Classic Rock</name>
+		<call_sign>CLSRCK</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Classical Masterpieces</name>
+		<call_sign>MASTERP</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Contemporary Christian</name>
+		<call_sign>CTMPCH</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Dance</name>
+		<call_sign>DNCE</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Easy Listening</name>
+		<call_sign>EASYLIS</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Electronica</name>
+		<call_sign>ELECTRN</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Gospel</name>
+		<call_sign>GOSP</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Hit List</name>
+		<call_sign>HITLIST</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Jazz</name>
+		<call_sign>JZZ</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Light Classical</name>
+		<call_sign>LTCLASS</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Metal</name>
+		<call_sign>METAL</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Mexicana</name>
+		<call_sign>MEXICAN</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Musica Urbana</name>
+		<call_sign>MUSURB</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Opera</name>
+		<call_sign>OPRA</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Party Favorites</name>
+		<call_sign>PARTY</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Pop Latino</name>
+		<call_sign>POPLAT</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: R &amp; B Hits</name>
+		<call_sign>RBHIT</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: R&amp;B and Hip-Hop</name>
+		<call_sign>RBHIP</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Radio Disney</name>
+		<call_sign>RDISN</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Rap</name>
+		<call_sign>RAPP</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Reggae</name>
+		<call_sign>MCRGGAE</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Retroactive</name>
+		<call_sign>RETROA</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Rock</name>
+		<call_sign>MCROCK</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Rock en Espanol</name>
+		<call_sign>RCKESP</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Salsa Y Merengue</name>
+		<call_sign>SMRENG</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Show Tunes</name>
+		<call_sign>SHWTUN</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Showcase</name>
+		<call_sign>SHWCSE1</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Singers &amp; Standards</name>
+		<call_sign>STANDRD</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Smooth Jazz</name>
+		<call_sign>SMJZZ</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Smooth R&amp;B</name>
+		<call_sign>SMOOTH</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Soft Rock</name>
+		<call_sign>SFTROCK</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Solid Gold Oldies</name>
+		<call_sign>GOLDOLD</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Sounds of the Season</name>
+		<call_sign>SEASON</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Soundscapes</name>
+		<call_sign>SNDSCP</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music Choice: Today's Country</name>
+		<call_sign>TDCNTRY</call_sign>
+		<logo>music-choice.tif</logo>
+	</station>
+	<station>
+		<name>Music On Demand</name>
+		<call_sign>MSCDM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Music Television (Pacific)</name>
+		<call_sign>MTVP</call_sign>
+		<logo>mtv.tif</logo>
+	</station>
+	<station>
+		<name>National Geographic Channel</name>
+		<call_sign>NGC</call_sign>
+		<logo>national-geographic.tif</logo>
+	</station>
+	<station>
+		<name>National Geographic On Demand</name>
+		<call_sign>NGCDM</call_sign>
+		<logo>national-geographic.tif</logo>
+	</station>
+	<station>
+		<name>NBA Barker Channel</name>
+		<call_sign>NBAPC</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>NBA High Definition</name>
+		<call_sign>NBAHD</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>NBA League Pass 1</name>
+		<call_sign>TEAM1</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>NBA League Pass 2</name>
+		<call_sign>TEAM2</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>NBA League Pass 3</name>
+		<call_sign>TEAM3</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>NBA League Pass 4</name>
+		<call_sign>TEAM4</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>NBA League Pass 5</name>
+		<call_sign>TEAM5</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>NBA League Pass 6</name>
+		<call_sign>TEAM6</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>NBA League Pass 7</name>
+		<call_sign>TEAM7</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>NBA League Pass 8</name>
+		<call_sign>TEAM8</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>NBA League Pass 9</name>
+		<call_sign>TEAM9</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>NBA TV</name>
+		<call_sign>NBATV</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>NBC</name>
+		<call_sign>KNSD</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Nick at Nite's TV Land (Pacific)</name>
+		<call_sign>TVLANDP</call_sign>
+		<logo>nick-at-nite.tif</logo>
+	</station>
+	<station>
+		<name>Nickelodeon (Pacific)</name>
+		<call_sign>NIKP</call_sign>
+		<logo>nickelodeon.tif</logo>
+	</station>
+	<station>
+		<name>Nickelodeon Games and Sports</name>
+		<call_sign>GAS</call_sign>
+		<logo>nickelodeon.tif</logo>
+	</station>
+	<station>
+		<name>Nicktoons Network</name>
+		<call_sign>NIKTON</call_sign>
+		<logo>nicktoons.tif</logo>
+	</station>
+	<station>
+		<name>Noggin &amp; The N</name>
+		<call_sign>NOGN</call_sign>
+		<logo>noggin.tif</logo>
+	</station>
+	<station>
+		<name>On Demand en Espanol</name>
+		<call_sign>ESPDM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>On Demand Preview</name>
+		<call_sign>PREVDM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>OuterMAX</name>
+		<call_sign>OMAX</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Outrageous TV On Demand</name>
+		<call_sign>OUTTVDM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Ovation: The Arts Network</name>
+		<call_sign>OVATION</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Oxygen Media Inc. (PACIFIC)</name>
+		<call_sign>OXYGENP</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Oxygen On Demand</name>
+		<call_sign>OXYDM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>PBS KIDS Sprout On Demand</name>
+		<call_sign>SPROTDM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Playboy TV</name>
+		<call_sign>PLAYBOY</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Puma TV</name>
+		<call_sign>PUMATV</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>QVC</name>
+		<call_sign>QVC</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Radio Channel</name>
+		<call_sign>RADIO</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Radio957 (Lineups)</name>
+		<call_sign>RADIO957</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Radio958 (Lineups)</name>
+		<call_sign>RADIO958</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Saigon Broadcasting Network</name>
+		<call_sign>SBN</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>San Diego's Learning Channel</name>
+		<call_sign>ITVS</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Sci-Fi Channel (Pacific)</name>
+		<call_sign>SCIFIP</call_sign>
+		<logo>sci-fi.tif</logo>
+	</station>
+	<station>
+		<name>ShopNBC</name>
+		<call_sign>SHOPNBC</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Showtime</name>
+		<call_sign>SHOW</call_sign>
+		<logo>showtime.tif</logo>
+	</station>
+	<station>
+		<name>Showtime (Pacific)</name>
+		<call_sign>SHOWP</call_sign>
+		<logo>showtime.tif</logo>
+	</station>
+	<station>
+		<name>Showtime Beyond (Pacific)</name>
+		<call_sign>SHOWBP</call_sign>
+		<logo>showtime.tif</logo>
+	</station>
+	<station>
+		<name>Showtime Digital Pacific</name>
+		<call_sign>SHOWHDP</call_sign>
+		<logo>showtime.tif</logo>
+	</station>
+	<station>
+		<name>Showtime Extreme (Pacific)</name>
+		<call_sign>SHOWXP</call_sign>
+		<logo>showtime-extreme.tif</logo>
+	</station>
+	<station>
+		<name>Showtime Familyzone (Pacific)</name>
+		<call_sign>FAMZP</call_sign>
+		<logo>showtime.tif</logo>
+	</station>
+	<station>
+		<name>Showtime Next (Pacific)</name>
+		<call_sign>NEXTP</call_sign>
+		<logo>showtime.tif</logo>
+	</station>
+	<station>
+		<name>Showtime On Demand</name>
+		<call_sign>SHOWDM</call_sign>
+		<logo>showtime.tif</logo>
+	</station>
+	<station>
+		<name>Showtime Showcase (Pacific)</name>
+		<call_sign>SHOCSEP</call_sign>
+		<logo>showtime.tif</logo>
+	</station>
+	<station>
+		<name>Showtime Too (Pacific)</name>
+		<call_sign>SHOTOOP</call_sign>
+		<logo>showtime-too.tif</logo>
+	</station>
+	<station>
+		<name>Showtime Women (Pacific)</name>
+		<call_sign>WOMENP</call_sign>
+		<logo>showtime.tif</logo>
+	</station>
+	<station>
+		<name>Sleuth</name>
+		<call_sign>SLEUTH</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>SoapNet (Pacific Feed)</name>
+		<call_sign>SOAPP</call_sign>
+		<logo>soapnet.tif</logo>
+	</station>
+	<station>
+		<name>Sorpresa</name>
+		<call_sign>SORPRESA</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Speed Channel</name>
+		<call_sign>SPEED</call_sign>
+		<logo>speed-channel.tif</logo>
+	</station>
+	<station>
+		<name>Speed Channel On Demand</name>
+		<call_sign>SPEEDDM</call_sign>
+		<logo>speed-channel.tif</logo>
+	</station>
+	<station>
+		<name>Spike TV (Pacific Feed)</name>
+		<call_sign>SPIKEP</call_sign>
+		<logo>spike.tif</logo>
+	</station>
+	<station>
+		<name>Sports Illustrated on Demand</name>
+		<call_sign>SPILDM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Sports Pay-Per-View 1</name>
+		<call_sign>ESPNPPV1</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Sports Pay-Per-View 2</name>
+		<call_sign>ESPNPPV2</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Sports Pay-Per-View 3</name>
+		<call_sign>ESPNPPV3</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Sports Pay-Per-View 4</name>
+		<call_sign>ESPNPPV4</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Sports Pay-Per-View 5</name>
+		<call_sign>ESPNPPV5</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Sports Pay-Per-View 6</name>
+		<call_sign>ESPNPPV6</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Sportskool On Demand</name>
+		<call_sign>SKOOLDM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Starz</name>
+		<call_sign>STARZ</call_sign>
+		<logo>starz-west.tif</logo>
+	</station>
+	<station>
+		<name>Starz (Pacific)</name>
+		<call_sign>STARZP</call_sign>
+		<logo>starz-west.tif</logo>
+	</station>
+	<station>
+		<name>Starz Cinema (Pacific)</name>
+		<call_sign>SCINP</call_sign>
+		<logo>starz-west.tif</logo>
+	</station>
+	<station>
+		<name>Starz Edge (Pacific)</name>
+		<call_sign>SEDGP</call_sign>
+		<logo>starz-edge.tif</logo>
+	</station>
+	<station>
+		<name>Starz In Black (Pacific)</name>
+		<call_sign>SBLKP</call_sign>
+		<logo>starz-in-black.tif</logo>
+	</station>
+	<station>
+		<name>Starz Kids &amp;Family (Pacific)</name>
+		<call_sign>SKFP</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>STARZ On Demand</name>
+		<call_sign>STARZDM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>STARZ! High Definition (Pacific)</name>
+		<call_sign>STRZHDP</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Style (Pacific Feed)</name>
+		<call_sign>STYLEP</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Sundance Channel (Pacific)</name>
+		<call_sign>SUNDAEP</call_sign>
+		<logo>sundance.tif</logo>
+	</station>
+	<station>
+		<name>TBS On Demand</name>
+		<call_sign>TBSDM</call_sign>
+		<logo>tbs.tif</logo>
+	</station>
+	<station>
+		<name>Telefutura West Satellite Feed</name>
+		<call_sign>TFPSAT</call_sign>
+		<logo>telefutura.tif</logo>
+	</station>
+	<station>
+		<name>TENBlox</name>
+		<call_sign>TENBLOX</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>TenClips</name>
+		<call_sign>TENCLIP</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>The Biography Channel</name>
+		<call_sign>BIO</call_sign>
+		<logo>biography.tif</logo>
+	</station>
+	<station>
+		<name>The Discovery Channel (Pacific)</name>
+		<call_sign>DSCP</call_sign>
+		<logo>discovery.tif</logo>
+	</station>
+	<station>
+		<name>The Erotic Network</name>
+		<call_sign>TEN</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>The Filipino Channel</name>
+		<call_sign>FILIP</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>The Golf Channel</name>
+		<call_sign>GOLF</call_sign>
+		<logo>golf-channel.tif</logo>
+	</station>
+	<station>
+		<name>The History Channel (Pacific Feed)</name>
+		<call_sign>HISTP</call_sign>
+		<logo>history.tif</logo>
+	</station>
+	<station>
+		<name>The Inspiration Life Network (Digital Fe</name>
+		<call_sign>ILIFE</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>The Inspiration Network</name>
+		<call_sign>INSP</call_sign>
+		<logo>inspiration.tif</logo>
+	</station>
+	<station>
+		<name>The Learning Channel (Pacific)</name>
+		<call_sign>TLCP</call_sign>
+		<logo>tlc.tif</logo>
+	</station>
+	<station>
+		<name>The Military Channel</name>
+		<call_sign>MILI</call_sign>
+		<logo>military.tif</logo>
+	</station>
+	<station>
+		<name>The Movie Channel (Pacific)</name>
+		<call_sign>TMCP</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>The Movie Channel Extra (Pacific)</name>
+		<call_sign>TMCXP</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>The Science Channel</name>
+		<call_sign>SCIENCE</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>The Tennis Channel</name>
+		<call_sign>TENNIS</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>The Travel Channel (Pacific)</name>
+		<call_sign>TRAVP</call_sign>
+		<logo>travel-channel.tif</logo>
+	</station>
+	<station>
+		<name>The Weather Channel</name>
+		<call_sign>TWC</call_sign>
+		<logo>weather-channel.tif</logo>
+	</station>
+	<station>
+		<name>The Word Network</name>
+		<call_sign>WORD</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>ThrillerMAX (Pacific)</name>
+		<call_sign>THMAXP</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Time Warner San Diego City/NASA</name>
+		<call_sign>TWCNSD</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>TMC On Demand</name>
+		<call_sign>TMCDM</call_sign>
+		<logo>tmc.tif</logo>
+	</station>
+	<station>
+		<name>TNT On Demand</name>
+		<call_sign>TNTDM</call_sign>
+		<logo>tnt.tif</logo>
+	</station>
+	<station>
+		<name>TNTHD (TNT-HD)</name>
+		<call_sign>TNTHD</call_sign>
+		<logo>tnt.tif</logo>
+	</station>
+	<station>
+		<name>Toon Disney</name>
+		<call_sign>TOOND</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Toon Disney (Pacific Feed)</name>
+		<call_sign>TOONDP</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Toon Disney en Espanol</name>
+		<call_sign>TOONDS</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Trinity Broadcasting Network</name>
+		<call_sign>TBN</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Turner Broadcasting System (Pacifc)</name>
+		<call_sign>TBSP</call_sign>
+		<logo>tbs.tif</logo>
+	</station>
+	<station>
+		<name>Turner Classic Movies</name>
+		<call_sign>TCM</call_sign>
+		<logo>tmc.tif</logo>
+	</station>
+	<station>
+		<name>Turner Network TV (Pacific)</name>
+		<call_sign>TNTP</call_sign>
+		<logo>tnt.tif</logo>
+	</station>
+	<station>
+		<name>TV Guide Channel (Pacific)</name>
+		<call_sign>TVGCP</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>TV Guide Spot On Demand</name>
+		<call_sign>TVGSDM</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>UCSD-TV</name>
+		<call_sign>UCSDTV</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Universal HD</name>
+		<call_sign>UHD</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>USA Network (Pacific)</name>
+		<call_sign>USAP</call_sign>
+		<logo>usa.tif</logo>
+	</station>
+	<station>
+		<name>V-Me</name>
+		<call_sign>VME</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>VERSUS</name>
+		<call_sign>VERSUS</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>VH1 Classic</name>
+		<call_sign>VH1CL</call_sign>
+		<logo>vh1.tif</logo>
+	</station>
+	<station>
+		<name>Video Hits One (Pacific)</name>
+		<call_sign>VH1P</call_sign>
+		<logo>vh1.tif</logo>
+	</station>
+	<station>
+		<name>Video Hits Uno (Spanish File)</name>
+		<call_sign>VH1SF</call_sign>
+		<logo>vh1.tif</logo>
+	</station>
+	<station>
+		<name>Video Rola</name>
+		<call_sign>VROLA</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>W MAX--WOMAX</name>
+		<call_sign>WOMAX</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>WGN/UVTV Satellite Group</name>
+		<call_sign>WGNSAT</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>Women's Entertainment Pacific</name>
+		<call_sign>WEP</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>XDTV</name>
+		<call_sign>XDTV</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>XETVDT (XETV-DT)</name>
+		<call_sign>XETVDT</call_sign>
+		<logo></logo>
+	</station>
+	<station>
+		<name>XHAS</name>
+		<call_sign>XHAS</call_sign>
+		<logo></logo>
+	</station>
+</stations>

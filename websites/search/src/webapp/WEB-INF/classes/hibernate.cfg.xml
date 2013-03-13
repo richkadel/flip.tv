@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	
+	<session-factory>
+		
+		<!-- properties -->
+		<property name="connection.datasource">java:/comp/env/jdbc/search</property>
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="show_sql">false</property>
+		<property name="format_sql">false</property>
+		
+		<!-- mapping files in alphabetical order -->
+		<mapping resource="com/appeligo/alerts/PendingAlert.hbm.xml"/>
+		<mapping resource="com/appeligo/alerts/ProgramAlert.hbm.xml"/>
+		<mapping resource="com/appeligo/alerts/KeywordAlert.hbm.xml"/>
+		<mapping resource="com/appeligo/alerts/KeywordMatch.hbm.xml"/>
+		<mapping resource="com/appeligo/search/entity/Favorite.hbm.xml"/>
+		<mapping resource="com/appeligo/search/entity/Feedback.hbm.xml"/>
+		<mapping resource="com/appeligo/search/entity/Friend.hbm.xml"/>
+		<mapping resource="com/appeligo/search/entity/Group.hbm.xml"/>
+		<mapping resource="com/appeligo/search/entity/Message.hbm.xml"/>
+		<mapping resource="com/appeligo/search/entity/Rating.hbm.xml"/>
+		<mapping resource="com/appeligo/search/entity/User.hbm.xml"/>
+		<mapping resource="com/appeligo/search/entity/ToNotify.hbm.xml"/>
+		
+	</session-factory>
+	
+</hibernate-configuration>

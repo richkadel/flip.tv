@@ -1,0 +1,56 @@
+#!/bin/bash
+#
+# channelfeed:		Capture and Process VBI (closed caption)
+#
+# chkconfig:	345 120 10
+# description:	Captures closed captions from one or more TV capture
+#		cards, and sends the parsed results to a service
+#		to process the data for Knowbout.TV
+#
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+export APPNAME=SendCaptions
+FLIPTV_HOME=/usr/local/flip.tv
+[ -d $FLIPTV_HOME ] || exit 0
+
+start() 
+{
+        echo -n $"Starting channelfeed: "
+        daemon $FLIPTV_HOME/runchannelfeed $FLIPTV_HOME
+
+	touch /var/lock/subsys/channelfeed
+        echo
+}
+
+stop() 
+{
+        echo -n $"Shutting down channelfeed: "
+	killproc $APPNAME
+
+	rm -f  /var/lock/subsys/channelfeed
+        echo
+}
+
+# See how we were called.
+case "$1" in
+  start)
+	start
+        ;;
+  stop)
+	stop
+        ;;
+  restart|reload)
+	stop
+	start
+	;;
+  condrestart)
+	[ -e /var/lock/subsys/channelfeed ] && (stop; start)
+	;;
+  *)
+        echo $"Usage: $0 {start|stop|restart|reload|condrestart}"
+        exit 1
+esac
+
+exit 0

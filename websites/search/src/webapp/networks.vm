@@ -1,0 +1,374 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		#header({
+			"title" : "Program Guide Networks",
+			"pageType" : "basic"}
+		)
+	</head>
+
+	#headerBar({
+			"search"		: false,
+			"titleBarLeft"	: "Supported Networks",
+			"noLogo"		: true
+			})
+	#bodyStart({
+			"pageType" : "basic"
+			})
+	<div id="bd-a">
+		#letterHeadTop()
+			<p class="memoheader">Network Coverage</p>
+			<p>
+			Here is the list of networks supported by Flip.TV for <a href="#basic">Basic Networks</a> and <a href="#basic">Expanded Networks (Digital/Satellite).</a><br/>
+			This list is the list of networks that we are currently receiving program guide information for.  We additionally monitor the close captions
+			of a subset of this list. That list can be found on the <a href="about.vm#CC">about page.</a>
+			</p>
+			
+			<a name"basic/>
+				<ul>
+					<li>A & E Network</li>
+					<li>ABC</li>
+					<li>ABC Family</li>
+					<li>AMC</li>
+					<li>Animal Planet</li>
+					<li>Black Entertainment Television</li>
+					<li>Bravo</li>
+					<li>Cable Satellite Public Affairs Network</li>
+					<li>Cartoon Network</li>
+					<li>CBS</li>
+					<li>CNBC</li>
+					<li>CNN</li>
+					<li>CNN Headline News</li>
+					<li>Comedy Central</li>
+					<li>Country Music Television</li>
+					<li>Court TV</li>
+					<li>Discovery Health</li>
+					<li>Disney Channel</li>
+					<li>Disney Channel (Pacific)</li>
+					<li>ESPN</li>
+					<li>ESPN Classic</li>
+					<li>ESPN2</li>
+					<li>Eternal Word Television Network</li>
+					<li>Food Network</li>
+					<li>Fox News Channel</li>
+					<li>FX Networks Inc.</li>
+					<li>Hallmark Channel</li>
+					<li>Home & Garden Television</li>
+					<li>Home Box Office (Pacific)</li>
+					<li>Home Shopping Network</li>
+					<li>Jewelry Television by ACN</li>
+					<li>KTLA</li>
+					<li>Lifetime</li>
+					<li>Lifetime Movie Network</li>
+					<li>MSNBC</li>
+					<li>MTV - Music Television</li>
+					<li>National Geographic Channel</li>
+					<li>NBC</li>
+					<li>Nickelodeon</li>
+					<li>Oxygen Media Inc.</li>
+					<li>PBS</li>
+					<li>QVC</li>
+					<li>Sci-Fi Channel</li>
+					<li>ShopNBC</li>
+					<li>The Discovery Channel</li>
+					<li>The Golf Channel</li>
+					<li>The History Channel</li>
+					<li>The Learning Channel</li>
+					<li>The Travel Channel</li>
+					<li>The Weather Channel</li>
+					<li>Turner Broadcasting System</li>
+					<li>Turner Classic Movies</li>
+					<li>Turner Network TV</li>
+					<li>TV Guide Channel</li>
+					<li>TV Land</li>
+					<li>USA Network</li>
+					<li>VERSUS</li>
+					<li>VH1 - Video Hits One</li>
+					<li>WGN/UVTV Satellite Group</li>
+					<li>Women's Entertainment</li>
+					<li>WTVT</li>
+				</ul>
+			<a name"basic/>
+				<ul>
+					<li>5 StarMAX</li>
+					<li>A & E Network</li>
+					<li>A & E On Demand</li>
+					<li>ABC</li>
+					<li>ABC Family</li>
+					<li>ActionMAX</li>
+					<li>Adult On Demand</li>
+					<li>AMC</li>
+					<li>AmericanLife TV Network</li>
+					<li>Animal Planet</li>
+					<li>Answers On Demand</li>
+					<li>AtMAX</li>
+					<li>BBC America</li>
+					<li>BBC America On Demand</li>
+					<li>BET J</li>
+					<li>Black Entertainment Television</li>
+					<li>Bloomberg Business Television</li>
+					<li>Bravo</li>
+					<li>Cable Satellite Public Affairs Network</li>
+					<li>Cable Satellite Public Affairs Network 3</li>
+					<li>Canal Sur</li>
+					<li>Cartoon Network</li>
+					<li>Cartoon Network On Demand</li>
+					<li>CBS</li>
+					<li>CineMAX</li>
+					<li>Cinemax On Demand</li>
+					<li>CNBC</li>
+					<li>CNBC World</li>
+					<li>CNN</li>
+					<li>CNN En Espanol- Mexico and US</li>
+					<li>CNN Headline News</li>
+					<li>CNN Showcase On Demand</li>
+					<li>Comedy Central</li>
+					<li>Country Music Television</li>
+					<li>Court TV</li>
+					<li>Court TV On Demand</li>
+					<li>Current TV</li>
+					<li>Cutting Edge On Demand</li>
+					<li>Discovery en Espanol</li>
+					<li>Discovery HD Theater</li>
+					<li>Discovery Health</li>
+					<li>Discovery Home</li>
+					<li>Discovery Kids Network</li>
+					<li>Discovery Times Channel</li>
+					<li>Disney Channel</li>
+					<li>Disney Channel (Pacific)</li>
+					<li>Do-It-Yourself Network</li>
+					<li>ENCORE  - Encore</li>
+					<li>Encore Action</li>
+					<li>Encore Drama</li>
+					<li>Encore Love</li>
+					<li>Encore Mystery</li>
+					<li>Encore Wam</li>
+					<li>Encore Westerns</li>
+					<li>ESPN</li>
+					<li>ESPN Classic</li>
+					<li>ESPN2</li>
+					<li>ESPNEWS</li>
+					<li>ESPNHD</li>
+					<li>Eternal Word Television Network</li>
+					<li>Events On Demand</li>
+					<li>Fine Living</li>
+					<li>Fit Tv</li>
+					<li>Food Network</li>
+					<li>Fox College Sports - Atlantic</li>
+					<li>Fox College Sports - Central</li>
+					<li>Fox College Sports - Pacific</li>
+					<li>Fox Movie Channel</li>
+					<li>Fox News Channel</li>
+					<li>Fox Reality Channel</li>
+					<li>Fox Soccer Channel</li>
+					<li>Fox Sports en Espanol</li>
+					<li>Free Movies On Demand</li>
+					<li>Fuel TV</li>
+					<li>Fuse</li>
+					<li>FX Networks Inc.</li>
+					<li>G4-video game television</li>
+					<li>GAME 1</li>
+					<li>GAME 10</li>
+					<li>GAME 2</li>
+					<li>GAME 3</li>
+					<li>GAME 4</li>
+					<li>GAME 5</li>
+					<li>GAME 6</li>
+					<li>GAME 7</li>
+					<li>GAME 8</li>
+					<li>GAME 9</li>
+					<li>Golf Channel On Demand</li>
+					<li>GOSPEL MUSIC CHANNEL</li>
+					<li>Great American Country</li>
+					<li>Great American Country On Demand</li>
+					<li>GSN</li>
+					<li>Hallmark Channel</li>
+					<li>HBO Latino</li>
+					<li>HBO On Demand</li>
+					<li>HDNet</li>
+					<li>HDNet Movies</li>
+					<li>History International</li>
+					<li>Home & Garden Television</li>
+					<li>Home Box Office</li>
+					<li>Home Box Office (Pacific)</li>
+					<li>Home Box Office Comedy</li>
+					<li>Home Box Office Digital</li>
+					<li>Home Box Office Family</li>
+					<li>Home Box Office Plus (Pacific)</li>
+					<li>Home Box Office Signature</li>
+					<li>Home Box Office Zone</li>
+					<li>Home Shopping Network</li>
+					<li>Howard TV On Demand</li>
+					<li>iN Demand/IN1</li>
+					<li>iN Demand/IN2</li>
+					<li>Independent Film Channel</li>
+					<li>International Movies On Demand</li>
+					<li>Jewelry Television by ACN</li>
+					<li>KIDS (Kids Channel) On Demand</li>
+					<li>Kids/Pre-School On Demand</li>
+					<li>KTLA</li>
+					<li>Lifetime</li>
+					<li>Lifetime Movie Network</li>
+					<li>Lifetime Real Women</li>
+					<li>LOGO</li>
+					<li>MOJO HD</li>
+					<li>MoreMAX</li>
+					<li>Movie Trailers On Demand</li>
+					<li>Movies On Demand</li>
+					<li>MSNBC</li>
+					<li>MTV - Music Television</li>
+					<li>MTV Tres</li>
+					<li>MTV2: Music Television</li>
+					<li>Mun2</li>
+					<li>Music Choice: 70's</li>
+					<li>Music Choice: 80's</li>
+					<li>Music Choice: 90s Channel</li>
+					<li>Music Choice: Adult Alternative</li>
+					<li>Music Choice: Alternative</li>
+					<li>Music Choice: Arena Rock</li>
+					<li>Music Choice: Big Band & Swing</li>
+					<li>Music Choice: Bluegrass</li>
+					<li>Music Choice: Blues</li>
+					<li>Music Choice: Classic Country</li>
+					<li>Music Choice: Classic R&B</li>
+					<li>Music Choice: Classic Rock</li>
+					<li>Music Choice: Classical Masterpieces</li>
+					<li>Music Choice: Contemporary Christian</li>
+					<li>Music Choice: Dance</li>
+					<li>Music Choice: Easy Listening</li>
+					<li>Music Choice: Electronica</li>
+					<li>Music Choice: Gospel</li>
+					<li>Music Choice: Hit List</li>
+					<li>Music Choice: Jazz</li>
+					<li>Music Choice: Light Classical</li>
+					<li>Music Choice: Metal</li>
+					<li>Music Choice: Mexicana</li>
+					<li>Music Choice: Musica Urbana</li>
+					<li>Music Choice: Opera</li>
+					<li>Music Choice: Party Favorites</li>
+					<li>Music Choice: Pop Latino</li>
+					<li>Music Choice: R & B Hits</li>
+					<li>Music Choice: R&B and Hip-Hop</li>
+					<li>Music Choice: Radio Disney</li>
+					<li>Music Choice: Rap</li>
+					<li>Music Choice: Reggae</li>
+					<li>Music Choice: Retroactive</li>
+					<li>Music Choice: Rock</li>
+					<li>Music Choice: Rock en Espanol</li>
+					<li>Music Choice: Salsa Y Merengue</li>
+					<li>Music Choice: Show Tunes</li>
+					<li>Music Choice: Showcase</li>
+					<li>Music Choice: Singers & Standards</li>
+					<li>Music Choice: Smooth Jazz</li>
+					<li>Music Choice: Smooth R&B</li>
+					<li>Music Choice: Soft Rock</li>
+					<li>Music Choice: Solid Gold Oldies</li>
+					<li>Music Choice: Sounds of the Season</li>
+					<li>Music Choice: Soundscapes</li>
+					<li>Music Choice: Today's Country</li>
+					<li>Music On Demand</li>
+					<li>National Geographic Channel</li>
+					<li>National Geographic On Demand</li>
+					<li>NBA Barker Channel</li>
+					<li>NBA League Pass 1</li>
+					<li>NBA League Pass 2</li>
+					<li>NBA League Pass 3</li>
+					<li>NBA League Pass 4</li>
+					<li>NBA League Pass 5</li>
+					<li>NBA League Pass 6</li>
+					<li>NBA League Pass 7</li>
+					<li>NBA League Pass 8</li>
+					<li>NBA League Pass 9</li>
+					<li>NBA TV</li>
+					<li>NBC</li>
+					<li>Nickelodeon</li>
+					<li>Nickelodeon Games and Sports</li>
+					<li>Nicktoons Network</li>
+					<li>Noggin & The N</li>
+					<li>OuterMAX</li>
+					<li>Outrageous TV On Demand</li>
+					<li>Ovation: The Arts Network</li>
+					<li>Oxygen Media Inc.</li>
+					<li>Oxygen On Demand</li>
+					<li>PBS</li>
+					<li>Playboy TV</li>
+					<li>QVC</li>
+					<li>Sci-Fi Channel</li>
+					<li>ShopNBC</li>
+					<li>Showtime</li>
+					<li>Showtime (Pacific)</li>
+					<li>Showtime Beyond</li>
+					<li>Showtime Digital</li>
+					<li>Showtime Extreme</li>
+					<li>Showtime Familyzone</li>
+					<li>Showtime Next</li>
+					<li>Showtime On Demand</li>
+					<li>Showtime Showcase</li>
+					<li>Showtime Too</li>
+					<li>Showtime Women</li>
+					<li>Sleuth</li>
+					<li>SoapNet</li>
+					<li>Speed Channel</li>
+					<li>Speed Channel On Demand</li>
+					<li>Sports Pay-Per-View 1</li>
+					<li>Sports Pay-Per-View 2</li>
+					<li>Sports Pay-Per-View 3</li>
+					<li>Sports Pay-Per-View 4</li>
+					<li>Sports Pay-Per-View 5</li>
+					<li>Sports Pay-Per-View 6</li>
+					<li>Sportskool On Demand</li>
+					<li>Starz</li>
+					<li>Starz Cinema</li>
+					<li>Starz Edge</li>
+					<li>Starz In Black</li>
+					<li>Starz Kids & Family</li>
+					<li>Style</li>
+					<li>Sundance Channel</li>
+					<li>TBS On Demand</li>
+					<li>The Biography Channel</li>
+					<li>The Discovery Channel</li>
+					<li>The Golf Channel</li>
+					<li>The History Channel</li>
+					<li>The Learning Channel</li>
+					<li>The Military Channel</li>
+					<li>The Movie Channel</li>
+					<li>The Science Channel</li>
+					<li>The Tennis Channel</li>
+					<li>The Travel Channel</li>
+					<li>The Weather Channel</li>
+					<li>ThrillerMAX</li>
+					<li>TMC On Demand</li>
+					<li>TNT On Demand</li>
+					<li>TNTHD (TNT-HD)</li>
+					<li>Toon Disney</li>
+					<li>Trinity Broadcasting Network</li>
+					<li>Turner Broadcasting System</li>
+					<li>Turner Classic Movies</li>
+					<li>Turner Network TV</li>
+					<li>TV Guide Channel</li>
+					<li>TV Guide Spot On Demand</li>
+					<li>TV Land</li>
+					<li>Universal HD</li>
+					<li>USA Network</li>
+					<li>VERSUS</li>
+					<li>VH1 - Video Hits One</li>
+					<li>VH1 Classic</li>
+					<li>W MAX--WOMAX</li>
+					<li>WGN/UVTV Satellite Group</li>
+					<li>Women's Entertainment</li>
+					<li>WTVT</li>
+				</ul>
+
+		#letterHeadBottom()
+	</div>
+<br/>
+#bodyEnd({
+	"pageType" : "basic"
+	})
+
+#footer({"search" : false})
+</html>
+
+
+
+	

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<responsetest>
+	<logFile>/var/log/flip.tv/ServerResponseChecker.out</logFile>
+	<servlet>http://localhost:8080</servlet>
+	<timeoutSeconds>30</timeoutSeconds>
+	<responseTimeThresholdSeconds>10</responseTimeThresholdSeconds>
+	<reporter>rich.kadel</reporter>
+	<smtpServer>smtpout.secureserver.net</smtpServer>
+	<smtpUsername>alerts@appeligo.com</smtpUsername>
+	<smtpPassword>5tarfi5h</smtpPassword>
+	<smtpDebug>false</smtpDebug>
+	<mailTo>errors@appeligo.com</mailTo>
+</responsetest>

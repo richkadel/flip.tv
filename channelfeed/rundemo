@@ -1,0 +1,9 @@
+#!/bin/bash
+
+export FLIPTV_HOME=target/deploy/usr/local/flip.tv
+export APPNAME=SendCaptionFiles
+export CONFIG_FILE="C:/etc/flip.tv/sendcaptionfiles.xml"
+export DIRECT=true
+export PATHDELIM=";"
+
+$FLIPTV_HOME/runchannelfeed

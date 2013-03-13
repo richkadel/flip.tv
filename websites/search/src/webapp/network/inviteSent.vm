@@ -1,0 +1,45 @@
+#fullBegin ({
+	"subtitle" : "Invitation",
+	"pageType" : "basic",
+	"search" : false,
+	"titleBarLeft" : "You invitations have been sent"
+})
+
+#noteTop("600px")
+	<p class="memoheader">Your invitations have been sent.</p>
+	#if($existingUsers && $existingUsers.size() > 0)
+		<p>Did you know that the following user#if($existingUsers.size() > 1)s are already#else is already an#end existing Flip.TV
+			member#if($existingUsers.size() > 1)s#end?
+			They will be notified that you've requested that they join your Friend Network.
+		</p>
+		<ul>
+		#foreach($existing in $existingUsers)
+			<li>$existing.primaryEmail</li>
+		#end
+		</ul>
+	#end
+				
+	<p>
+		We hope that your friends like Flip.TV as much as you do. 
+		<a href="/network/friends.action">Click here</a> to manage
+		your friend network.
+	</p>
+	<p>
+		Be on the lookout for the new friend network capabilities being added to Flip.TV. 
+		This will allow you to collaborate with your friends about your favorite shows, 
+		rate shows, recommend shows and more.  Anyone who receives your Flip.TV invitation 
+		will be automatically added to your network of friends.
+	</p>
+	<p style="text-align: center;"><b><a href="/">Back to Searching</a>
+	</b></p>
+
+#noteBottom()
+<br/>
+<br/>
+
+#fullEnd ({
+	"pageType" : "basic",
+	"search" : false
+})
+
+ 

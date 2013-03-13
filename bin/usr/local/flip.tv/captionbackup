@@ -1,0 +1,33 @@
+#!/bin/sh
+
+CAPTIONSDIR=/s2space/captiondb
+PREVIEWSDIR=/s2space/previews/primary
+BACKUP=/mnt/usb1/backup1
+DATE=`date +%Y-%m-%d-%H-%M`
+LOG=$BACKUP/$DATE.log
+
+echo started captionbackup at `date`
+find $CAPTIONSDIR \( -name "*.html.gz" -o -name "*.flv" \) -exec /usr/local/flip.tv/checkbackup {} $BACKUP \; &> $LOG
+find $PREVIEWSDIR -type f -exec /usr/local/flip.tv/checkbackup {} $BACKUP \; >> $LOG 2>&1
+echo
+echo finished captionbackup at `date`
+CAPTIONFILES=`grep "cp $CAPTIONSDIR" $LOG | wc -l`
+PREVIEWFILES=`grep "cp $PREVIEWSDIR" $LOG | wc -l`
+LINES=`cat $LOG | wc -l`
+ERRORS=`echo "$LINES - $CAPTIONFILES - $PREVIEWFILES" | bc`
+echo
+echo $CAPTIONFILES caption and full program flash video files backed up to $BACKUP
+echo $PREVIEWFILES preview-related flash and metadata files backed up to $BACKUP
+echo
+echo $ERRORS errors
+echo
+cd /var/flip.tv/captiondb/SDTW-C/`date +%Y`/`date +%m`/`date +%d`
+pwd
+echo `ls -C1|wc -l` Channels
+echo
+for  NAME  in `ls`;  do echo `ls $NAME | wc -l` $NAME; done
+echo
+echo Log file is $LOG
+echo
+df -h
+date >> $LOG

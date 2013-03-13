@@ -1,0 +1,19 @@
+#fullBegin({
+	"subtitle" : "Admin",
+	"search" : false,
+	"titleBarLeft" : "Admin",
+	"pageType" : "basic"
+})
+
+<div align="center">
+#wwactionerror()
+</div>
+<div align="center">
+	#editAccount(true "createUser" true "Create User")
+</div>
+
+#fullEnd({
+		"pageType" : "basic",
+		"ads" : false,
+		"search" : false
+})

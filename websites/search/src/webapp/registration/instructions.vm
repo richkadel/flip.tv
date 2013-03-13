@@ -1,0 +1,27 @@
+#fullBegin ({
+	"subtitle" : "Completing Your Registration",
+	"pageType" : "basic",
+	"search" : false,
+	"titleBarLeft" : "Completing Your Registration"
+})
+
+#noteTop("500px")
+
+	<p>
+		Soon you should receive an email from us that will detail precisely how to complete your 
+	registration.  There is just one more step to complete!  Check your email, and please
+	also check your Spam Folder, just in case.
+	</p>
+	
+	<p style="text-align: center;"><b><a href="/">Go back to the Search Page</a></b></p>
+
+#noteBottom()
+<br/>
+<br/>
+
+#fullEnd ({
+	"pageType" : "basic",
+	"search" : false
+})
+
+ 

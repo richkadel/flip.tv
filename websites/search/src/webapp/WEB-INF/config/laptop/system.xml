@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<configuration>
+<!--
+	<publicLaunch>true</publicLaunch>
+-->
+	<documentRoot path="//APPELIGO2/flip.tv">//APPELIGO2/flip.tv</documentRoot>
+	<url><![CDATA[http://localhost:8080/]]></url>
+	<surl><![CDATA[https://localhost:8080/]]></surl>
+	<epgEndpoint>http://localhost:8080/epg/channel.epg</epgEndpoint>
+<!--
+	<epgEndpoint>http://dev.flip.tv/epg/channel.epg</epgEndpoint>
+	<epgEndpoint>http://localhost:8080/epgDemo/channel.epg</epgEndpoint>
+	-->
+	<videoServer>localhost</videoServer>
+	<smtpServer></smtpServer>
+	<channelList>41 70</channelList>
+	<demo>true</demo>
+	<demoAdvanceSeconds>80</demoAdvanceSeconds>
+</configuration>

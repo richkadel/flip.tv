@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<configuration>
+  <!-- This one works for jake, please leave it in commented form (don't delete)
+  <url><![CDATA[http://localhost:8080/]]></url>
+  <smtpServer>smtp.west.cox.net</smtpServer>
+  -->
+  <maxSendBlock>10000</maxSendBlock>
+  <defaultFrom>noreply@fliptv.com</defaultFrom>
+  
+  <registration>
+  	<mimeType>text/html</mimeType>
+  	<subject>Welcome to Flip.TV</subject>
+  	<body>
+  		<![CDATA[
+  		<html><body><p>@greeting@,</p>
+  		<p>Welcome to Flip.TV, your home for television content search on the web.  In order
+  		to complete your registration you simply need to click the link below, or paste it into
+  		your browser.  Once that is complete, you can use all of Flip.TV's 
+  		services to enhance your television viewing.</p>
+  		
+  		<p><a href="${surl}registration/confirmRegistration.action?username=@username@&registrationSecret=@regsecret@">${url}registration/confirmRegistration.action?username=@username@&registrationSecret=@regsecret@</a></p>
+  		
+  		<p>Thank you for registering at Flip.TV!</p>
+  		</body></html>
+  		]]>
+  	</body>
+  </registration>
+  
+  <password_reset>
+  	<mimeType>text/html</mimeType>
+  	<subject>Flip.TV Password Reset</subject>
+  	<body>
+  		<![CDATA[
+  		<html><body><p>@greeting@,</p>
+  		<p>Your password for Flip.TV screenname <i>@username@</i> has been reset to <b>@password@</b>.  Please login at at <a href="${url}login.vm">Flip.TV</a></p>
+  		
+  		<p>We hope you are enjoying Flip.TV!</p>
+  		</body></html>
+  		]]>
+  	</body>
+  </password_reset>
+  
+  <sms_verify>
+    <from>verify@flip.tv</from>
+  	<mimeType>text/plain</mimeType>
+  	<subject>Verify Mobile Device</subject>
+  	<body>To verify, please go to ${surl}account/sms.vm and enter this code: @code@</body>
+  </sms_verify>
+  
+  <feedback>
+  	<mimeType>text/html</mimeType>
+  	<subject>Feedback: @subject@</subject>
+  	<body>
+  		<![CDATA[
+  		<html><body>@message@<p>From: @username@<br/> Email:@email@</p>
+  		</body></html>
+  		]]>
+  	</body>
+  </feedback>
+  
+  <program_reminder_email>
+    <from>Flip.TV Reminder &lt;reminders@flip.tv&gt;</from>
+  	<mimeType>text/html</mimeType>
+  	<subject>@programLabel@ starts @timePreposition@ @startTime@</subject>
+  	<body>
+  		<![CDATA[
+  		<html>
+  			<body>
+  				<p>@greeting@,</p>
+		  		<p>
+		  		You requested a Flip.TV Program Reminder for @whatfor@:
+		  		</p>
+		  		<p>
+		  		<a href="${url}@webPath@">@programLabel@</a>
+		  		<br/>
+		  		Scheduled start: <b>@startTime@</b> on <b>@stationName@</b>
+		  		<br/>
+		  		@description@
+		  		Program length: @durationMinutes@ minutes
+		  		</p>
+		  		<p>
+				For more information and to see your reminder settings that generated this alert, visit: @showDetailsLink@
+		  		</p>
+		  		<p>
+		  		@deleteRemindersSentence@
+		  		</p>
+	  		</body>
+  		</html>
+  		]]>
+  	</body>
+  </program_reminder_email>
+  
+  <program_reminder_sms>
+    <from>reminders@flip.tv</from>
+  	<mimeType>text/plain</mimeType>
+  	<subject>@reducedTitle40@</subject>
+  	<body>starts @timePreposition@ @shortStartTime@ on @stationName@. (${url}@targetId@)</body>
+  </program_reminder_sms>
+  
+  <keyword_alert_email>
+    <from>Flip.TV Alert &lt;alerts@flip.tv&gt;</from>
+  	<mimeType>text/html</mimeType>
+  	<subject>@query@ on @programLabel@</subject>
+  	<body>
+  		<![CDATA[
+  		<html>
+  			<body>
+  				<p>@greeting@,</p>
+		  		<p>
+		  		You requested a Flip.TV Alert for any program that mentions <b>@query@</b>.
+		  		@timeChannelIntro@
+		  		</p>
+		  		<p>
+		  		<a href="${url}@webPath@"><b>@programLabel@</b></a>
+		  		<br/>
+		  		@description@
+		  		@fragments@
+		  		@startsAt@: <b>@startTime@</b> on <b>@stationName@</b>
+		  		<br/>
+		  		Program length: @durationMinutes@ minutes
+		  		</p>
+		  		@rerunInfo@
+		  		<p>
+				<b>@maxAlertsExceededSentence@</b>
+		  		For more information and to see all of your existing Keyword Alerts, visit:
+		  		</p>
+		  		<p>
+		  		<a href="${url}alerts?@keywordAlertId@">${url}alerts?@keywordAlertId@</a></p>
+		  		</p>
+		  		<p>
+		  		<font size="1">
+		  		Timeliness of Flip.TV Topic Alerts is not guaranteed.
+		  		This message may be delayed by minutes or hours.  For more information, please
+		  		see the <a href="${url}faq.vm#alertme">description of Flip.TV Topic Alerts</a>.
+		  		</font>
+		  		</p>
+	  		</body>
+  		</html>
+  		]]>
+  	</body>
+  </keyword_alert_email>
+  
+  <keyword_alert_sms>
+    <from>alerts@flip.tv</from>
+  	<mimeType>text/plain</mimeType>
+  	<subject>@query@</subject>
+  	<body>@lcStartsAt@ at @shortStartTime@ on @reducedTitle40@ on @stationCallSign@ ${url}@programId@ (${url}alerts?@keywordAlertId@)</body>
+  </keyword_alert_sms>
+  
+  <keyword_alert_epg_email>
+    <from>Flip.TV Alert &lt;alerts@flip.tv&gt;</from>
+  	<mimeType>text/html</mimeType>
+  	<subject>@query@ on @programLabel@</subject>
+  	<body>
+  		<![CDATA[
+  		<html>
+  			<body>
+  				<p>@greeting@,</p>
+		  		<p>
+		  		You requested a Flip.TV Alert for any program that mentions <b>@query@</b>.
+		  		We received an advance schedule of TV programming for @stationName@,
+		  		and your topic is mentioned in this upcoming program:
+		  		</p>
+		  		<p>
+		  		<a href="${url}@webPath@"><b>@programLabel@</b></a>
+		  		<br/>
+		  		@description@
+		  		@fragments@
+		  		Starts: <b>@startTime@</b> on <b>@stationName@</b>
+		  		<br/>
+		  		Program length: @durationMinutes@ minutes
+		  		</p>
+		  		<p>
+				<b>@maxAlertsExceededSentence@</b>
+		  		For more information and to see all of your existing Keyword Alerts, visit:
+		  		</p>
+		  		<p>
+		  		<a href="${url}alerts?@keywordAlertId@">${url}alerts?@keywordAlertId@</a></p>
+		  		</p>
+	  		</body>
+  		</html>
+  		]]>
+  	</body>
+  </keyword_alert_epg_email>
+  
+  <keyword_alert_epg_sms>
+    <from>alerts@flip.tv</from>
+  	<mimeType>text/plain</mimeType>
+  	<subject>@query@</subject>
+  	<body>matches upcoming program @reducedTitle40@, @shortStartTime@ on @stationCallSign@ ${url}@programId@ (${url}alerts?@keywordAlertId@)</body>
+  </keyword_alert_epg_sms>
+  
+  <invite>
+    <from>Flip.TV &lt;noreply@flip.tv&gt;</from>
+  	<mimeType>text/html</mimeType>
+  	<subject>@name@ has invited you to join the Flip.TV Beta</subject>
+  	<body>
+		<![CDATA[
+  		<html>
+  			<body>
+  				<p>
+					@name@ has been using <a href="${url}">Flip.TV</a> and thinks that you would find it useful.  
+				</p>
+  				<p>
+					If you haven't heard about <a href="${url}">Flip.TV</a>, it's the place that allows you to
+					find what you want to watch on TV.  You can search for programs, not only by name but also by any
+					topic mentioned in the program, as easily as surfing the web!  <b><i>And</i></b> you can tell
+					Flip.TV to notify you of programs that match your interests, so you'll never miss another
+					favorite show.
+				</p>
+  				<p>
+				    Only a limited number of beta users are being accepted at this time,
+				    so now's your time to take advantage of this opportunity!
+				    <a href="${url}registration/registration.action">Register here</a> so you can link into
+				    @name@'s <b>Friend Network</b> and set up your own TV program reminders and alerts.
+				</p>
+	  		</body>
+  		</html>
+		]]>
+	  </body>	
+  </invite>
+  <friend>
+    <from>Flip.TV &lt;noreply@flip.tv&gt;</from>
+  	<mimeType>text/html</mimeType>
+  	<subject>@name@ would like add you to his Flip.TV Friend Network</subject>
+  	<body>
+		<![CDATA[
+  		<html>
+  			<body>
+  				<p>
+					@name@ would like to add you to @his@ Flip.TV Friend Network.
+					<a href="${url}network/friends.action">Click here</a> to approve or decline this request
+					and manager your full friend network.
+				</p>
+  				<p>
+					If you don't already know about Flip.TV Friend Networks, they allow you to see what your
+					friends are watching, what shows they like or dislike,
+					view overall group ratings of programs, share recommendations and more!
+					If you haven't already started your <i>own</i> Friend Network, it's not too late!
+				</p>
+	  		</body>
+  		</html>
+		]]>
+	</body>	
+  </friend>	
+  <programRecommendation>
+    <from>Flip.TV &lt;noreply@flip.tv&gt;</from>
+  	<mimeType>text/html</mimeType>
+  	<subject>@name@ has recommended @programTitle@</subject>
+  	<body>
+		<![CDATA[
+  		<html>
+  			<body>
+  				<p>
+					@name@ thinks you may be intested in the television program <a href="@link@">@programTitle@</a>.
+					Click <a href="@link@">here</a> to view the program details and schedule at Flip.TV, and if you like,
+					set up a reminder for the next airing of the program.
+				</p>
+				<p>
+					If you have not heard about <a href="${url}">Flip.TV</a> it's the place that allows you to find
+					out what you want to watch on TV. You can search for programs, not only by name but also by any
+					topic mentioned in the program, as easily as surfing the web!  <b><i>And</i></b> you can tell
+					Flip.TV to notify you of programs that match your interests, so you'll never miss another
+					favorite show.
+				</p>
+	  		</body>
+  		</html>
+		]]>
+	</body>	
+  </programRecommendation>	
+</configuration>

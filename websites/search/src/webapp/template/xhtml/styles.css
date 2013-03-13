@@ -1,0 +1,93 @@
+
+/*.wwFormTable {border:10px solid #ECF5FA; width:350px; margin:50px;}*/
+
+/* Used to control the layout of elements within a form. */
+.wwFormTable {
+	border:10px;
+	/*
+	width:350px; 
+	margin-top:50px; 
+	margin-bottom:25px; 
+	*/
+	margin-top:20px; 
+	margin-bottom:20px; 
+	text-align:left;
+}
+
+.formInput {
+	/*
+	font-size:medium;
+	width:18em;
+	*/
+	margin:2px;
+}
+
+.informativeText {
+	width:450px;
+	text-align:center;
+	font-size:medium; 
+	margin:auto;
+}
+	
+.finePrint {
+	text-align:center;
+	font-size:smaller; 
+	margin:auto;
+	width:600px; 
+}
+
+/* Form field labels */
+.label {
+/*
+		font-size:large; 
+	*/
+		font-size:medium; 
+}
+
+/* For the labels on individual radio selections */
+.radioLabel {
+	font-size:medium; 
+	padding:3px;
+}
+
+.tdLabel {
+	text-align:right; 
+	vertical-align:top; 
+}
+
+/* Error message labels */
+/*
+.errorLabel {
+	font-size:large;
+}
+*/
+.errorLabel {font-size: medium; font-style:italic; color:red; }
+
+/* Error message text, typically for validation */
+.errorMessage {
+	font-weight:bold; 
+	color:red; 
+}
+
+.checkboxLabel {}
+.checkboxErrorLabel {
+	color:red; 
+}
+.required {
+	color:red;
+}
+.formInput { 
+	align:left;
+}
+
+/* Handy little debugging setting */
+/*td {border : 1px solid black; }*/
+
+
+/* Simple highlighting of background of focused input element */
+input:focus { 
+	background:#ECF5FA; 
+}
+select:focus { 
+	background:#ECF5FA; 
+}

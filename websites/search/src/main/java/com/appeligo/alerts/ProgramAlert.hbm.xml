@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.appeligo.alerts" default-access="field">
+	
+	<class name="com.appeligo.alerts.ProgramAlert" 
+		proxy="com.appeligo.alerts.ProgramAlert" table="program_alerts">
+		<cache usage="read-write"/>
+		<id name="id" type="long" column="program_alert_id">
+			<generator class="native"/>
+		</id>
+		
+		<property name="programId" type="string" column="program_id" not-null="false" length="64"/>
+		<!--
+		<property name="programTitle" type="string" column="program_title" not-null="false" length="120"/>
+		  -->
+		<property name="newEpisodes" type="boolean" column="new_episodes" not-null="true"/>
+		<property name="alertMinutes" type="int" column="alert_minutes" not-null="true"/>
+		<property name="usingPrimaryEmail" type="boolean" column="using_primary_email" not-null="true"/>
+		<property name="usingAlternateEmail" type="boolean" column="using_alternate_email" not-null="true"/>
+		<property name="usingSMS" type="boolean" column="using_sms" not-null="true"/>
+		<property name="usingIM" type="boolean" column="using_im" not-null="true"/>
+		<property name="lastModified" type="java.util.Date" column="last_modified" not-null="true"/>
+		<property name="creationTime" type="java.util.Date" column="creation_time" not-null="false"/>
+		<property name="disabled" type="boolean" column="disabled" not-null="true"/>
+		<property name="deleted" type="boolean" column="deleted" not-null="true"/>
+
+		<many-to-one name="user" class="com.appeligo.search.entity.User" 
+			column="user_id" />
+		
+		<many-to-one name="originatingKeywordAlert" class="com.appeligo.alerts.KeywordAlert" 
+			column="keyword_alert_id" />
+		
+		<set name="pendingAlerts" inverse="true" cascade="persist,merge,save-update">
+			<key column="program_alert_id"/>
+			<one-to-many class="com.appeligo.alerts.PendingAlert"/>
+		</set>
+		
+	</class>
+
+	<query name="ProgramAlert.deleteAllMarkedDeleted" cacheable="false"><![CDATA[
+		delete ProgramAlert where deleted = true or user = null
+	]]></query>
+
+	<query name="ProgramAlert.getAll" cacheable="false"><![CDATA[
+		from ProgramAlert order by creationTime
+	]]></query>
+
+	<query name="ProgramAlert.getAllMarkedDeleted" cacheable="false"><![CDATA[
+		from ProgramAlert where deleted = true or user = null
+	]]></query>
+
+	<query name="ProgramAlert.getByProgramIdForUser" cacheable="false"><![CDATA[
+		from ProgramAlert p where p.user = :user and p.programId = :programId and deleted = false
+	]]></query>
+	
+	<!-- 
+	<query name="ProgramAlert.getByProgramTitleForUser" cacheable="false"><![CDATA[
+		from ProgramAlert p where p.user = :user and p.programId = null and p.programTitle = :programTitle and deleted = false
+	]]></query>
+	 -->
+	 
+	 <!--
+	<query name="ProgramAlert.getByTeamForUser" cacheable="false"><![CDATA[
+		from ProgramAlert p where p.user = :user and p.programId = null
+			 and p.sportName = :sportName and p.teamName = :teamName and deleted = false
+	]]></query>
+	   -->
+	
+	<!-- 
+	<query name="ProgramAlert.getIfNullTitle" cacheable="false"><![CDATA[
+		from ProgramAlert p where p.programTitle = null and deleted = false
+	]]></query>
+	 -->
+	
+	<query name="ProgramAlert.markDeletedForProgram" cacheable="false"><![CDATA[
+		update ProgramAlert set deleted = true where user = :user and programId = :programId
+	]]></query>
+	<!-- 
+	<query name="ProgramAlert.markDeletedForProgramTitle" cacheable="false"><![CDATA[
+		update ProgramAlert set deleted = true where user = :user and programId = null and programTitle = :programTitle
+	]]></query>	 -->
+	 
+	 <!-- 
+	<query name="ProgramAlert.markDeletedForTeam" cacheable="false"><![CDATA[
+		update ProgramAlert set deleted = true where user = :user and programId = null 
+			 and sportName = :sportName and teamName = :teamName
+	]]></query>	  -->
+
+</hibernate-mapping>

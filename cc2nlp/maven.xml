@@ -1,0 +1,13 @@
+<project xmlns:j="jelly:core" xmlns:ant="jelly:ant"
+	xmlns:u="jelly:util" xmlns:maven="jelly:maven">
+	
+
+	<goal name="upload" prereqs="jar:jar"
+			description="Uploads the jar file to the company repository server">
+		<echo> ${maven.build.dir}/upload.sh ${server.username} jar ${pom.groupId} ${maven.final.name}.jar
+		</echo>
+		<exec dir="${maven.build.dir}" executable="upload.sh">
+			<arg line="${server.username} jar ${pom.groupId} ${maven.final.name}.jar"/>
+		</exec>
+	</goal>
+</project>

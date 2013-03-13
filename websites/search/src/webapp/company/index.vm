@@ -1,0 +1,51 @@
+#fullBegin ({
+	"subtitle" : "Appeligo",
+	"noLogo" : true,
+	"pageType" : "basic",
+	"search" : false,
+	"titleBarLeft" : "Appeligo"
+})
+
+#noteTop($700)
+		
+		<p style="text-align: center">
+			<b><img style="text-align: center;" alt="Appeligo, Inc." src="/themes/default/images/appeligo.gif"/></b>
+		</p>
+		<h1 style="text-align: center; font-size: 120%">
+			<i>Appeligo</i> &ndash; Bringing you <a href="$baseUrl">Flip.TV</a> &ndash; It's like Web Search for TV!
+		</h1>
+		<p>
+			Appeligo, Inc. is a privately funded corporation specializing in the creation of
+			on-line services and software products that integrate the Internet and
+			mainstream media.
+		</p>
+		<p>
+			Our present focus on Flip.TV integrates data from TV Closed Captions, 
+			an online Electronic
+			Program Guide (EPG), and other web-based data services to provide you with
+			a powerful, convenient, and friendly way to find relevant broadcast
+			television programming at your fingertips.
+		</p>
+		<p style="text-align: center">
+		<a href="$baseUrl">
+			<img align="middle" id="logo" width="134" height="62" alt="Flip.TV Search" src="/themes/default/images/logo.gif"/>
+		</a>
+		</p>
+		<p style="text-align: center;">
+			Contact us via:<br/>
+			<br/><b>
+				Email: <a href="mailto:info@appeligo.com">info@appeligo.com</a><br/>
+				Phone: 1-858-433-1747
+			</b>
+		</p>
+		
+#noteBottom()
+<br/>
+<br/>
+
+#fullEnd ({
+	"pageType" : "basic",
+	"search" : false
+})
+
+ 

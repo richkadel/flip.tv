@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+	version="2.4">
+	<display-name>Flip.TV Search</display-name>
+	<distributable />
+	
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/acegi-security.xml /WEB-INF/applicationContext.xml</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>configFile</param-name>
+		<param-value>/WEB-INF/config.xml</param-value>
+	</context-param>
+	
+    <filter>
+        <filter-name>UrlRewriteFilter</filter-name>
+        <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
+        <init-param>
+            <param-name>logLevel</param-name>
+            <param-value>WARN</param-value>
+            <!-- 
+            <param-value>sysout:DEBUG</param-value>
+             -->
+        </init-param>
+    </filter>
+
+	<filter>
+		<filter-name>sessioncreator</filter-name>
+		<filter-class>
+			com.appeligo.search.actions.SessionCreatorFilter
+		</filter-class>
+	</filter>
+	<!--
+	<filter>
+		<filter-name>cachecontrol</filter-name>
+		<filter-class>
+			com.appeligo.search.actions.CacheControlFilter
+		</filter-class>
+	</filter>
+	  -->
+	<filter>
+		<filter-name>webwork</filter-name>
+		<filter-class>
+			com.opensymphony.webwork.dispatcher.FilterDispatcher
+		</filter-class>
+	</filter>
+	
+	<filter>
+		<filter-name>hibernateSession</filter-name>
+		<filter-class>com.knowbout.hibernate.OpenSessionInViewFilter</filter-class>
+        <init-param>
+            <param-name>printFullExceptions</param-name>
+            <param-value>false</param-value>
+        </init-param>
+	</filter>
+	
+	<filter>
+		<filter-name>hibernateTransaction</filter-name>
+		<filter-class>com.knowbout.hibernate.OpenTransactionInViewFilter</filter-class>
+        <init-param>
+            <param-name>printFullExceptions</param-name>
+            <param-value>false</param-value>
+        </init-param>
+	</filter>
+
+	<filter>
+		<filter-name>permissionsFilter</filter-name>
+		<filter-class>com.appeligo.search.entity.SetPermissionsInViewFilter</filter-class>
+        <init-param>
+            <param-name>printFullExceptions</param-name>
+            <param-value>false</param-value>
+        </init-param>
+	</filter>
+
+   <filter>
+      <filter-name>Acegi Filter Chain Proxy</filter-name>
+      <filter-class>org.acegisecurity.util.FilterToBeanProxy</filter-class>
+      <init-param>
+         <param-name>targetClass</param-name>
+         <param-value>org.acegisecurity.util.FilterChainProxy</param-value>
+      </init-param>
+   </filter>
+
+   <filter-mapping>
+     <filter-name>sessioncreator</filter-name>
+     <url-pattern>/*</url-pattern>
+   </filter-mapping>
+   
+   <!-- 
+
+   <filter-mapping>
+     <filter-name>cachecontrol</filter-name>
+     <url-pattern>/search/*</url-pattern>
+   </filter-mapping>
+   <filter-mapping> CAN'T CACHE ALERTS OR THE PROGRAM DETAIL PAGE IN SEARCH (ABOVE) OR CHANGES WILL NOT SHOW UP TO USER
+     <filter-name>cachecontrol</filter-name>
+     <url-pattern>/alerts/*</url-pattern>
+   </filter-mapping>
+    -->
+	
+   <filter-mapping>
+     <filter-name>Acegi Filter Chain Proxy</filter-name>
+     <url-pattern>/*</url-pattern>
+   </filter-mapping>
+
+	<filter-mapping>
+		<filter-name>hibernateSession</filter-name>
+		<url-pattern>/*</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>hibernateTransaction</filter-name>
+		<url-pattern>/*</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>permissionsFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>webwork</filter-name>
+		<url-pattern>/*</url-pattern>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+
+    <filter-mapping>
+        <filter-name>UrlRewriteFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+    
+    <!--
+	<filter-mapping>
+		<filter-name>webwork</filter-name>
+		<url-pattern>*.action</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>webwork</filter-name>
+		<url-pattern>*.vm</url-pattern>
+	</filter-mapping>
+      -->
+
+	<servlet>
+		<servlet-name>MessangerServlet</servlet-name>
+		<servlet-class>
+			com.appeligo.search.messenger.MessengerService
+		</servlet-class>
+		<load-on-startup>10</load-on-startup>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>CCEventService</servlet-name>
+		<servlet-class>
+			com.caucho.hessian.server.HessianServlet
+		</servlet-class>
+		<init-param>
+			<param-name>home-class</param-name>
+			<param-value>
+				com.appeligo.captions.CaptionListener
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>home-api</param-name>
+			<param-value>
+				com.knowbout.cc2nlp.CCEventService
+			</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>CCEventService</servlet-name>
+		<url-pattern>/cceventservice</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>alertqueue</servlet-name>
+		<servlet-class>com.appeligo.alerts.AlertQueueImpl</servlet-class>
+		<!--
+		<load-on-startup>10</load-on-startup>
+		  -->
+		<!--
+		<init-param>
+			<param-name>home-class</param-name>
+			<param-value>example.BasicService</param-value>
+		</init-param>
+		<init-param>
+			<param-name>home-api</param-name>
+			<param-value>example.Basic</param-value>
+		</init-param>
+		  -->
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>alertqueue</servlet-name>
+		<url-pattern>/alertqueue</url-pattern>
+	</servlet-mapping>
+	
+	<error-page>
+		<error-code>404</error-code>
+		<location>/404.html</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/500.html</location>
+	</error-page>
+	<error-page>
+		<error-code>503</error-code>
+		<location>/503.html</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.Exception</exception-type>
+		<location>/500.html</location>
+	</error-page>
+	<!-- This initializes the spring framework. -->
+	<!--listener>
+		<listener-class>com.appeligo.config.Log4JInitializer</listener-class>
+	</listener-->
+	
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<listener>
+		<listener-class>com.appeligo.config.Log4JInitializer</listener-class>
+	</listener>
+	
+	<listener>
+		<listener-class>com.appeligo.config.ConfigurationInitializer</listener-class>
+	</listener>
+	
+	<listener>
+		<listener-class>com.appeligo.captions.LuceneInitializer</listener-class>
+	</listener>
+	
+	<listener>
+		<listener-class>com.appeligo.alerts.AlertManager$Initializer</listener-class>
+	</listener>
+	
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.vm</welcome-file>
+	</welcome-file-list>
+
+	<jsp-config>
+		<jsp-property-group>
+			<url-pattern>*.jsp</url-pattern>
+			<el-ignored>false</el-ignored>
+			<scripting-invalid>false</scripting-invalid>
+		</jsp-property-group>
+	</jsp-config>
+
+</web-app>

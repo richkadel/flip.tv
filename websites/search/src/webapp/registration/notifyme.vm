@@ -1,0 +1,35 @@
+#fullBegin ({
+	"subtitle" : "Reset Your Password",
+	"pageType" : "basic",
+	"search" : false,
+	"titleBarLeft" : "Reset Your Password",
+	"wwform" : true
+})
+
+#noteTop("500px")
+<p class="memoheader">Notify Me of the Next Open Registration</p>
+<p>
+	Here's your chance to get notified before the masses as soon as Flip.TV Open Registration
+	begins again!  Just enter your email address below, and we'll let you know as soon as
+	Flip.TV Beta 2 begins, so you can become a registered user.
+</p>
+
+<div align="center">
+#wwactionerror()
+</div>
+<div align="center">
+	#wwform("method=post" "action=notifyme" "title=Notify Me" "validate=true")	
+		#wwtextfield("required=true" "label=Email" "size=40" "name=emailAddress")
+		#wwsubmit("value=Let Me Know!" "name=reset" "type=button" "align=center")
+	#end
+</div>
+#noteBottom()
+<br/>
+<br/>
+
+#fullEnd ({
+	"pageType" : "basic",
+	"search" : false
+})
+
+ 

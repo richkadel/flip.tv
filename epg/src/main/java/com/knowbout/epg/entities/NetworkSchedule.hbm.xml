@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping package="com.knowbout.epg.entities">
+
+	<class name="com.knowbout.epg.entities.NetworkSchedule" 
+		  proxy="com.knowbout.epg.entities.NetworkSchedule" 
+		  table="network_schedules" >
+		<cache usage="nonstrict-read-write"/>
+
+
+		<composite-id name="id" class="com.knowbout.epg.entities.NetworkScheduleId">
+			<key-property name="scheduleId" type="long" column="schedule_id"/>
+			<key-property name="networkLineupId" type="string" column="network_lineup_id" length="16"/>
+		</composite-id>
+
+		<property name="airTime" type="timestamp" column="air_time" not-null="true" />
+
+		<many-to-one name="schedule" class="com.knowbout.epg.entities.Schedule" 
+			insert="false" update="false" not-null="true" column="schedule_id" />
+	
+		<many-to-one name="networkLineup" class="com.knowbout.epg.entities.NetworkLineup" 
+			insert="false" update="false" not-null="true" column="network_lineup_id" />
+		
+	</class>
+
+	<query name="NetworkSchedule.deleteByDate"><![CDATA[
+		delete from NetworkSchedule where airTime >= :date
+	]]></query>
+</hibernate-mapping>

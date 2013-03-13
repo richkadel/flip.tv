@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- This file should normally be located at /etc/knowbout.tv/epg.xml-->
+<epg>
+	<!-- The connection information for the FTP server that contains the EPG files -->
+	<sitemap>/usr/local/webapps/search/sitemap.xml.gz</sitemap>
+	<alertUrl>http://localhost/search/alertqueue</alertUrl>
+	<provider>
+		<server>ftp.tmstv.com</server>
+		<username>kno868cb</username>
+		<password>FYS141ca</password>
+		<remoteWorkingDirectory>pub</remoteWorkingDirectory>
+		<!-- This directory must exist! It will not be created-->
+		<destinationFolder>data/samples</destinationFolder>
+		<forceDownload>true</forceDownload>
+	</provider>
+	<files>
+		<headend>headend.fsf.gz</headend>
+		<lineup>lineup.fsf.gz</lineup>
+		<stations>statrec.txt.gz</stations>
+		<programs>progrec.txt.gz</programs>
+		<schedules>skedrec.txt.gz</schedules>
+	</files>
+	<!-- This configures the number of records per transaction -->	
+	<transactions>
+		<headends>25</headends>
+		<lineups>25</lineups>
+		<stations>25</stations>
+		<programs>2500</programs>
+		<schedules>100</schedules>
+	</transactions>
+	<database>
+		<driver>com.mysql.jdbc.Driver</driver>
+        <url>jdbc:mysql://localhost:3306/guide?autoReconnect=true</url>
+        <user>knowbout</user>
+        <password>C0tt3r</password>		
+	</database>
+	<stationNames>
+		<station callSign="KFMB">CBS</station>
+		<station callSign="KGTV">ABC</station>
+		<station callSign="KNSD">NBC</station>
+		<station callSign="XETV">Fox</station>		
+		<station callSign="WTVT">Fox</station>		
+		<station callSign="KSWB">CW</station>
+		<station callSign="CNN">CNN</station>
+		<station callSign="KPBS">PBS</station>
+	</stationNames>
+	<lineups>
+		<lineup>
+			<!-- This is used only for the CC data processing. So it is availble through the EPG sevice
+				But not exposed to the search webapp.  The delays are 0 because it will be loooking
+				at the san diego times in the schedule and using those. -->
+			<name>San Diego Time Warner</name>
+			<id>SDTW-C</id>
+			<digital>false</digital>
+			<delay>0</delay>
+			<affiliateDelay>0</affiliateDelay>
+		</lineup>	
+		<lineup>
+			<name>Pacific Cable</name>
+			<id>P-C</id>
+			<digital>false</digital>
+			<delay>3</delay>
+			<affiliateDelay>3</affiliateDelay>
+		</lineup>
+		<lineup>
+			<name>Pacific Digital Cable</name>
+			<id>P-DC</id>
+			<digital>true</digital>
+			<delay>3</delay>
+			<affiliateDelay>3</affiliateDelay>
+		</lineup>
+		<lineup>
+			<name>Pacific Local Satellite</name>
+			<id>P-S</id>
+			<digital>true</digital>
+			<delay>0</delay>
+			<affiliateDelay>3</affiliateDelay>
+		</lineup>
+		<lineup>
+			<name>Mountain Cable</name>
+			<id>M-C</id>
+			<digital>false</digital>
+			<delay>0</delay>
+			<affiliateDelay>1</affiliateDelay>
+		</lineup>
+		<lineup>
+			<name>Mountain Digital Cable</name>
+			<id>M-DC</id>
+			<digital>true</digital>
+			<delay>0</delay>
+			<affiliateDelay>1</affiliateDelay>
+		</lineup>
+		<lineup>
+			<name>Mountain Local Satellite</name>
+			<id>M-S</id>
+			<digital>true</digital>
+			<delay>0</delay>
+			<affiliateDelay>1</affiliateDelay>
+		</lineup>
+		<lineup>
+			<name>Eastern Cable</name>
+			<id>E-C</id>
+			<digital>false</digital>
+			<delay>0</delay>
+			<affiliateDelay>0</affiliateDelay>
+		</lineup>
+		<lineup>
+			<name>Eastern Digital Cable</name>
+			<id>E-DC</id>
+			<digital>true</digital>
+			<delay>0</delay>
+			<affiliateDelay>0</affiliateDelay>
+		</lineup>
+		<lineup>
+			<name>Eastern Local Satellite</name>
+			<id>E-S</id>
+			<digital>true</digital>
+			<delay>0</delay>
+			<affiliateDelay>0</affiliateDelay>
+		</lineup>
+		<lineup>
+			<name>Hawaii Cable</name>
+			<id>H-C</id>
+			<digital>false</digital>
+			<delay>0</delay>
+			<affiliateDelay>6</affiliateDelay>
+		</lineup>
+		<lineup>
+			<name>Hawaii Digital Cable</name>
+			<id>H-DC</id>
+			<digital>true</digital>
+			<delay>0</delay>
+			<affiliateDelay>6</affiliateDelay>
+		</lineup>
+		<lineup>
+			<name>Hawaii Local Satellite</name>
+			<id>H-S</id>
+			<digital>true</digital>
+			<delay>0</delay>
+			<affiliateDelay>6</affiliateDelay>
+		</lineup>							
+	</lineups>
+</epg>

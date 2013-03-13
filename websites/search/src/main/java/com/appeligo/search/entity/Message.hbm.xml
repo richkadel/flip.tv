@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.appeligo.search.entity" default-access="field">
+	
+	<class name="com.appeligo.search.entity.Message" 
+		proxy="com.appeligo.search.entity.Message" table="message">
+		<!--cache usage="read-write"/-->
+		<id name="id" type="long" column="message_id">
+			<generator class="native"/>
+		</id>
+		
+		<property name="to" type="string" column="to_address" not-null="true" length="64"/>
+		<property name="from" type="string" column="from_address" not-null="true" length="64"/>
+		<property name="subject" type="string" column="subject" not-null="true" length="255"/>
+		<property name="body" type="string" column="body" not-null="false" length="4000"/>
+		<property name="sent" type="timestamp" column="sent" not-null="false"/>
+		<property name="mimeType" type="string" column="mime_type" not-null="false"/>
+		<property name="attempts" type="integer" column="attempts" not-null="true"/>
+		<property name="sms" type="boolean" column="sms" not-null="true"/>
+		<property name="priority" type="integer" column="priority" not-null="true"/>
+		<property name="deferUntil" type="timestamp" column="defer_until" not-null="false"/>
+		<property name="expires" type="timestamp" column="expires" not-null="false"/>
+		
+		<many-to-one name="user" class="com.appeligo.search.entity.User" 
+			column="user_id" not-null="false" />
+		
+	</class>
+
+	<query name="Message.deleteOldMessages"><![CDATA[
+		delete Message where sent < :oldestSent or
+			(attempts >= :maxAttempts and
+		 		( expires is null or expires < :oldestSent ))
+	]]></query>
+	
+	<query name="Message.getUnsent"><![CDATA[
+		from Message as m where
+			m.attempts < :maxAttempts and
+			m.sent is null and
+			(m.deferUntil is null or m.deferUntil < :now) and
+			(m.expires is null or m.expires > :now)
+				order by priority
+	]]></query>
+</hibernate-mapping>

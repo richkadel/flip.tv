@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<configuration>
+	<fliptvDocumentRoot>/var/flip.tv</fliptvDocumentRoot>
+	<epgEndpoint>http://localhost:8080/epgDemo/channel.epg</epgEndpoint>
+</configuration>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping package="com.knowbout.epg.entities">
+<class name="com.knowbout.epg.entities.Channel" 
+	 proxy="com.knowbout.epg.entities.Channel" table="channels" >
+
+	<cache usage="nonstrict-read-write"/>
+
+   <id name="id" type="java.lang.String" column="channel_id" >
+        <generator class="assigned" />
+    </id>
+    <property name="channelNumber" type="java.lang.String" column="tms_chan"  index="channelNumberIndex" length="5" />
+    <property name="serviceTier" type="java.lang.Integer" column="service_tier" />
+    <property name="effectiveDate" type="java.util.Date" column="effective_date"/>
+    <property name="expirationDate" type="java.util.Date" column="expiration_date"/>
+	
+    <!-- Associations -->
+	
+	<many-to-one name="lineup" class="com.knowbout.epg.entities.Lineup" 
+			column="lineup_id" not-null="true" />
+
+	<many-to-one name="station" class="com.knowbout.epg.entities.Station" 
+			column="station_id" not-null="true" />		
+</class>
+		
+</hibernate-mapping>

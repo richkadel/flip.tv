@@ -1,0 +1,5 @@
+<Context path="@contextPath@" docBase="@docBase@"
+	debug="5" reloadable="true" crossContext="false" allowLinking="true">
+
+    <Environment name="deploymentEnvironment" type="java.lang.String" value="@config.name@"/>
+</Context>

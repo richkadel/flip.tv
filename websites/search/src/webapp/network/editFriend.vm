@@ -1,0 +1,38 @@
+#fullBegin ({
+	"title" : "Edit",
+	"pageType" : "basic",
+	"search" : false,
+	"titleBarLeft" : "Edit Friend Info",
+	"pageType" : "basic"
+})
+
+<div style="width: 100%; margin-right: auto; margin-left: auto;">
+    #noteTop("550px")
+    <br/>	
+    <br/>	
+    <div style="width: 100%; text-align: center;">
+			<p class="memoheader">Enter your friend's first and last name.</p>
+    		<form name="invites" action="/network/saveFriend.action">
+				<input type="hidden" name="id" value="$activeFriend.id"/>
+            	<table CELLSPACING="10px">		
+            		<tr><td class="label" align="right" valign="center" ><b>First&nbsp;Name:&nbsp;</b></td><td align="left"><input class="field" name="firstName" type="text" value="#if($activeFriend.firstName)$activeFriend.firstName#end"/></td></tr>
+            		<tr><td class="label" align="right" valign="center" ><b>Last&nbsp;Name:&nbsp;</b></td><td align="left"><input class="field" name="lastName" type="text" value="#if($activeFriend.lastName)$activeFriend.lastName#end"/></td></tr>
+					<tr><td>&nbsp;</td></tr>
+            		<tr><td class="label" >&nbsp;</td><td align="left"><input type="submit" name="send" value="Save"/> <input type="button" name="Cancel" value="Cancel" onclick="window.location='/network/friends.action'"></td></tr>
+            	</table>
+            </form>
+    </div>	
+	<br/>
+	    #noteBottom()
+
+</div>
+<br/>
+<br/>
+<br/>
+#fullEnd({
+	"pageType" : "basic",
+	"search" : false
+})
+
+
+

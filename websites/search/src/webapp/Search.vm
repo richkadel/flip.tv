@@ -1,0 +1,273 @@
+#if ($searchType == "FUTURE")
+	#set($future = "future programs")
+#elseif ($searchType == "TODAY")
+	#set($future = "programs airing today")
+#else
+	#set($future = "programs")
+#end
+#if ($hits && $hits.size() > 0) 	
+	#set($rightTitle = "$startIndex - $endIndex of $searchResults.totalHits $future for $esc.html($query)")
+#else 
+	#set($rightTitle = "No $future found for $esc.html($query)")
+#end
+#set ($params = ({
+	"subtitle" : "Search Results",
+	"search" : true,
+	"titleBarLeft" : "Search Results",
+	"titleBarRight" : $rightTitle,
+	"pageType" : "search",
+	"ads" : "amazon",
+	"activePage" : "Search",
+	"horizontalGoogleAds" : "true"
+	
+}))
+##	"titleBarCenter" : $centerTitle,
+#fullBegin($params)
+##	"horizontalGoogleAds" : "false"
+<script type="text/javascript" src="/scripts/yahoo.js"></script>
+<script type="text/javascript" src="/scripts/connection.js"></script>
+#if (!$blazer)
+	<script type="text/javascript" src="/scripts/amazon.js"></script>
+#end
+
+<div id=searchBody>
+	<div id=searchResults>
+		<ol start=1>
+			#if (!$blazer)
+				<li>
+					#horizontalGoogleAds()
+				</li>
+			#end			
+			#if($hits && $hits.size() > 0) 
+##				<li id="searchLi">
+##					<div class="hint">
+##						#if ($searchType != "ALL") 
+##							<a href="/search/search.action?query=$urlEncoder.encode($query)&searchType=ALL">Search for all programs (past and future airings)</a>&nbsp;&nbsp;&nbsp;
+##						#end##            			#if ($searchType != "TODAY")
+##            				<a href="/search/search.action?query=$urlEncoder.encode($query)&searchType=TODAY">Search for programs airing today</a>	&nbsp;&nbsp;&nbsp;			
+##            			#end
+##            			#if ($searchType != "FUTURE") 
+##            				<a href="/search/search.action?query=$urlEncoder.encode($query)&searchType=FUTURE">Search for programs airing in the next 2 weeks</a>
+##            			#end
+##        			</div>
+##				</li>
+    			<li>
+					<div class="lightBackgroundBlock">
+        				<table style="width: 100%">
+        					<tr>
+        						<td style=" vertical-align: top;">
+                					#if($searchResults.programCounts && $searchResults.programCounts.size() > 0) 
+                						<b>Top Programs</b>
+                						#foreach($hitCount in $searchResults.programCounts)
+                							#if($hitCount.getCount() >0 || true)
+        										<p class="shorthang">
+                        							<a href="/search/search.action?query=$urlEncoder.encode($hitCount.queryString)">$hitCount.getLabel() ($hitCount.getCount())</a>
+        										</p>
+                							#end
+                						#end
+									#end
+            					</td>
+        						<td style="width: 30%; vertical-align: top; padding-left: 5px; padding-right: 5px;">
+                					#if($searchResults.whatMatchedCounts && $searchResults.whatMatchedCounts.size() > 0) 
+                						<b>What Matched</b>
+                						#foreach($hitCount in $searchResults.whatMatchedCounts)
+                							#if($hitCount.getCount() >0)
+        										<p class="shorthang">
+                        							<a href="/search/search.action?query=$urlEncoder.encode($hitCount.queryString)">$hitCount.getLabel() ($hitCount.getCount())</a>
+        										</p>
+                							#end
+                						#end
+                					#end
+            					</td>
+        						<td style="width: 30%; vertical-align: top;">
+                					#if($searchResults.genreCounts && $searchResults.genreCounts.size() > 0) 
+                						<b>Genres</b>
+                						#foreach($hitCount in $searchResults.genreCounts)
+                							#if($hitCount.getCount() >0 && $velocityCount < 5)
+        										<p class="shorthang">
+                        							<a href="/search/search.action?query=$urlEncoder.encode($hitCount.queryString)">$hitCount.getLabel() ($hitCount.getCount())</a>
+        										</p>
+                							#end
+                						#end
+                					#end						
+        						</td>
+        					</tr>
+        				</table>
+					</div>
+    			</li>				
+			#end
+
+			#if ($keywordAlert)
+				<li>
+				<div class="message">
+					You have registered an alert for this topic:
+					<a href="/alerts/alerts.action#$keywordAlert.id">$esc.html($keywordAlert.userQuery)</a>
+				</div>
+				</li>
+			#end
+			#if ($query.length() == 0)
+				<li>Search our database of television program content to find out more
+				about the shows you like best!</li>
+			#else
+				#if(!$hits || $hits.size() == 0) 
+					<li>Your search - <!-- google_ad_section_end --><!-- google_ad_section_start -->$esc.html($query)<!-- google_ad_section_end --><!-- google_ad_section_start(weight=ignore) --> - did not match any $future<br/>
+					#if($searchType == "TODAY")
+						Try expanding your search to include programs showing in the next <a href="/search/search.action?query=$urlEncoder.encode($query)&searchType=FUTURE">two weeks</a> or at <a href="/search/search.action?query=$urlEncoder.encode($query)&searchType=ALL">any time (past or present)</a>.				
+					#elseif($searchType=="FUTURE")
+						Try expanding your search to include programs that aired at <a href="/search/search.action?query=$urlEncoder.encode($query)&searchType=ALL">any time (past or present)</a>.				
+					#end
+					</li>
+				#end
+				#if($searchResults.suggestedQuery)
+					<li>
+						#if($searchResults.usingSuggestedQuery)
+							There were no results for $esc.html($query).<br/>
+						#end
+						<font color="red">Did you mean:</font>
+						#if($searchResults.usingSuggestedQuery)
+							#googleStartTag()
+						#end
+						<b><i><a href="/search/search.action?query=$urlEncoder.encode($searchResults.suggestedQuery)">$esc.html($searchResults.suggestedQuery)</a></i></b>
+						#if($searchResults.usingSuggestedQuery)
+							#googleEndTag()
+						#end
+						#if($searchResults.usingSuggestedQuery)
+							(used for the following results)
+						#end
+					</li>
+				#end
+				
+				#if(!$hits || $hits.size() == 0) 
+					<div class="hint">
+					<br/>
+					<a href="/faq.vm#searchlimits">Not seeing the program you expect?</a>
+					</div>
+				#end
+				#if($hits && $hits.size() > 0) 
+					#foreach($hit in $hits)
+						<li><div>
+								#if($hit.programId.startsWith("EP"))
+									#set($showType = "episode")
+								#elseif($hit.programId.startsWith("MV"))
+									#set($showType = "movie")
+								#elseif($hit.programId.startsWith("SP"))
+									#set($showType = "game")
+								#else
+									#set($showType = "show")
+								#end
+								#styledCallSignLogo($hit.stationCallSign "float: left; margin-top: 2px; margin-right: 2px;") 
+								#set($webPath = $hit.doc.get("webPath"))
+								#if(!$webPath)
+									#set($webPath = $hit.programInfo.webPath)
+								#end
+								#if ($webPath)
+    								<a class=titleLink  href="$webPath">
+								#end
+									$hit.doc.get("programTitle")
+									#if($hit.doc.get("episodeTitle").length() >0) ($hit.doc.get("episodeTitle"))#end										
+								#if ($webPath)
+    								</a>
+								#else
+									(No other information for this program is available - $hit.doc.get("programID"))
+								#end
+								<br/><b>
+								#if($hit.onAir)This $showType is currently airing on 
+									$hit.stationName
+								#elseif($hit.future)
+									#if($showType == "show" || $showType == "game" || $hit.doc.get("newEpisode") == "true" || !$hit.doc.fragments || $hit.doc.fragments.trim().length() == 0)
+										This $showType is scheduled to air
+									#else
+										This $showType will replay
+									#end
+									on $date.format("MMM d h:mma", $hit.airing, $locale, $timeZone) on 
+									$hit.stationName
+								#else This $showType last aired on $date.format("MMM d h:mma", $hit.airing, $locale, $timeZone) on 
+									$hit.stationName										
+								#end</b>
+							</div>
+							<div class="spacer"></div>
+							#if($hit.description.length() >0)
+								<div class=programDescription><span class="searchLabel">Program Description:</span> $hit.description</div>
+							#end
+							#if($hit.doc.fragments && $hit.doc.fragments.trim().length() > 0)
+								<div class=fragments>
+									<span class="searchLabel">Relevant Dialogue:</span><i>$hit.doc.fragments</i>
+									#if($user.isInGroup("admin"))
+										#if($hit.airing.time < $now.time)
+    										#if($hit.airing.time < $newEpgDate.time)
+    											#set($oldChannel = $oldChannelDirConverter.getChannel($hit.stationCallSign))
+    											#if (!$oldChannel)
+    												Can't find channel for $hit.stationCallSign
+    											#else
+        											<a href="http://dev.flip.tv/showfiles/ShowFile/captiondb/CA04542-DEFAULT/$date.format("yyyy/MM/dd", $hit.airing, $locale, $gmtTimeZone)/$oldChannel/${hit.airing.time}.html.gz">Transcript</a>
+    											#end
+    										#else
+    											<a href="http://dev.flip.tv/showfiles/ShowFile/captiondb/SDTW-C/$date.format("yyyy/MM/dd", $hit.airing, $locale, $gmtTimeZone)/$hit.stationCallSign/${hit.airing.time}.html.gz">Transcript</a>
+    										#end
+										#end
+									#end
+								</div>
+							#end					
+							#if (!$blazer)
+								<div id="$hit.programId"></div>
+							#end
+						</li>
+						#if ($programList)
+							#set ($programList = "$hit.programId,$programList")
+						#else
+							#set ($programList = $hit.programId)
+						#end					
+						#if ($velocityCount==9)
+							#if (!$blazer)
+								<li>
+										#horizontalGoogleAds()
+								</li>
+							#end
+						#end
+					#end
+					<div class="hint">
+					<br/>
+					<a href="/faq.vm#searchlimits">Not seeing the program you expect?</a>
+					</div>
+					#*
+					#if($hits && $hits.size() > 0) 
+					<li id="searchLi">
+						<div class="hint">
+							#if ($searchType != "ALL") 
+								<a href="/search/search.action?query=$urlEncoder.encode($query)&searchType=ALL">Search for all programs (past and future airings)</a>&nbsp;&nbsp;&nbsp;
+							#end
+	            			#if ($searchType != "FUTURE") 
+	            				<a href="/search/search.action?query=$urlEncoder.encode($query)&searchType=FUTURE">Search for only programs airing in the next 2 weeks</a>&nbsp;&nbsp;&nbsp;
+	            			#end
+	            			#if ($searchType != "TODAY")
+	            				<a href="/search/search.action?query=$urlEncoder.encode($query)&searchType=TODAY">Search for only programs airing today</a>				
+	            			#end
+	        			</div>
+					</li>
+					#end
+					*#
+	
+					#set($pageLink = "/search/search.action?query=$urlEncoder.encode($query)&searchType=$searchType&")
+					<li><h4>#pager_no_form($currentPage 10  10 $searchResults.totalHits $pageLink)</h4></li>
+				#end
+			#end
+		</ol>
+	</div>
+</div>
+
+#if (!$blazer)
+	#set($usingQuery = $query)
+	#if ($searchResults.usingSuggestedQuery)
+		#set($usingQuery = $searchResults.suggestedQuery)
+	#end
+	<script type="text/javascript">
+	loadProducts("$!programList", "$esc.javascript($usingQuery.replaceAll("[a-zA-Z0-9._-]*:",""))");
+	</script>
+#end
+
+
+#fullEnd({
+		"pageType" : "search",
+		"ads" : "amazon",
+		"search" : true
+})

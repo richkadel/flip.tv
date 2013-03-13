@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping package="com.knowbout.epg.entities">
+<class name="com.knowbout.epg.entities.Credit" 
+	proxy="com.knowbout.epg.entities.Credit" table="credits" >
+   <cache usage="nonstrict-read-write"/>
+   <id name="id" type="long" column="credit_id" >
+		 <generator class="native"/>
+	 </id>
+	
+	<property name="type" not-null="true"  >
+		<column name="type" sql-type="integer"/>
+		<type name="com.knowbout.hibernate.EnumType">
+			<param name="class">com.knowbout.epg.entities.CreditType</param>
+		</type>	
+	</property>
+  <property name="firstName" type="java.lang.String" column="firstName"  length="20" />
+  <property name="lastName" type="java.lang.String" column="lastName"  length="20" />
+  <property name="roleDescription" type="java.lang.String" column="role_description"  length="30" />
+  <!-- Associations -->
+	
+  <set name="programs" table="program_credits" inverse="true" >
+  	<cache usage="nonstrict-read-write"/>
+		<key column="credit_id"/>
+		<many-to-many column="program_id" class="com.knowbout.epg.entities.Program"/>
+	</set>
+</class>
+	
+	<!-- Queries -->
+		<query name="Credit.getByValues"><![CDATA[
+		from Credit where type = :type and firstName = :firstName 
+			and lastName = :lastName  and roleDescription = :roleDescription
+	]]></query>
+	
+</hibernate-mapping>

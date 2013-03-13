@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<configuration>
+	<lineups>
+		<lineup>
+			<!-- This is used only for the CC data processing. So it is availble through the EPG sevice
+				But not exposed to the search webapp.  The delays are 0 because it will be loooking
+				at the san diego times in the schedule and using those. -->
+			<name>San Diego Time Warner</name>
+			<id>SDTW-C</id>
+			<digital>false</digital>
+			<delay>0</delay>
+			<affiliateDelay>0</affiliateDelay>
+		</lineup>			
+		<lineup>
+			<name>Pacific Cable</name>
+			<id>P-C</id>
+			<digital>false</digital>
+			<delay>3</delay>
+			<affiliateDelay>3</affiliateDelay>
+		</lineup>
+		<lineup>
+			<name>Pacific Digital Cable</name>
+			<id>P-DC</id>
+			<digital>true</digital>
+			<delay>3</delay>
+			<affiliateDelay>3</affiliateDelay>
+		</lineup>
+		<lineup>
+			<name>Pacific Local Satellite</name>
+			<id>P-S</id>
+			<digital>true</digital>
+			<delay>0</delay>
+			<affiliateDelay>3</affiliateDelay>
+		</lineup>
+		<lineup>
+			<name>Mountain Cable</name>
+			<id>M-C</id>
+			<digital>false</digital>
+			<delay>0</delay>
+			<affiliateDelay>1</affiliateDelay>
+		</lineup>
+		<lineup>
+			<name>Mountain Digital Cable</name>
+			<id>M-DC</id>
+			<digital>true</digital>
+			<delay>0</delay>
+			<affiliateDelay>1</affiliateDelay>
+		</lineup>
+		<lineup>
+			<name>Mountain Local Satellite</name>
+			<id>M-S</id>
+			<digital>true</digital>
+			<delay>0</delay>
+			<affiliateDelay>1</affiliateDelay>
+		</lineup>
+		<lineup>
+			<name>Eastern Cable</name>
+			<id>E-C</id>
+			<digital>false</digital>
+			<delay>0</delay>
+			<affiliateDelay>0</affiliateDelay>
+		</lineup>
+		<lineup>
+			<name>Eastern Digital Cable</name>
+			<id>E-DC</id>
+			<digital>true</digital>
+			<delay>0</delay>
+			<affiliateDelay>0</affiliateDelay>
+		</lineup>
+		<lineup>
+			<name>Eastern Local Satellite</name>
+			<id>E-S</id>
+			<digital>true</digital>
+			<delay>0</delay>
+			<affiliateDelay>0</affiliateDelay>
+		</lineup>
+		<lineup>
+			<name>Hawaii Cable</name>
+			<id>H-C</id>
+			<digital>false</digital>
+			<delay>0</delay>
+			<affiliateDelay>6</affiliateDelay>
+		</lineup>
+		<lineup>
+			<name>Hawaii Digital Cable</name>
+			<id>H-DC</id>
+			<digital>true</digital>
+			<delay>0</delay>
+			<affiliateDelay>6</affiliateDelay>
+		</lineup>
+		<lineup>
+			<name>Hawaii Local Satellite</name>
+			<id>H-S</id>
+			<digital>true</digital>
+			<delay>0</delay>
+			<affiliateDelay>6</affiliateDelay>
+		</lineup>							
+	</lineups>
+</configuration>

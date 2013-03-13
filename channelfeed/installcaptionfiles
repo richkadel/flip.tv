@@ -1,0 +1,16 @@
+#!/bin/sh -v
+
+/sbin/service ${1}captionfiles stop
+rm -rf /usr/local/flip.tv/${1}/jars
+rm -rf /usr/local/flip.tv/${1}/lib
+if [ ! -d target/deploy ]; then
+	echo \"target/deploy/\" does not exist!
+	exit 1
+fi
+cd target/deploy/etc
+tar cf - * | (cd /etc; tar xf - --no-same-owner )
+cd ../../../target/deploy/usr/local/flip.tv
+tar cf - * | (cd /usr/local/flip.tv/${1}; tar xf - --no-same-owner )
+mkdir -p /var/flip.tv/${1}/captiondb
+/sbin/chkconfig ${1}captionfiles on
+/sbin/service ${1}captionfiles start

@@ -1,0 +1,25 @@
+#fullBegin ({
+	"subtitle" : "Error",
+	"pageType" : "basic",
+	"search" : false,
+	"titleBarLeft" : "Error"
+})
+
+#noteTop("600px")
+	<p class="memoheader">There was an error generating the program recommendation.</p>
+	<p>
+		This is most likely caused by a bad URL for the program you are trying to recommend.  Please try again.  If this problem
+		persists, <a href="feedback/capture.action">please let us know.</a>
+	</p>
+	</b></p>
+
+#noteBottom()
+<br/>
+<br/>
+
+#fullEnd ({
+	"pageType" : "basic",
+	"search" : false
+})
+
+ 

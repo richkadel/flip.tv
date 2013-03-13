@@ -1,0 +1,46 @@
+#set ($params = ({
+	"title" : "$username",
+	"subtitle" : "Alerts",
+	"search" : true,
+	"titleBarLeft" : "Active Alerts",
+	"pageType" : "search",
+	"activePage" : "Alerts"
+}))
+
+#startHead($params)
+
+<link rel="stylesheet" type="text/css" href="/themes/default/css/tabs.css">
+<link rel="stylesheet" type="text/css" href="/themes/default/css/round_tabs.css">
+<link rel="stylesheet" type="text/css" href="/themes/default/css/alerts.css">
+
+#endHead($params)
+
+#fullBodyStart($params)
+
+<div id="alertsData" class="yui-navset yui-navset-top">
+	<ul class="yui-nav">
+		#if($alertsPage == "KeywordAlerts")
+	    <li class="selected"><a href="#"><em>Topic Alerts</em></a></li>
+	    <li><a href="/alerts/reminders.action"><em>Program Reminders</em></a></li>
+		#else
+	    <li><a href="/alerts/alerts.action"><em>Topic Alerts</em></a></li>
+	    <li class="selected"><a href="#"><em>Program Reminders</em></a></li>
+		#end
+	</ul>
+	<div class="yui-content">
+	    <div id="keywordAlerts">
+			#parse("${alertsPage}.vm")
+		</div>
+	</div>
+</div>
+
+#set($ads = "none")
+#if ($query.trim().length() > 0)
+	#set($ads = "google")
+#end
+
+#fullEnd({
+		"pageType" : "search",
+		"ads" : "$ads",
+		"search" : true
+})

@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		#header({
+			"subtitle" : "Privicy Policy",
+			"pageType" : "basic"}
+		)
+	</head>
+
+	#headerBar({
+			"search"		: false,
+			"titleBarLeft"	: "Appeligo Privacy Policy",
+			"noLogo"		: true
+			})
+	#bodyStart({
+			"pageType" : "basic"
+			})
+			
+	#letterHeadTop()
+		<p class="memoheader">Privacy</p>
+		<p>Appeligo&nbsp;is committed to protecting your privacy when you use Appeligo websites, Appeligo web services, servers operated by Appeligo, and any Appeligo software (collectively the &ldquo;Flip TV Service&rdquo;). The following Privacy Policy was prepared to inform you of the information we collect about you, how that information is used, whether and to whom we disclose it, and the choices you have regarding your personal information. </p>
+		
+		<p>It is very important that you read and understand our Privacy Policy. If you do not accept the terms set out in our Privacy Policy, please do not use the Flip TV Service. </p>
+		<p>We may update this Privacy Policy from time to time. We will advise you that changes have been made by posting a notice on our website. </p>
+		<p>If you have any questions regarding Appeligo&rsquo; policies or practices relating to privacy, please direct them to <a href="mailto:privacy@appeligo.com">privacy@appeligo.com</a>.   </p>
+		<p>This Privacy Policy was last updated on April 26, 2006.</p>
+		<p class="memoheader2">Collection and Use of Information</p>
+		<blockquote><p> While using the Flip TV Service you may, among other things, gather information on our website, publish and download content, or subscribe to one of our services. In doing so, we may collect certain information about you. </p>
+		
+		<p>We may automatically collect certain aggregated data regarding use of the Flip TV Service, like the number of users and frequency and manner of usage of our service. We may also collect aggregated information regarding the use of our subscription-based service network, such as the extent to which certain features are used. Aggregated information is anonymous, statistical information that reflects the scope of our user base, sales, customer patterns and related site information. We use this information to better understanding how the Flip TV Service is used, and to improve our user&rsquo;s online experience. This information is not used in a way that will personally identify you. </p>
+		<p>Similarly, we may also use cookies to track and understand the traffic on our website. Cookies are alphanumeric identifiers that our website places onto your computer&rsquo;s hard drive. Cookies identify your computer hard drive so that we can recognize you the next time you visit us. We use cookies to collect and store some information about you, such as the name of the domain and host from which you access the Internet, the Internet Protocol (IP) address of the computer you are using, the date and time you access our website, and the Internet address of the website from which you linked directly to our website. We use this information to better understand our users and customize our site for your particular preferences. You may disable cookies by following directions on your web browser. You should be aware, however, that by disabling cookies you may be unable to access certain services and features of our website. </p>
+		<p>We may collect personally identifiable information from you when you seek access to certain portions of the Flip TV Service, publish or download content, or sign up for our service network. This information may include, but is not limited to, your name, physical and email addresses, phone or fax numbers, Internet address, type of computer, and credit card information, as well as your preferences and usage patterns. This information may be used to fulfill your requests for services, to communicate with you about your account, to support your online activities, to respond to your questions, to customize your experience, and to customize the content or features of the Flip TV Service. We may use your personally identifiable information to notify you of changes in our website, Terms of Service, or Privacy Policy. We may also use your personally identifiable information to personalize your interactive experience on our website. For example, if you have given us permission, we may use your information to inform you of other products or services that you may find valuable. We may also use the information you provide to make improvements that better serve our users&rsquo; needs. </p>
+		<p>If you chose not to receive information about additional products and services that we think you may be interested in, you can choose not to receive this information by opting-out when given the opportunity at the point we ask you for contact information. You may also choose to opt-out after the fact by following the Opt Out instructions provided below. </p></blockquote>
+		<p class="memoheader2">Disclosure of Information</p>
+		<blockquote><p> We may share aggregated statistical information about users of the Flip TV Service with third-parties, including our distributors, vendors, actual and potential customers, and third-parties that offer products or services for use with the Flip TV Service. This information is not linked to any personally identifiable information. </p>
+		
+		<p>Appeligo&nbsp;will not share your personally identifiable information with any third-parties, with the following exceptions: </p></blockquote>
+		<ol>
+		<li>As necessary to third parties who perform services for us in operating and marketing the Flip TV Service, included but not limited to the processing of payments for products or services.
+		</li>
+		<li>If you obtain the Appeligo software bundled with product(s) from a third-party company, we may share some of your personally identifiable information (but not your credit card information) with that company. If we share your personally identifiable information with such a company, that company&rsquo;s privacy policy will govern its use of your information.
+		</li>
+		<li>We may be obliged or deem it necessary or appropriate to disclose your information in certain special situations. These situations include: in response to legal process such as a court order or subpoena; to prevent or combat fraud; enforcement of our Terms of Service or Acceptable Use Policy; or protection of the rights, property or safety of Appeligo, our users, or others.
+		</li>
+		<li>We may disclose your information in connection with a merger, acquisition, or liquidation of our company and to parents, subsidiaries or affiliates of Appeligo.
+		</li>
+		</ol>
+		<p class="memoheader2">Security</p>
+		<blockquote><p> Appeligo&nbsp;is committed to taking appropriate measures to protect your privacy against unauthorized disclosures. Appeligo uses a variety of secure techniques designed to protect your information. </p>
+		
+		<p>While we have implemented safeguards, you should be aware that Internet security technology rapidly changes. As such, we cannot guarantee that the safeguards we employ today can protect your personal information from the threats of tomorrow, or that our security measures are failsafe and not subject to circumvention or unauthorized intrusion. You should also be aware that, despite our best efforts, factors beyond our control may result in disclosure of data. </p></blockquote>
+		<p class="memoheader2">Third-Party Links</p>
+		<blockquote>
+		<p>Our website may contain links to other sites that you may access. These other sites have their own privacy policies and you should review those policies before following those links. We cannot control the information disclosed at these third-party sites or how that information is used.</p>
+		</blockquote>
+		<p class="memoheader2">Young Children</p>
+		<blockquote>
+		<p>In compliance with the Children&rsquo;s Online Privacy Protection Act of 1998, we do not knowingly collect any personal information from a child under the age of 13. To best protect your child&rsquo;s privacy, we suggest that you carefully supervise your child&rsquo;s access to the Internet and our website. For more information on how to protect your child&rsquo;s privacy, you can visit the Federal Trade Commission&rsquo;s Kidzprivacy page, accessible via <a href="http://www.ftc.gov/">www.ftc.gov</a>.</p>
+		
+		</blockquote>
+		<p class="memoheader2">Opt-Out</p>
+		<blockquote>
+		<p>Our website and the Appeligo network service provide users the opportunity to opt-out of receiving certain communications from us regarding products and services in which you may be interested. You will be given this opportunity at the time we request information about you. If you do not opt-out at the time you provide information, but choose to opt-out later, click <a href="mailto:optout@appeligo.com">here</a> to send an email indicating that you no longer wish to receive such communications. Please provide your name and physical and/or email address(es) at which you are receiving the unwanted communications.</p>
+		</blockquote>
+		<p class="memoheader2">Notice for Users Outside of the United States</p>
+		<blockquote>
+		<p>You should be aware that the United States and other countries have not harmonized their privacy regulations. Because the Flip TV Service is intended specifically for users in the United States, we have written our Privacy Policy to satisfy United States regulations. By using the Flip TV Service, you agree to the level of privacy protection set out in our Privacy Policy.</p>
+		</blockquote>
+	#letterHeadBottom()
+	
+<br/>
+	#bodyEnd({
+			"pageType" : "basic"
+			})
+
+	#footer({"search" : false})
+</html>
+
+
+
+
+   

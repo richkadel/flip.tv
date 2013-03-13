@@ -1,0 +1,44 @@
+#*
+A set of Appelligo specific macros.
+*#
+
+#macro(editAccount $create $formAction $allowPasswordChange $buttonLabel)
+	#wwset("name=states" "value=$action.states")
+	#wwset("name=genders" "value=$action.genders")
+	#wwset("name=months" "value=$action.months")
+	#wwset("name=years" "value=$action.years")
+	#wwset("name=stationLineup" "value=$action.stationLineup")
+	#if($create && !$user.earliestSmsTime) ## Second check is for form submit validation feedback, leave it there.
+		## Setup the default we want here.
+		#wwset("name=user.earliestSmsTime" "value='8:00 AM'")
+		#wwset("name=user.latestSmsTime" "value='8:00 PM'")
+	#end
+
+	#wwform("method=post" "action=$formAction" "validate=true")
+		#if($create)
+		#wwtextfield("required=true" "label=Screen Name" "name=user.username" "size=30")
+		#else
+		#wwhidden("required=true" "readonly=true" "name=user.username")
+		#end
+		#wwtextfield("required=false" "label=First Name" "name=user.firstName" "size=30")
+		#wwtextfield("required=false" "label=Last Name" "name=user.lastName" "size=30")
+		#wwtextfield("required=true" "label=Email" "name=user.primaryEmail" "size=40")
+		#set($mobileHelpPath="/smshelp.vm")
+		#wwtextfield("required=false" "label=Mobile Device Address" "labellink=$mobileHelpPath" "name=user.smsEmail" "size=40") 
+		#wwselect("label=Earliest Daily Mobile Alert" "name=earliestSmsTime" "list=#{'12:00 AM' : '12:00 AM','1:00 AM' : '1:00 AM','2:00 AM' : '2:00 AM','3:00 AM' : '3:00 AM','4:00 AM' : '4:00 AM','5:00 AM' : '5:00 AM','6:00 AM' : '6:00 AM','7:00 AM' : '7:00 AM','8:00 AM' : '8:00 AM','9:00 AM' : '9:00 AM','10:00 AM' : '10:00 AM','11:00 AM' : '11:00 AM','12:00 PM' : '12:00 PM','1:00 PM' : '1:00 PM','2:00 PM' : '2:00 PM','3:00 PM' : '3:00 PM','4:00 PM' : '4:00 PM','5:00 PM' : '5:00 PM','6:00 PM' : '6:00 PM','7:00 PM' : '7:00 PM','8:00 PM' : '8:00 PM','9:00 PM' : '9:00 PM','10:00 PM' : '10:00 PM','11:00 PM' : '11:00 PM'}")
+		#wwselect("label=Latest Daily Mobile Alert" "name=latestSmsTime" "list=#{'12:00 AM' : '12:00 AM','1:00 AM' : '1:00 AM','2:00 AM' : '2:00 AM','3:00 AM' : '3:00 AM','4:00 AM' : '4:00 AM','5:00 AM' : '5:00 AM','6:00 AM' : '6:00 AM','7:00 AM' : '7:00 AM','8:00 AM' : '8:00 AM','9:00 AM' : '9:00 AM','10:00 AM' : '10:00 AM','11:00 AM' : '11:00 AM','12:00 PM' : '12:00 PM','1:00 PM' : '1:00 PM','2:00 PM' : '2:00 PM','3:00 PM' : '3:00 PM','4:00 PM' : '4:00 PM','5:00 PM' : '5:00 PM','6:00 PM' : '6:00 PM','7:00 PM' : '7:00 PM','8:00 PM' : '8:00 PM','9:00 PM' : '9:00 PM','10:00 PM' : '10:00 PM','11:00 PM' : '11:00 PM'}")
+		#wwselect("required=true" "label=Station Lineup" "name=stationLineup" "itemKey=stationLineup" "list=#{'1' : 'Cable', '2' : 'Digital Cable', '3' : 'Satellite'}")
+		#wwselect("required=true" "label=US Time Zone" "name=user.timeZone" "list=#{'PST8PDT' : 'Pacific','MST7MDT' : 'Mountain','CST6CDT' : 'Central','EST5EDT' : 'Eastern','US/Alaska' : 'Alaska','US/Hawaii' : 'Hawaii'}")
+		#if($allowPasswordChange)
+		#wwpassword("required=true" "label=Password" "name=user.password" "size=30")
+		#wwpassword("required=true" "label=Confirm Password" "name=passwordConfirm" "size=30")
+		#end
+		#wwtextfield("required=true" "label=Zipcode" "name=user.zipcode" "size=10")
+		#wwtextfield("label=City" "name=user.city" "cssClass=formInput" "size=30")
+		#wwselect("label=State" "name=user.state" "itemKey=user.state" "list=#states")
+		#wwradio("label=Gender" "name=user.gender" "list=#{'M' : 'Male', 'F' : 'Female'}")
+		#wwselect("label=Month of Birth" "name=birthMonth" "itemKey=birthMonth" "list=#months")
+		#wwselect("label=Year of Birth" "name=birthYear" "itemKey=birthYear" "list=#years")
+		#wwsubmit("value=$buttonLabel" "name=Register" "type=button" "align=center")
+	#end
+#end

@@ -1,0 +1,28 @@
+<project xmlns:j="jelly:core" xmlns:ant="jelly:ant"
+	xmlns:u="jelly:util" xmlns:maven="jelly:maven">
+
+	<goal name="devdeploy">
+		<j:set var="maven.test.skip" value="true" />
+		<attainGoal name="war:init" />
+		<j:set var="maven.war.webapp.dir" value="${maven.war.src}" />
+		<echo>Deploying to local src webapp: ${maven.war.webapp.dir}</echo>
+
+		<filter filtersfile="build.properties" />
+		<filter token="docBase" value="${maven.war.webapp.dir}" />
+		<copy file="${pom.artifactId}.xml"
+			todir="${tomcat.home}/conf/Catalina/localhost" filtering="true" />
+
+		<attainGoal name="war:webapp" />
+	</goal>
+
+	<postGoal name="clean:clean">
+		<delete failonerror="false"
+			dir="${maven.src.dir}/webapp/WEB-INF/lib" />
+		<delete failonerror="false"
+			dir="${maven.src.dir}/webapp/WEB-INF/tld" />
+		<j:if test="${!empty(maven.gen.src)}">
+			<delete failonerror="false" dir="${maven.gen.src}" />
+		</j:if>
+	</postGoal>
+
+</project>

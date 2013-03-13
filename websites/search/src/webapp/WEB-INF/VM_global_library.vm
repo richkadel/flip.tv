@@ -1,0 +1,453 @@
+## Select control
+## $name The control name
+## $selected The selected value
+## $labels The list of labels for the options
+## $values The list of values for the options
+#macro (select $name $selected $labels $values)
+  ## The velocityCounter starts at 1 by default, so we use our own zero-based counter.
+  #set($s="NULL" )
+  #set($s=$multiselected )
+  #set($i=0 )
+  <select name="$name" size="5" multiple="true" >
+  #foreach ($v in $values)
+     <option value="$velocityCount" #if("$v"=="$s") selected="selected"#end>$v</option>
+  #set($i=1+$i)
+  #end
+  </select>
+#end
+
+## convenience method to grap application context path
+#macro (urlroot)#if($link)$link.ContextPath#elseif($req)$req.contextPath#end#end
+
+## macro for implementation independent i18n
+#macro (text $str)#set($stack=$req.getAttribute("webwork.valueStack")) $stack.findValue("getText('$str', null)")#end
+## example: #text("category.property.foo")
+
+#macro (todo)
+	onClick="showTodo(this);return false;" onmouseout="hideTodo(this)"
+#end
+
+
+## -------------------------
+## ---- Breadcrumb bar  ----
+## -------------------------
+#macro(breadcrumbs $crumbs $names)
+<table cellSpacing='1' style='border : 2px; border-color:#005f9b; border-style:solid' cellPadding='2' width='90%' bgColor='#EFEFF7' border='0'>
+<tbody><tr>
+		<td class='smallertext'>
+		#foreach($crumb in $crumbs)	
+			 #if($crumbs.size() != $velocityCount)
+				#set($index = ($velocityCount - 1))
+				<a href="$crumb">$names.get($index)</a>  �
+			 #else
+				#set($index = ($velocityCount - 1))
+				$names.get($index)
+			#end
+		#end 
+		</td>
+		<td class='smallerheader' align='right' width='140' nowrap>
+		$dbAdmin.name <a href='/logoff.do'>(logout)</a>&nbsp;<a onclick='zoomin();' href='#'>(+)</a>&nbsp;<a onclick='zoomout();' href='#'>(-)</a> 
+		</td></tr></tbody></table>
+#end
+
+
+#macro(req $param)$!request.getParameter($param)#end
+#macro(selected $param $text) #if($param == $text) selected="true" #end#end 
+
+
+## Display all queued Webwork field errors
+#macro (fieldErrors )
+    #if( $fieldErrors.size() > 0 )
+	<p>
+	<font color="red">
+	<b>ERRORS:</b><br>
+	<ul>
+	#foreach( $error in $fieldErrors )
+		<li>$error</li>
+	#end
+	</ul>
+	</font>
+	</p>
+   #end
+#end     
+
+## Display Webwork action errors
+#macro (actionErrors)
+#if( $actionErrors.size() > 0 )
+<p>
+<font color="red">
+<b>ERRORS:</b><br>
+<ul>
+#foreach( $error in $actionErrors )
+<li>$error</li>
+#end
+</ul>
+</font>
+</p>
+#end
+#end
+
+## prints out the property names for a bean
+#macro (describeBean $name) 
+#set($bu = $webwork.bean("com.opensymphony.util.BeanUtils"))
+	#foreach($prop in $bu.getPropertyNames($name))
+		<li>$prop</li>
+	#end
+#end
+
+
+#*pager macro is for display "paged" numbers at the bottom to back a results list
+	1,2,3,....[Last]
+	$curpage=current page we are on
+	$pagesize=Number of elements we are typically showing per page
+	$pagersize=Number of pages to show at the bottom until we just display ....
+	$elementscount=total number of elements
+	$link=url for linking
+	$cur=some string used in naming the interal form
+*#
+#macro (pager $curpage $pagesize $pagersize $elementscount $link $cur )
+      <table border="0" cellpadding="2" cellspacing="1" width="100%">  
+          <tr> 
+            <td valign="center" align="left" width="30%"> 
+          #if ($elementscount > $pagesize) 
+            #if ($curpage == 1) 
+            #else 
+              <a href="${link}currentPage=1">[First]</a> 
+              #set ($pg = $curpage - 1) 
+              ##set ($pg = $pg * $pagesize) 
+              <a href="${link}currentPage=$pg">Prev</a> 
+            #end 
+            #set ($semipagesize = $pagersize / 2) 
+            #set ($minpage = $curpage - $semipagesize) 
+            #set ($maxpage = $curpage + $semipagesize) 
+            #set ($potentialmaxpage = $elementscount / $pagesize) 
+            #set ($trunk = $elementscount % $pagesize) 
+            #if ($trunk > 0) 
+              #set ($potentialmaxpage = $potentialmaxpage + 1) 
+            #end 
+            #if ($minpage < 1) 
+              #set ($minpage = 1) 
+            #end 
+            #if ($maxpage > $potentialmaxpage) 
+              #set ($maxpage = $potentialmaxpage) 
+            #end 
+            #set ($pages = [$minpage .. $maxpage]) 
+            #foreach ($page in $pages) 
+              #if ($page == $curpage) 
+                $page 
+              #else 
+                #set ($pg = $page - 1) 
+                #set ($pg = $pg * $pagesize) 
+                  <a href="${link}currentPage=$page">$page</a> 
+              #end 
+            #end 
+            #if ($curpage == $potentialmaxpage) 
+            #else 
+              #set ($pg = $curpage + 1) 
+              <a href="${link}currentPage=$pg">Next</a> 
+              #set ($pg = $potentialmaxpage - 1) 
+              #set ($pg = $pg * $pagesize) 
+              <a href="${link}currentPage=$potentialmaxpage"> [Last]</a> 
+            #end 
+          #else 
+            #set ($potentialmaxpage = 1) 
+          #end 
+          </td> 
+          <td align="center" valign="center" width="30%"> 
+            #set ($firstElement = $curpage - 1) 
+            #set ($firstElement = $firstElement * $pagesize) 
+            #set ($firstElement = $firstElement + 1) 
+            #set ($lastElement = $curpage * $pagesize) 
+            #if ($curpage == $potentialmaxpage) 
+              #set ($lastElement = $elementscount) 
+            #end 
+              $firstElement - $lastElement of $elementscount 
+          </td> 
+          <form name="sizeform$cur" method="post" action="$link"> 
+            <td align="right" valign="center"> 
+              Page size: 
+              #set ($str = "javascript:sizeform$cur") 
+              #set ($str = "${str}.submit()") 
+              <select name="pageSize" onChange="$str" class="form"> 
+            #set ($values = [1..10]) 
+            #foreach ($value in $values) 
+              #set ($optValue = $value * 10) 
+              #if ($pagesize == $optValue) 
+                <option value="$optValue" selected>$optValue</option> 
+              #else 
+                <option value="$optValue">$optValue</option> 
+              #end 
+            #end 
+              </select> 
+            </td> 
+          </form> 
+        </tr> 
+       </table> 
+#end	
+
+#*pager macro is for display "paged" numbers at the bottom to back a results list this "pager" does not outputs form it expects developer to dfine form somewhere else
+	1,2,3,....[Last]
+	$curpage=current page we are on
+	$pagesize=Number of elements we are typically showing per page
+	$pagersize=Number of pages to show at the bottom until we just display ....
+	$elementscount=total number of elements
+	$link=url for linking
+	$frmRef=javascript reference to form that must be submitted when user changes selection 
+*#
+#macro (pager_no_form $curpage $pagesize $pagersize $elementscount $link)
+      <table border="0" cellpadding="2" cellspacing="1" width="100%">  
+          <tr> 
+            <td valign="center" align="left" width="30%"> 
+          #if ($elementscount > $pagesize) 
+            #if ($curpage == 1) 
+            #else 
+              <a href="${link}currentPage=1">[First]</a> 
+              #set ($pg = $curpage - 1) 
+              ##set ($pg = $pg * $pagesize) 
+              <a href="${link}currentPage=$pg">Prev</a> 
+            #end 
+            #set ($semipagesize = $pagersize / 2) 
+            #set ($minpage = $curpage - $semipagesize) 
+            #set ($maxpage = $curpage + $semipagesize) 
+            #set ($potentialmaxpage = $elementscount / $pagesize) 
+            #set ($trunk = $elementscount % $pagesize) 
+            #if ($trunk > 0) 
+              #set ($potentialmaxpage = $potentialmaxpage + 1) 
+            #end 
+            #if ($minpage < 1) 
+              #set ($minpage = 1) 
+            #end 
+            #if ($maxpage > $potentialmaxpage) 
+              #set ($maxpage = $potentialmaxpage) 
+            #end 
+            #set ($pages = [$minpage .. $maxpage]) 
+            #foreach ($page in $pages) 
+              #if ($page == $curpage) 
+                $page 
+              #else 
+                #set ($pg = $page - 1) 
+                #set ($pg = $pg * $pagesize) 
+                  <a href="${link}currentPage=$page">$page</a> 
+              #end 
+            #end 
+            #if ($curpage == $potentialmaxpage) 
+            #else 
+              #set ($pg = $curpage + 1) 
+              <a href="${link}currentPage=$pg">Next</a> 
+              #set ($pg = $potentialmaxpage - 1) 
+              #set ($pg = $pg * $pagesize) 
+              <a href="${link}currentPage=$potentialmaxpage"> [Last]</a> 
+            #end 
+          #else 
+            #set ($potentialmaxpage = 1) 
+          #end 
+          </td> 
+          <td align="right" valign="center" width="30%"> 
+            #set ($firstElement = $curpage - 1) 
+            #set ($firstElement = $firstElement * $pagesize) 
+            #set ($firstElement = $firstElement + 1) 
+            #set ($lastElement = $curpage * $pagesize) 
+            #if ($curpage == $potentialmaxpage) 
+              #set ($lastElement = $elementscount) 
+            #end 
+              $firstElement - $lastElement of $elementscount 
+          </td> 
+##            <td align="right" valign="center"> 
+##              Page size: 
+##              #set ($str = "javascript: $frmRef") 
+##              #set ($str = "${str}.submit()") 
+##              <select name="pageSize" onChange="$str" class="form"> 
+##            #set ($values = [1..10]) 
+##            #foreach ($value in $values) 
+##              #set ($optValue = $value * 100) 
+##              #if ($pagesize == $optValue) 
+##                <option value="$optValue" selected>$optValue</option> 
+##              #else 
+##                <option value="$optValue">$optValue</option> 
+##              #end 
+##            #end 
+##              </select> 
+##            </td> 
+        </tr> 
+       </table> 
+#end	
+
+## Display Webwork action messages
+#macro (actionMessages)
+<br/>
+#if( $actionMessages.size() > 0 )
+
+ 	<p>
+	<font color="green">
+	<b>Messages:</b><br>
+	<ul>
+	#foreach( $msg in $actionMessages )
+		<li>$msg</li>
+	#end
+	</ul>
+	</font>
+	</p>
+ #end
+#end
+
+#macro (truncateString $text $length)
+	#if(${text.length()} > $length) 
+		${text.substring(0,$length)} ...
+	#else 
+		${text}
+	#end
+#end
+
+#macro(portletHeaderFullSpec $title $topDivId $contentDivId $innerDivId $collapse $contentStyle $icons)
+	#set($portletCount = $portletCount + 1)
+	#if ($contentDivId == "")
+		#set ($contentDivId = "contentDiv${portletCount}")
+	#end
+	#if ($topDivId == "")
+		#set ($topDivId = "topDiv${portletCount}")
+	#end
+	#if ($innerDivId == "")
+		#set ($innerDivId = "innerDiv${portletCount}")
+	#end
+	<div id="$!topDivId" class="flip_expanded_column">
+		<div class="flip_column_header">
+			<table width="100%" cellspacing="0" cellpadding="0">
+				<tr class="flip_column_titlebar">
+##					<td>
+##						<img src=/views/themes/default/images/box.top.left.gif alt="">
+##					</td>
+					<td class="flip_column_title">
+						<nobr>$title</nobr>
+					</td>
+					<td class="flip_column_links">
+					#if ($collapse)
+						<nobr>
+    						<a href="#" onclick="collapse('$contentDivId');return false;">[-]</a>
+    						<a href="#" onclick="expand('$contentDivId');return false;">[+]</a>
+							$icons
+						</nobr>
+					#else
+    						&nbsp;
+						$icons
+					#end	
+					</td>
+##					<td align="right">
+##						<img src=/views/themes/default/images/box.top.right.gif alt="">
+##					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="$!contentDivId" class="flip_column_contents" style="$contentStyle">
+#end
+
+#macro(portletHeaderIdTopAndContent $title $topDivId $contentDivId $innerDivId $collapse $icons)
+	#portletHeaderFullSpec($title $topDivId $contentDivId $innerDivId $collapse "padding-left: 4px; padding-right: 4px;" $icons)
+#end
+
+#macro(portletHeaderIdContent $title $contentDivId)
+	#portletHeaderIdTopAndContent($title "" $contentDivId "" true "")
+#end
+
+#macro(portletHeaderIdInnerDiv $title $innerDivId)
+	#portletHeaderIdTopAndContent($title "" $innerDivId "" true "")
+#end
+
+#macro(portletHeaderIdTopAndIcons $title $topDivId $icons)
+	#portletHeaderIdTopAndContent($title $topDivId "" "" true $icons)
+#end
+
+#macro(portletHeaderIdTop $title $topDivId)
+	#portletHeaderIdTopAndContent($title $topDivId "" "" true "")
+#end
+
+#macro(portletHeader $title)
+	#portletHeaderIdTopAndContent($title "" "" "" true "")
+#end
+
+#macro(portletHeaderFixed $title)
+	#portletHeaderIdTopAndContent($title "" "" "" false "")
+#end
+
+#macro(portletFooter)
+	#portletFooterButtons(true)
+#end
+
+#macro(portletFooterButtons $showButtons)
+           #if ($showButtons)
+			<div class="flip_column_row_buttons">
+				<a #todo() href="" class="flip_button_visit">More...</a>
+				##<a href="" class="flip_button_mark">AND MORE</a>
+				##<a href="" class="flip_button_rate">BUTTONS</a>
+			</div>
+			#end
+		</div>
+	</div>
+#end
+
+#macro(flipUpIcon $searchResult $user)
+	#if($searchResult.getFlip($user) && $searchResult.getFlip($user).up)
+	<img src="/views/themes/default/images/brownArrowUp.png" title="Flip Up" alt="Flip Up"/>
+	#else
+	<img src="/views/themes/default/images/blueArrowUp.png" title="Flip Up" alt="Flip Up"/>
+	#end
+#end
+
+#macro(flipUpJs)
+	toggleFlips(this,'/views/themes/default/images/blueArrowUp.png','/views/themes/default/images/brownArrowUp.png', true, '/views/themes/default/images/blueArrowDown.png');
+#end
+
+#macro(flipDownIcon $searchResult $user)
+	#if($searchResult.getFlip($user) && !$searchResult.getFlip($user).up)
+	<img src="/views/themes/default/images/brownArrowDown.png" title="Flip Down" alt="Flip Down"/>
+	#else
+	<img src="/views/themes/default/images/blueArrowDown.png" title="Flip Down" alt="Flip Down"/>
+	#end
+#end
+#macro(flipDownJs)
+toggleFlips(this,'/views/themes/default/images/blueArrowDown.png','/views/themes/default/images/brownArrowDown.png', false, '/views/themes/default/images/blueArrowUp.png');
+#end
+
+#macro(markIcon $searchResult $user)
+	#if($searchResult.getMark($user))									
+		<img src="/views/themes/default/images/brownStar.png" title="Clear Mark" alt="Clear Mark"/>
+	#else
+		<img src="/views/themes/default/images/blueStar.png" title="Mark" alt="Mark"/>
+	#end
+#end
+#macro(markJs)
+toggleImage(this,'/views/themes/default/images/blueStar.png','/views/themes/default/images/brownStar.png');	
+#end
+
+#macro(titleBar $title $subtitle)
+<div id="doc3" class="yui-t5">
+	<div id="hd">	
+		<table>
+			<tr>
+			<td>
+			<a href="/"><img id="logo" alt="Flip.TV Search" src="/themes/default/images/logo.gif"/></a>
+			</td>
+			<td width="5"></td>
+			<td valign="bottom"></td>
+			</tr>
+		</table>
+       <div id=searchInfo><h1>$title</h1><p>$subtitle</p></div>
+	</div>
+</div>
+#end
+
+## For the faq.vm
+#macro (question $question)
+	#if ($section == "Q")
+		<a href="#Answer$count">
+	#else
+		<a name="Answer$count"></a>
+	#end
+	<b>Q: ${question}</b>
+	#if ($section == "Q")
+		</a>
+	#end
+#end
+				
+				
+					
+	

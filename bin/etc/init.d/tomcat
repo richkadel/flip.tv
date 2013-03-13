@@ -1,0 +1,66 @@
+#!/bin/bash
+#
+# tomcat        
+#
+# chkconfig: 
+# description: 	Start up the Tomcat servlet engine.
+
+# Source function library.
+. /etc/init.d/functions
+
+
+RETVAL=$?
+export JAVA_HOME="/usr/java/jdk"
+export JAVA_OPTS="-XX:+HeapDumpOnOutOfMemoryError -Xmx384m -server"
+export CATALINA_HOME="/usr/local/tomcat"
+#export CATALINA_HOME="/usr/local/dev/tomcat"
+export CATALINA_PID="$CATALINA_HOME/.pid"
+
+case "$1" in
+ debug)
+        if [ -f $CATALINA_HOME/bin/startup.sh ];
+          then
+	    echo $"Starting Tomcat Debug Mode"
+            /bin/su tomcat $CATALINA_HOME/bin/catalina.sh jpda start
+        fi
+	;;
+ restart)
+        $0 stop
+	sleep 5
+        $0 start
+        ;;
+ start)
+	OLD_PID=`ps -ef | grep "[c]atalina.base=$CATALINA_HOME "|awk '{print $2}'`
+	if [ ! -z "$OLD_PID" ]; then
+		echo killing old tomcat
+		kill $OLD_PID
+		sleep 1
+	fi
+	OLD_PID=`ps -ef | grep "[c]atalina.base=$CATALINA_HOME "|awk '{print $2}'`
+	if [ ! -z "$OLD_PID" ]; then
+		echo trying again with kill -9 $OLD_PID
+		kill -9 $OLD_PID
+		sleep 1
+	fi
+        if [ -f $CATALINA_HOME/bin/startup.sh ];
+          then
+            echo $"Starting Tomcat"
+            /bin/su tomcat $CATALINA_HOME/bin/startup.sh
+        fi
+        ;;
+ stop)
+        if [ -f $CATALINA_HOME/bin/shutdown.sh ];
+          then
+	    echo $"Stopping Tomcat"
+            /bin/su tomcat $CATALINA_HOME/bin/shutdown.sh
+            pid=`cat $CATALINA_PID`
+        fi
+ 	;;
+ *)
+ 	echo $"Usage: $0 {start|stop}"
+	exit 1
+	;;
+esac
+
+exit $RETVAL
+

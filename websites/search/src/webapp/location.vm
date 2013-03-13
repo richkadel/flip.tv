@@ -1,0 +1,62 @@
+#fullBegin ({
+	"title" : "Location",
+	"pageType" : "basic",
+	"search" : false,
+	"titleBarLeft" : "Location",
+	"pageType" : "basic",
+	"firstFocus"	: 'document.location.selectedTimeZone'
+})
+
+<div style="width: 100%; margin-right: auto; margin-left: auto;">
+
+    #noteTop("750px")
+    Select the time zone and station lineup that you have at your house. This will allow the show times
+	to be presented in the correct local time and control the networks that are searched.  Click here to to see 
+	the list of supported networks on the differnt lineups.  The difference between digital cable and satellite lineups
+	is the air times of affiliate networks (ABC, NBC, Fox, etc.)  These networks air at the local time, but the other networks
+	are an east coast times.  
+    
+    <br/>
+    <br/>
+    <br/>	
+    <div style="width: 100%; margin-right: auto; margin-left: auto;">
+    	<center>
+    		<form name="location" action="/search/saveLocation.action">
+				<input type="hidden" name="url" value="$url"/>
+				<input type="hidden" name="returnUrl" value="${webwork.urlEncode("${returnUrl}")}"/>
+            	<table CELLSPACING="10px">
+            		
+            		<tr><td class="label" align="right" valign="top" >Subject:</td><td><select class="field" name="selectedTimeZone">
+																							<option value="PST" #if($selectedTimeZone && $selectedTimeZone == "PST")selected#end>Pacific</option>
+																							<option value="MST" #if($selectedTimeZone && $selectedTimeZone == "MST")selected#end>Mountain</option>
+																							<option value="CST" #if($selectedTimeZone && $selectedTimeZone == "CST")selected#end>Central</option>
+																							<option value="EST" #if($selectedTimeZone && $selectedTimeZone == "EST")selected#end>Eastern</option>
+																							<option value="AKST" #if($selectedTimeZone && $selectedTimeZone == "AKST")selected#end>Alaska</option>
+																							<option value="HST" #if($selectedTimeZone && $selectedTimeZone == "HST")selected#end>Hawaii</option>
+						                                                                </select>
+																					</td></tr>
+            		<tr><td class="label" align="right" valign="top" >Station Lineup:</td><td><select class="field" name="contentLineup">
+																							<option value="1" #if($contentLineup && $contentLineup == 1)selected#end>Cable</option>
+																							<option value="2" #if($contentLineup && $contentLineup == 2)selected#end>Digital Cable</option>
+																							<option value="3" #if($contentLineup && $contentLineup == 3)selected#end>Satellite</option>
+						                                                                </select></td></tr>
+					<tr><td>&nbsp;</td></tr>
+            		<tr><td></td><td><input type="submit" name="save" value="Save"/> <input type="button" name="Cancel" value="Cancel" onclick="window.location='/home/home.action'"></td></tr>
+            	</table>
+            </form>
+    	</center>
+    </div>
+	
+	    #noteBottom()
+
+</div>
+<br/>
+<br/>
+<br/>
+#fullEnd({
+	"pageType" : "basic",
+	"search" : false
+})
+
+
+

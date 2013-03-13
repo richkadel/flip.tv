@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		#header({
+			"title" : "About",
+			"pageType" : "basic"}
+		)
+	</head>
+
+	#headerBar({
+			"search"		: false,
+			"titleBarLeft"	: "About Flip.TV",
+			"noLogo"		: true
+			})
+	#bodyStart({
+			"pageType" : "basic"
+			})
+	<div id="bd-a">
+		#letterHeadTop()
+			<p class="memoheader">It's <i>your</i> television.<font color="gray">&trade;</font></p>
+			<p>
+				What do we mean by "It's <i>your</i> television?" First, Flip.TV
+				is about <i>television</i> and harnessing the Web to seek information about broadcast television.
+				Second, Flip.TV is about <i>you</i>.  Flip.TV empowers you to evaluate and choose TV programs
+				that are relevant to your interests and information needs.
+			</p>
+			<p>
+				Flip.TV provides online services that integrate the Internet, email, and your mobile device
+				with your <b><i>broadcast television</i></b> experience.
+				Our mission is simple: To provide a personalized, easy-to-use service that collects and manages
+				information, which allows you to find the TV programs that are most relevant to you.
+			</p>
+			<p>
+				We love what's happening with video on the web.  But let's face it.
+				Broadcast TV programming far surpasses web-based video in many ways, including
+				depth, breadth, and quality of content. We know this is not going to change for a long time.
+			</p>
+			<p>
+				If you haven't already invested in a new HDTV display, you soon will.
+				Flip.TV will help you reap the rewards of that investment in both entertainment value
+				and information value by helping you narrow in on the programs you want to see.
+			</p>
+			<p>
+				Of course, now you've got to deal with that on-screen channel guide, with 100s of
+				channels and 1000s of programs, <i>scrolling</i> the same old calendar-based guide we use from
+				our TV Guide&trade; in the 1970's!  Flip.TV helps you rapidly find what you want to watch
+				and notifies you of new programs based on your registered interests.
+			</p>
+			<p>
+				<b>How does it work?</b>  First, enter a topic (a word or phrase) in our 
+				<a href="/">search page</a> to find programs
+				that mention the topic.  We will search our database of previously-aired
+				programs and future scheduled programs, including both TV listing information
+				(program descriptions and credits) and dialogue (from
+				closed captions), if any.  
+				We will then list the most relevant programs so you can browse the details or
+				schedule a reminder for an upcoming airing or episode.
+			</p>
+			<p>
+				Next, we'll tell you when the program is scheduled to re-run.
+				Just ask us to notify you the next time it does by selecting
+				the program and registering a request for notification by email or by an SMS Text Message
+				to your mobile phone.
+			</p>
+			<p>
+				You can even be notified when new programs matching your topic are aired. 
+				We'll tell you in real time!  In fact, we can often notify you through your mobile phone
+				mere seconds after the mention of your topic, giving you an opportunity to
+				turn on the program just as it begins.  And we won't let you forget the next time it
+				airs. We can remind you so you can stil catch the entire show from the beginning.
+			</p>
+			<p>
+				<a href="/">Give it a try!</a> We hope you will <b><i>find</i></b> what
+				you're looking for, right here on Flip.TV.
+			</p>
+			<p>
+				Thanks!
+			</p>
+			<p class="memoheader2">
+				<a name="coverage"></a>
+				Coverage and Limitations
+			</p>
+			<p>
+				For our beta release of Flip.TV, we are covering a subset of the North American television market.
+				Our servers currently only process TV broadcasts in a single region in the Pacific time zone.
+				Since our services primarily search and forecast programs spanning days, rather than hours, this
+				is a minor limitation.  This local capture also means that we currently do not cover local
+				broadcasts, such as local or regional news, in all areas.  Expect best results with national
+				broadcast programs.
+			</p>
+			<p>
+				Because of this, please note the following limitations.  First, real-time alerts (alerting you of
+				programs as they happen) are more reliable for Pacific time zone users.  Real-time alerts are possible
+				for all time zones for programs simultaneously broadcast across the nation, such as live sporting
+				events.  In most cases, East Coast users will receive alerts about relevant programs about 3 hours
+				after the program airs.  A similar adjustment can be applied to other timezones.  You will still have
+				ample time to take advantage of alerts for reruns, in most cases.
+			</p>
+			<p>
+				Flip.TV is processing the closed captions directly from the TV broadcast.  This data is sometimes
+				garbled or misspelled, and Appeligo does not take any responsibility for the quality of the underlying
+				data.  However, our search algorithms use a weighted relevance method for finding programs of interest
+				and programs that repetitively mention the your topic are likely to get rated higher, overcoming
+				the limitations of the closed caption stream.
+			</p>
+			<p>
+				At the conclusion of our beta period, we plan to deploy additional servers on the East Coast to process
+				programs at their earlier airing time.  We also intend on covering additional networks.  Currently, the
+				following networks are covered by this Flip.TV beta:
+			</p>
+			<a name="CC"/>
+			<ul style="list-style-type: square; margin-left: 4.0em;">
+				<li><a href="http://www.aetv.com" target="new">A&E</a></li>
+				<li><a href="http://www.abc.com" target="new">ABC</a></li>
+				<!--
+				<li><a href="http://animal.discovery.com" target="new">Animal Planet</a></li>
+				<li><a href="http://www.bet.com" target="new">BET</a></li>
+				-->
+				<li><a href="http://www.bravotv.com" target="new">Bravo</a></li>
+				<li><a href="http://www.cbs.com" target="new">CBS</a></li>
+				<li><a href="http://www.courttv.com" target="new">Court TV</a></li>
+				<li><a href="http://www.cwtv.com" target="new">CW</a></li>
+				<li><a href="http://dsc.discovery.com" target="new">Discovery Channel</a></li>
+				<!--
+				<li><a href="http://www.espntv.com" target="new">ESPN</a></li>
+				-->
+				<li><a href="http://www.fox.com" target="new">Fox</a></li>
+				<li><a href="http://www.thegolfchannel.com" target="new">The Golf Channel</a></li>
+				<li><a href="http://www.hgtv.com" target="new">Home & Garden TV</a></li>
+				<li><a href="http://www.nbc.com" target="new">NBC</a></li>
+				<li><a href="http://www.scifi.com" target="new">Sci Fi Channel</a></li>
+				<li><a href="http://www.food.com" target="new">The Food Network</a></li>
+				<li><a href="http://www.history.com" target="new">The History Channel</a></li>
+				<li><a href="http://tlc.discovery.com" target="new">The Learning Channel</a></li>
+				<li><a href="http://travel.discovery.com" target="new">Travel Channel</a></li>
+				<li><a href="http://www.versus.com" target="new">Versus</a></li>
+			</ul>
+		#letterHeadBottom()
+	</div>
+<br/>
+#bodyEnd({
+	"pageType" : "basic"
+	})
+
+#footer({"search" : false})
+</html>
+
+
+
+	

@@ -1,0 +1,17 @@
+<Context path="@contextPath@" docBase="@docBase@"
+	debug="5" reloadable="true" crossContext="false">
+    <Environment name="deploymentEnvironment" type="java.lang.String" value="@config.name@"/>
+    <Resource
+        name="jdbc/guide"
+        auth="Container"
+        type="javax.sql.DataSource"
+        driverClassName="com.mysql.jdbc.Driver"
+        factory="org.apache.commons.dbcp.BasicDataSourceFactory"
+        url="jdbc:mysql://localhost/guide"
+        username="knowbout"
+        password="C0tt3r"
+        maxActive="100"
+        maxIdle="30"
+        maxWait="10000"
+    />
+</Context>

@@ -1,0 +1,139 @@
+#!/bin/bash
+
+year=`date +%Y`
+month=`date +%m`
+day=`date +%d`
+hour=`date +%H`
+minute=`date +%M`
+
+newday=`echo $day | bc`
+newhour=`echo $hour+0 | bc`
+newminute=`echo $minute-20 | bc`
+
+if [[ $newminute -lt 0 ]]; then
+	newminute=`echo $newminute+60 | bc`
+	newhour=`echo $newhour-1 | bc`
+fi
+
+if [[ $newhour -lt 0 ]]; then
+	newminute=`echo $newminute-20 | bc` #need to back up further if previous day
+	newhour=`echo $newhour+24 | bc`
+	newday=`echo $newday-1 | bc`
+
+	if [[ $newhour -lt 10 ]]; then
+		newhour=0$newhour
+	fi
+
+else
+
+	if [[ $newhour -lt 10 ]]; then
+		newhour=0$newhour
+	fi
+fi
+
+if [[ $newday -lt 0 ]]; then
+	newday=$day # once a month it won't work for about 20 minutes
+fi
+
+if [[ $newday -lt 10 ]]; then
+	newday=0$newday
+fi
+
+if [[ $newminute -lt 10 ]]; then
+	newminute=0$newminute
+fi
+
+
+start=${newhour}:${newminute}:00
+
+#sar -f /var/log/sa/sa$newday -s $start -r 
+memused=`sar -f /var/log/sa/sa$newday -s $start -r | awk '/^Average:/{print $4}'`
+swapused=`sar -f /var/log/sa/sa$newday -s $start -r | awk '/^Average:/{print $9}'`
+cpuutilization=`sar -f /var/log/sa/sa$newday -s $start -u | awk '/^Average:/{print $3}'`
+cpuproc0=`sar -f /var/log/sa/sa$newday -s $start -P 0 | awk '/^Average:/{print $3}'`
+cpuproc1=`sar -f /var/log/sa/sa$newday -s $start -P 1 | awk '/^Average:/{print $3}'`
+iowait=`sar -f /var/log/sa/sa$newday -s $start -u | awk '/^Average:/{print $6}'`
+idle=`sar -f /var/log/sa/sa$newday -s $start -u | awk '/^Average:/{print $7}'`
+swapin=`sar -f /var/log/sa/sa$newday -s $start -W | awk '/^Average:/{print $2}'`
+swapout=`sar -f /var/log/sa/sa$newday -s $start -W | awk '/^Average:/{print $3}'`
+load15min=`uptime | awk '{print $12}'`
+
+#echo memused $memused
+#echo swapused $swapused
+#echo cpuutilization $cpuutilization
+#echo iowait $iowait
+#echo idle $idle
+#echo swapin $swapin
+#echo swapout $swapout
+
+#echo memused'	'swap'	'cpu'	'iowait'	'idle'	'swapin'	'swapout
+#echo $memused'	'$swapused'	'$cpuutilization'	'$iowait'	'$idle'	'$swapin'	'$swapout
+
+date=$year-$month-$day
+datepath=$year/$month/$day
+timeofday=`date +%r`
+hostname=`hostname`
+dirname=/var/flip.tv/stats/$datepath/$hostname
+
+mkdir -p $dirname
+
+filesuffix=stats/$datepath/$hostname/systemstats.html
+filename=/var/flip.tv/$filesuffix
+
+
+if [ ! -f $filename ]; then
+	echo "<html><head><title>$hostname Stats</title></head><body><h1>$hostname Stats for $date</h1>" >$filename
+	echo "<table border=1><tr>
+<th>endtime</th>
+<th>memused</th>
+<th>swap</th>
+<th>cpu (all)</th>
+<th>cpu 0</th>
+<th>cpu 1</th>
+<th>iowait</th>
+<th>idle</th>
+<th>swapin</th>
+<th>swapout</th>
+<th>load (15 min.)</th>
+</tr>" >>$filename
+
+fi
+
+
+echo "<tr>
+<td>$timeofday</td>
+<td>$memused</td>
+<td>$swapused</td>
+<td>$cpuutilization</td>
+<td>$cpuproc0</td>
+<td>$cpuproc1</td>
+<td>$iowait</td>
+<td>$idle</td>
+<td>$swapin</td>
+<td>$swapout</td>
+<td>$load15min</td>
+</tr>" >> $filename
+
+url="http://dev.flip.tv/showfiles/ShowFile/$filesuffix"
+
+if [[ `echo "$cpuutilization > 70" | bc` == 1 ]]; then
+	echo "
+CPU is ${cpuutilization}!
+See $url
+This email was generated from the command 'checkstats'
+at /usr/local/flip.tv/checkstats.
+It is run from cron using the settings for the user 'tomcat'.
+checkstats is maintained at trunk/channelfeed/src/deploy/usr/local/flip.tv
+	" | mail -s "$hostname Performance Warning" root
+fi
+
+if [[ `echo "$swapused > 50" | bc` == 1 ]]; then
+	echo "
+swapused is ${swapused}! 
+See $url
+This email was generated from the command 'checkstats'
+at /usr/local/flip.tv/checkstats.
+It is run from cron using the settings for the user 'tomcat'.
+checkstats is maintained at trunk/channelfeed/src/deploy/usr/local/flip.tv
+	" | mail -s "$hostname Performance Warning" root
+fi

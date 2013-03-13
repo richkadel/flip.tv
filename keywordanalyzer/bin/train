@@ -1,0 +1,5 @@
+#!/bin/sh
+head --lines=400 ../src/trainingdata/baseball.txt > input
+head --lines=700 ../src/trainingdata/cnnheadlinenews.txt >> input
+./trainsearchwords input 
+rm input

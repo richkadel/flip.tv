@@ -1,0 +1,54 @@
+#fullBegin ({
+	"subtitle" : "Verify Your Mobile Device Address",
+	"pageType" : "basic",
+	"search" : false,
+	"titleBarLeft" : "Verify Your Mobile Device Address",
+	"wwform" : true
+})
+
+<br/>
+#noteTop("700px")
+<div style="text-align: center;">
+<a href="/">
+	<img id="logo" width="134" height="62" alt="Flip.TV Search" src="/themes/default/images/logo.gif"/>
+</a>
+</div>
+<p class="memoheader">Mobile Device Verification</p>
+#if($user.smsVerified)
+<p>
+Your mobile device address has been validated. You can change it at any time by
+clicking <a href="account.vm">My Account</a>.
+</p>
+#else
+<p>
+In order to recieve alerts or reminders, you need to verify the SMS email address for your mobile device.
+After you receive the verification code on your device, enter it here and press "Save".
+</p>
+
+<div align="center">
+	#wwactionerror()
+	#wwform("method=post" "action=verifySms" "title=Register" "validate=true")
+		#wwtextfield("required=true" "label=Mobile Device Verification Code" "name=smsVerifyCode")
+		#wwsubmit("value=Verify" "name=verify" "type=button")
+	#end
+</div>
+<div>
+The code should have been sent to your mobile device by SMS message.  If you can't find it,
+<a href="resendSmsCode.action">click here to have a new code sent to your device now</a>.
+</div>
+<br/>
+<div class="finePrint">
+Without validating your mobile device address, you cannot recieve real-time alerts and reminders
+sent directly to your device.
+</div>
+#end
+
+#noteBottom()
+<br/>
+<br/>
+
+#fullEnd ({
+	"pageType" : "basic",
+	"search" : false
+})
+

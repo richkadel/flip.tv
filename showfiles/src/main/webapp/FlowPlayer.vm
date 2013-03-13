@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>$title</title>
+</head>
+<object type="application/x-shockwave-flash" data="${contextPath}/FlowPlayer.swf" 
+	width="324" height="280" id="FlowPlayer">
+	<param name="allowScriptAccess" value="sameDomain" />
+	<param name="movie" value="${contextPath}/FlowPlayerLP.swf" />
+	<param name="quality" value="high" />
+	<param name="scale" value="noScale" />
+	<param name="wmode" value="transparent" />
+	<param name="flashvars" value="config={
+		streamingServer: 'fms', <!-- don't use 'red5' value -->
+		loop: false,
+		initialScale: 'fit',
+		streamingServerURL: 'rtmp://${server}:1935/flvserver',
+		playList: [ 
+			{
+				url: '$flvUrl',
+				start: $start
+				#if($end > 0)
+				,
+				end: $end
+				#end
+			}
+		]
+	}" />
+	<!-- Note that the "end" paramater must be present, and it has a bug.
+	<param name="flashvars" value="config={
+		streamingServer: 'red5',
+		loop: false,
+		streamingServerURL: 'rtmp://knowbout2:1935/flvserver',
+		playList: [ 
+			{ url: '1-16-07/CA04542:DEFAULT/56/1168905600000.flv', start: 600, end: 1260 }
+		]
+	}" />
+			{ name: 'Spidey', url: '1-16-07/CA04542:DEFAULT/56/Spiderman3_trailer_300.flv', start: 60, end: 150 }
+	You must take the end value and add "start" to it.  In otherwords,
+	add "start" to the duration twice. -->
+</object>
+</body>
+</html>

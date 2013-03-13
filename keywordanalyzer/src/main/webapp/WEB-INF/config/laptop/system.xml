@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<configuration>
+	<searchEndpoint>http://localhost:8080/fliptv/internal/keywordListener</searchEndpoint>
+	<epgEndpoint>http://localhost:8080/epgDemo/channel.epg</epgEndpoint>
+</configuration>

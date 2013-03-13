@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<configuration>
+	<searchEndpoint>http://stage.flip.tv/internal/keywordListener</searchEndpoint>
+	<epgEndpoint>http://stage.flip.tv/epgDemo/channel.epg</epgEndpoint>
+</configuration>

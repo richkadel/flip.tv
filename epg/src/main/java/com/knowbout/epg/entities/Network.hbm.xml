@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping package="com.knowbout.epg.entities">
+
+	<class name="com.knowbout.epg.entities.Network" 
+		proxy="com.knowbout.epg.entities.Network" table="networks" >
+	
+			<id name="id" type="long" column="network_id">
+				<generator class="native"/>
+			</id>
+			<property name="name" type="java.lang.String" column="name" length="40"/>
+			<property name="callSign" type="java.lang.String" column="call_sign" length="10" index="callSignIndex"/>
+			<property name="affiliation" type="java.lang.String" column="affiliation" length="25"/>
+			<property name="logo" type="java.lang.String" column="logo" length="100"/>
+
+			<set name="networkLineups" table="network_lineup_network" >
+		  	  <cache usage="nonstrict-read-write"/>
+			  <key column="network_id"/>
+			  <many-to-many column="network_lineup_id" class="com.knowbout.epg.entities.NetworkLineup"/>
+			</set>
+
+		</class>
+	
+	
+		<query name="Network.findByCallSign" cacheable="false"><![CDATA[		
+			from Network where callSign = :callSign
+	]]></query>
+
+</hibernate-mapping>

@@ -1,0 +1,36 @@
+#if (!$featuredItems.isEmpty())
+<div class="amazonAdBox">
+	<img width="97" height="18" src="/themes/default/images/amazon.gif"/>
+	<ul class="amazonAdList">
+        #foreach ($item in $featuredItems)
+			#set ($even = $velocityCount % 2 == 0)
+        	#if ($item)
+				<li class="amazonAdItem">
+					<table>
+						<tr>
+						#if (!$even)
+							<td width="100%">
+								<a href="${item.detailsUrl}">$esc.html($item.title)</a>
+							</td>
+						#end
+                    	#if (${item.smallImageUrl})
+							<td>
+                    			<a href="${item.detailsUrl}">
+                        		<img style="vertical-align:middle" src="${item.smallImageUrl}" border="0" 
+                        			width="${item.smallImageWidth}" height="${item.smallImageHeight}"/>
+                    			</a>
+							</td>
+                    	#end
+						#if ($even)
+							<td width="100%">
+								<a href="${item.detailsUrl}">$esc.html($item.title)</a>
+							</td>
+						#end
+						</tr>
+					</table>
+				</li>
+        	#end
+		#end
+	</ul>
+</div>
+#end

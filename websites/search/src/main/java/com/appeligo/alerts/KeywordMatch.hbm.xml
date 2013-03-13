@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.appeligo.alerts" default-access="field">
+	
+	<class name="com.appeligo.alerts.KeywordMatch" 
+		proxy="com.appeligo.alerts.KeywordMatch" table="keyword_matches">
+		<cache usage="read-write"/>
+		
+		<composite-id>
+			<key-property name="keywordAlertId" type="long" column="keyword_alert_id"/>
+			<key-property name="programId" type="string" column="program_id" length="64"/>
+		</composite-id>
+		
+		<property name="programEndTime" type="java.util.Date" column="program_end_time" not-null="true"/>
+		<property name="creationTime" type="java.util.Date" column="creation_time" not-null="true"/>
+	</class>
+	
+	<query name="KeywordMatch.deleteOldProgramMatches" cacheable="false"><![CDATA[
+		delete from KeywordMatch where programEndTime <= :thirtyMinutesAgo
+	]]></query>
+
+	<query name="KeywordMatch.getKeywordMatch" cacheable="false"><![CDATA[
+		from KeywordMatch where keywordAlertId = :keywordAlertId and programId = :programId
+	]]></query>
+
+</hibernate-mapping>

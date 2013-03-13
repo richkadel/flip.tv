@@ -1,0 +1,11 @@
+<Context path="@contextPath@" docBase="@docBase@" crossContext="false">
+    <Environment name="deploymentEnvironment" type="java.lang.String" value="@config.name@"/>
+    
+	<Resource name="jdbc/search" auth="Container" type="javax.sql.DataSource"
+        factory="org.apache.commons.dbcp.BasicDataSourceFactory"
+		maxActive="100" maxIdle="30" maxWait="10000"
+		driverClassName="@jdbc.driver@"
+		url="@jdbc.url@"
+		username="@jdbc.username@" password="@jdbc.password@"
+		/>
+</Context>

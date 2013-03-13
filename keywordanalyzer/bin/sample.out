@@ -1,0 +1,583 @@
+Compiling class files...
+Running pipeline...
+java -mx128m -cp .:/home/fear/source/keywordanalyzer/output/classes:/home/fear/source/keywordanalyzer/src/java:/home/fear/source/keywordanalyzer/lib/ant.jar:/home/fear/source/keywordanalyzer/lib/grok-0.7.0.jar:/home/fear/source/keywordanalyzer/lib/hylo.jar:/home/fear/source/keywordanalyzer/lib/jakarta-ant-optional.jar:/home/fear/source/keywordanalyzer/lib/java-getopt.jar:/home/fear/source/keywordanalyzer/lib/jdom.jar:/home/fear/source/keywordanalyzer/lib/maxent.jar:/home/fear/source/keywordanalyzer/lib/opennlp.jar:/home/fear/source/keywordanalyzer/lib/servlet-api-2.4.jar:/home/fear/source/keywordanalyzer/lib/trove.jar:/home/fear/source/keywordanalyzer/lib/xerces.jar:/home/fear/source/keywordanalyzer/lib/xml-apis.jar SimplePipe
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:T
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:T
+Searchword:F
+Searchword:F
+Searchword:T
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:T
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:T
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:T
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:T
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:F
+Searchword:T
+<?xml version="1.0" encoding="UTF-8"?>
+<nlpDocument>
+  <text>
+    <p>
+      <s>
+        <t>
+          <w pos="RB">First</w>
+        </t>
+        <t>
+          <w pos=",">,</w>
+        </t>
+        <t>
+          <w pos="PRP">it</w>
+        </t>
+        <t>
+          <w pos="VBZ">'s</w>
+        </t>
+        <t>
+          <w pos="DT">a</w>
+        </t>
+        <t>
+          <w pos="NN">sentence</w>
+        </t>
+        <t>
+          <w pos="IN">with</w>
+        </t>
+        <t type="name">
+          <w pos="NNP">John</w>
+          <w pos="NNP">Smith</w>
+        </t>
+        <t>
+          <w pos="CC">and</w>
+        </t>
+        <t>
+          <w pos="DT">the</w>
+        </t>
+        <t>
+          <w pos="NN">date</w>
+        </t>
+        <t>
+          <w pos="VBD">16/01/74</w>
+        </t>
+        <t>
+          <w pos="IN">in</w>
+        </t>
+        <t>
+          <w pos="NN">it</w>
+        </t>
+        <t>
+          <w pos=".">.</w>
+        </t>
+      </s>
+      <s>
+        <t>
+          <w pos="RB">Now</w>
+        </t>
+        <t>
+          <w pos=",">,</w>
+        </t>
+        <t>
+          <w pos="DT">this</w>
+        </t>
+        <t>
+          <w pos="VBZ">is</w>
+        </t>
+        <t>
+          <w pos="DT">another</w>
+        </t>
+        <t>
+          <w pos="NN">one</w>
+        </t>
+        <t>
+          <w pos="VBN">written</w>
+        </t>
+        <t>
+          <w pos="IN">on</w>
+        </t>
+        <t type="name">
+          <w pos="NNP">Monday</w>
+        </t>
+        <t>
+          <w pos=".">.</w>
+        </t>
+      </s>
+    </p>
+    <p>
+      <s>
+        <t>
+          <w pos="RB">Finally</w>
+        </t>
+        <t>
+          <w pos=",">,</w>
+        </t>
+        <t>
+          <w pos="DT">this</w>
+        </t>
+        <t>
+          <w pos="VBZ">is</w>
+        </t>
+        <t>
+          <w pos="DT">a</w>
+        </t>
+        <t>
+          <w pos="NN">sentence</w>
+        </t>
+        <t>
+          <w pos="IN">in</w>
+        </t>
+        <t>
+          <w pos="DT">a</w>
+        </t>
+        <t>
+          <w pos="JJ">new</w>
+        </t>
+        <t type="name">
+          <w pos="NN">paragraph</w>
+        </t>
+        <t>
+          <w pos=".">.</w>
+        </t>
+      </s>
+    </p>
+    <p>
+      <s>
+        <t>
+          <w pos="RB">First</w>
+        </t>
+        <t>
+          <w pos=",">,</w>
+        </t>
+        <t>
+          <w pos="RB">here</w>
+        </t>
+        <t>
+          <w pos="VBZ">is</w>
+        </t>
+        <t>
+          <w pos="DT">a</w>
+        </t>
+        <t>
+          <w pos="NN">sentence</w>
+        </t>
+        <t>
+          <w pos="IN">with</w>
+        </t>
+        <t type="name">
+          <w pos="NNP">Jake</w>
+          <w pos="NNP">Fear</w>
+        </t>
+        <t>
+          <w pos=",">,</w>
+        </t>
+        <t>
+          <w pos="RB">not</w>
+        </t>
+        <t>
+          <w pos="DT">some</w>
+        </t>
+        <t type="name">
+          <w pos="NN">URL</w>
+        </t>
+        <t>
+          <w pos="IN">like</w>
+        </t>
+        <t type="url">
+          <w pos="NN">http://jakarta.apache.org/.</w>
+        </t>
+        <t type="search">
+          <w pos="RB">Now</w>
+        </t>
+        <t>
+          <w pos=",">,</w>
+        </t>
+        <t>
+          <w pos="DT">this</w>
+        </t>
+        <t>
+          <w pos="VBZ">is</w>
+        </t>
+        <t>
+          <w pos="DT">another</w>
+        </t>
+        <t>
+          <w pos="NN">one</w>
+        </t>
+        <t>
+          <w pos="VBN">written</w>
+        </t>
+        <t>
+          <w pos="IN">on</w>
+        </t>
+        <t type="name">
+          <w pos="NNP">Monday.</w>
+        </t>
+      </s>
+    </p>
+    <p>
+      <s>
+        <t>
+          <w pos="DT">The</w>
+        </t>
+        <t type="name">
+          <w pos="NNP">Grok</w>
+        </t>
+        <t>
+          <w pos="NN">project</w>
+        </t>
+        <t>
+          <w pos="VBZ">is</w>
+        </t>
+        <t>
+          <w pos="VBN">dedicated</w>
+        </t>
+        <t>
+          <w pos="TO">to</w>
+        </t>
+        <t>
+          <w pos="VB">developing</w>
+        </t>
+        <t>
+          <w pos="DT">a</w>
+        </t>
+        <t>
+          <w pos="JJ">large</w>
+        </t>
+        <t>
+          <w pos="NN">collection</w>
+        </t>
+        <t>
+          <w pos="IN">of</w>
+        </t>
+        <t>
+          <w pos="JJ">basic</w>
+        </t>
+        <t>
+          <w pos="NNS">tools</w>
+        </t>
+        <t>
+          <w pos="IN">for</w>
+        </t>
+        <t>
+          <w pos="NN">use</w>
+        </t>
+        <t>
+          <w pos="IN">in</w>
+        </t>
+        <t>
+          <w pos="JJ">natural</w>
+        </t>
+        <t>
+          <w pos="NN">language</w>
+        </t>
+        <t>
+          <w pos="NN">software.</w>
+        </t>
+        <t>
+          <w pos="DT">A</w>
+        </t>
+        <t>
+          <w pos="RB">particularly</w>
+        </t>
+        <t>
+          <w pos="JJ">important</w>
+        </t>
+        <t>
+          <w pos="NN">aspect</w>
+        </t>
+        <t>
+          <w pos="IN">of</w>
+        </t>
+        <t type="name">
+          <w pos="NNP">Grok</w>
+        </t>
+        <t>
+          <w pos="VBZ">is</w>
+        </t>
+        <t>
+          <w pos="IN">that</w>
+        </t>
+        <t>
+          <w pos="PRP$">its</w>
+        </t>
+        <t>
+          <w pos="JJ">natural</w>
+        </t>
+        <t>
+          <w pos="NN">language</w>
+        </t>
+        <t type="name">
+          <w pos="NNS">modules</w>
+        </t>
+        <t>
+          <w pos="MD">should</w>
+        </t>
+        <t>
+          <w pos="RB">not</w>
+        </t>
+        <t>
+          <w pos="VB">be</w>
+        </t>
+        <t>
+          <w pos="JJ">ad</w>
+        </t>
+        <t type="name">
+          <w pos="NN">hoc</w>
+        </t>
+        <t>
+          <w pos="CC">and</w>
+        </t>
+        <t>
+          <w pos="MD">should</w>
+        </t>
+        <t>
+          <w pos="RB">instead</w>
+        </t>
+        <t>
+          <w pos="VB">follow</w>
+        </t>
+        <t>
+          <w pos="JJ">specific</w>
+        </t>
+        <t>
+          <w pos="NNS">guidelines</w>
+        </t>
+        <t>
+          <w pos=",">,</w>
+        </t>
+        <t>
+          <w pos="CC">or</w>
+        </t>
+        <t type="name">
+          <w pos="NNS">interfaces</w>
+        </t>
+        <t>
+          <w pos=",">,</w>
+        </t>
+        <t>
+          <w pos="RB">so</w>
+        </t>
+        <t>
+          <w pos="IN">that</w>
+        </t>
+        <t>
+          <w pos="PRP">they</w>
+        </t>
+        <t>
+          <w pos="MD">may</w>
+        </t>
+        <t>
+          <w pos="VB">be</w>
+        </t>
+        <t>
+          <w pos="RB">freely</w>
+        </t>
+        <t>
+          <w pos="VBN">exchanged</w>
+        </t>
+        <t>
+          <w pos="IN">with</w>
+        </t>
+        <t>
+          <w pos="JJ">other</w>
+        </t>
+        <t type="name">
+          <w pos="NNS">modules</w>
+        </t>
+        <t>
+          <w pos="IN">of</w>
+        </t>
+        <t>
+          <w pos="DT">the</w>
+        </t>
+        <t>
+          <w pos="JJ">same</w>
+        </t>
+        <t>
+          <w pos="NN">type.</w>
+        </t>
+        <t>
+          <w pos="IN">To</w>
+        </t>
+        <t>
+          <w pos="DT">this</w>
+        </t>
+        <t>
+          <w pos="NN">goal</w>
+        </t>
+        <t>
+          <w pos=",">,</w>
+        </t>
+        <t type="name">
+          <w pos="NNP">Grok</w>
+        </t>
+        <t>
+          <w pos="VBZ">provides</w>
+        </t>
+        <t>
+          <w pos="DT">a</w>
+        </t>
+        <t>
+          <w pos="NN">library</w>
+        </t>
+        <t>
+          <w pos="IN">of</w>
+        </t>
+        <t type="name">
+          <w pos="NNS">modules</w>
+        </t>
+        <t>
+          <w pos="WDT">that</w>
+        </t>
+        <t>
+          <w pos="VBP">implement</w>
+        </t>
+        <t>
+          <w pos="DT">the</w>
+        </t>
+        <t type="name">
+          <w pos="NNS">interfaces</w>
+        </t>
+        <t>
+          <w pos="VBN">specified</w>
+        </t>
+        <t>
+          <w pos="IN">by</w>
+        </t>
+        <t type="name">
+          <w pos="NNP">OpenNLP.</w>
+        </t>
+      </s>
+    </p>
+  </text>
+</nlpDocument>
+
+
+First , it 's a sentence with John Smith and the date 16/01/74 in it . Now , this is another one written on Monday . 
+
+Finally , this is a sentence in a new paragraph . 
+
+First , here is a sentence with Jake Fear , not some URL like http://jakarta.apache.org/. Now , this is another one written on Monday. 
+
+The Grok project is dedicated to developing a large collection of basic tools for use in natural language software. A particularly important aspect of Grok is that its natural language modules should not be ad hoc and should instead follow specific guidelines , or interfaces , so that they may be freely exchanged with other modules of the same type. To this goal , Grok provides a library of modules that implement the interfaces specified by OpenNLP.

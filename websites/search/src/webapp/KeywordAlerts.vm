@@ -1,0 +1,100 @@
+#if(!$message && $valid && $valid == false)
+	#set($message = "Invalid setting.")
+#end
+#if($message)
+	<script type="text/javascript">
+		<!-- hide from old browsers
+		var hash = window.location.hash;
+		if (hash == null || hash.length <= 1) {
+			document.writeln('<div class="alertErrorMessage">$message</div>');
+		}
+		// -->
+	</script>
+#end
+#if($keywordAlerts && $keywordAlerts.size() > 0) 
+	#foreach($keywordAlert in $keywordAlerts)
+		
+		<a name="$keywordAlert.id"></a>	
+		#if($keywordAlert.id == $existingKeywordAlertId)
+			<div class="alertBlock" id="existing">
+		#elseif($keywordAlert.disabled)
+			<div class="alertBlock" id="disabled">				
+		#else
+			<script type="text/javascript">
+				<!-- hide from old browsers
+				var hash = window.location.hash;
+				if (hash != null && hash.length > 1 && hash.substring(1) == "$keywordAlert.id") {
+#if($message)
+					document.writeln('<div class="alertErrorMessage">$message</div>');
+#end
+					document.writeln('<div class="alertBlock" id="highlighted">');
+				} else {
+					document.writeln('<div class="alertBlock">');
+				}
+				// -->
+			</script>
+		#end
+			<!--
+			<a href="/alerts/deleteKeywordAlert.action?keywordAlertId=$keywordAlert.id">
+				<img src="/themes/default/images/delete.png" alt="Delete"></a>
+			-->
+			<form style="float: right;" action="/alerts/deleteKeywordAlert.action">
+				<input type="hidden" name="keywordAlertId" value="$keywordAlert.id"/>
+				<script type="text/javascript">
+					function confirmDelete${keywordAlert.id}() {
+						return confirm("Are you sure you want to delete the alert for \"$esc.javascript($keywordAlert.userQuery)\"?");
+					}
+				</script>
+				<input type="submit" value="Delete This Keyword" onclick='return confirmDelete${keywordAlert.id}();'/>
+			</form>
+			#if ($keywordAlert.userQuery.indexOf(" ") > 0)
+				#set($plural = true)
+			#else
+				#set($plural = false)
+			#end
+			<input type="checkbox" value="true" #if(!$keywordAlert.disabled)checked="checked"#end
+				onclick='javascript:window.location="/alerts/changeKeywordAlertDisabled.action?keywordAlertId=$keywordAlert.id&returnUrl=${webwork.urlEncode("${fullRequestURL}")}&disabled="+(!this.checked)+"#$keywordAlert.id";'/>
+
+			<b>#if($keywordAlert.disabled)(Disabled)#end When the 
+			#if ($plural)
+				words
+			#else
+				word
+			#end
+			<span style="font-size: 120%">
+				#googleStartTag()
+				<a href="/search/search.action?query=$webwork.urlEncode("$keywordAlert.userQuery")">$esc.html($keywordAlert.userQuery)</a>
+				#googleEndTag()
+			</span>
+			#if ($plural)
+			are
+			#else
+			is
+			#end
+			mentioned on TV,<br/>
+			notify me by:</b>
+			
+			<br/>
+			<br/>
+			<form action="/alerts/changeKeywordAlert.action">
+				<input type="hidden" name="keywordAlertId" value="$keywordAlert.id"/>
+				<input type="hidden" name="returnUrl" value="$fullRequestURL#$keywordAlert.id"/>
+				<input type="checkbox" name="usingPrimaryEmailRealtime" value="true" #if($keywordAlert.usingPrimaryEmailRealtime)checked="checked"#end
+					onclick="javascript:form.save.disabled=false;"/> Email
+				#if($user.smsVerified)					<input type="checkbox" name="usingSMSRealtime" value="true" #if($keywordAlert.usingSMSRealtime)checked="checked"#end
+						onclick="javascript:form.save.disabled=false;"/> Mobile #smsMessageTime($user)
+				#else
+					<input type="checkbox" name="usingSMSRealtime" value="true" disabled="disabled"
+						onclick="javascript:form.save.disabled=false;"/> Mobile
+					(<a href="/account/account.vm">enable</a>)
+				#end
+				<br/>
+				Max. daily alerts: <input style="text-align: right; padding-right: 2px;" type="text" name="maxAlertsPerDay" value="$keywordAlert.maxAlertsPerDay" size="2" maxlength="3"
+						onkeypress="javascript:form.save.disabled=false;"/>
+				<input type="submit" name="save" value="Save Settings" disabled="true"/>
+			</form>
+		</div>
+	#end
+#else
+	<div class="alertMessageBlock">You have no active topic alerts.</div>
+#end

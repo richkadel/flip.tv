@@ -1,0 +1,42 @@
+#fullBegin ({
+	"title" : "Welcome",
+	"pageType" : "basic",
+	"search" : "true",
+	"titleBarLeft" : "Welcome to Flip.TV"
+})
+
+#noteTop("500px")
+		<p class="memoheader">
+			Welcome to Flip.TV!
+		</p>
+		<p>
+			Your registration is now complete so that you can take complete advantage of
+			the site.  If you want to let us know about your experience please
+			leave us some <a href="/feedback/capture.action">Feedback</a>. 
+			We'd love to know how we can improve Flip.TV.
+		</p>
+		<p>
+			You can <a href="/login.vm">sign in here</a> now.
+		</p>
+		<p>
+			We hope you find Flip.TV both useful and fun!
+		</p>
+		#if($friendNetworkInvites > 0)
+		<p>
+			<b>$friendNetworkInvites #if($friendNetworkInvites >1)people have#{else}person has#end  invited you to join their friend network.  <a href="/network/friends.action">Click here</a> to view the
+				invitation#if($friendNetworkInvites >1)s#end and begin to build your friend network.</b>
+		</p>
+		#end
+		<p style="text-align: center;"><b><a href="/">Start Another Search</a> or<br/>
+		<a href="/alerts/alerts.action">Check Out Your Personal Alerts Page</a>
+		</b></p>
+#noteBottom()
+<br/>
+<br/>
+
+#fullEnd ({
+	"pageType" : "basic",
+	"search" : true
+})
+
+ 

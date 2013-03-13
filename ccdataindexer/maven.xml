@@ -1,0 +1,46 @@
+<project xmlns:j="jelly:core" xmlns:ant="jelly:ant"
+	xmlns:u="jelly:util" xmlns:maven="jelly:maven">
+	
+	<goal name="deploy" prereqs="war:war"
+		description="Deploys the indexer into your system directories">
+	<!--
+		<delete failonerror="false"
+			dir="${maven.build.dir}/deploy" />
+
+	    <copy todir="${maven.build.dir}/deploy/jars" file="${maven.build.dir}/${maven.final.name}.jar"/>  
+	    <copy todir="${maven.build.dir}/deploy/" file="bin/runCCDataIndexer"/>  				
+	    <copy todir="${maven.build.dir}/deploy/config">
+			<fileset dir="../websites/search/src/webapp/WEB-INF/config">
+				<exclude name=".svn" />
+			</fileset>
+		</copy> 
+	    <copy todir="${maven.build.dir}/deploy/dtd">
+			<fileset dir="dtd">
+				<exclude name=".svn" />
+			</fileset>
+		</copy> 
+
+		<j:forEach var="lib" items="${pom.artifacts}">
+		  <j:set var="dep" value="${lib.dependency}"/>     
+			 <j:if test="${dep.type =='jar'}"> 
+			   <ant:copy todir="${maven.build.dir}/deploy/jars" file="${lib.path}"/>  
+			 </j:if> 
+		</j:forEach>            
+	-->
+	    <echo></echo>
+	    <echo></echo>
+	    <echo>========= IMPORTANT!! ==============</echo>
+	    <echo></echo>
+	    <echo>Now sudo ./installccdataindexer (run as root)</echo>
+	    <echo>then, as tomcat, runCCDataindexer and runSpellIndexer</echo>
+		<echo>from /usr/local/flip.tv/ccdataindexer</echo>
+		<echo>BUT... runCCDataIndexer or runCCDataIndexerCompositeOnly</echo>
+		<echo>require a parameter, AND you SHOULD point to a temp directory</echo>
+		<echo>then when finished, stop tomcat, copy the new index(es), and restart.</echo>
+		<echo>runSpellIndexer can be run in parallel pointing to the live directory.</echo>
+	    <echo></echo>
+	    <echo>====================================</echo>
+	    <echo></echo>
+	    <echo></echo>
+    </goal>
+</project>
